@@ -5,11 +5,17 @@
 ## Makefile
 ##
 
-SRC = src/main.c
+SRC = src/main.c \
+	src/utils/error.c \
+	src/utils/menu/start/create.c \
+	src/utils/menu/start/display.c \
+	src/utils/menu/start/events.c \
+	src/utils/menu/start/close.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window
+CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
+		-lcsfml-system -lcsfml-audio
 
 NAME = my_rpg
 
