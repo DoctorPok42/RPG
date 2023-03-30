@@ -4,6 +4,8 @@
 
 # RPG
 
+[![rpg](https://github.com/DoctorPok42/RPG/actions/workflows/rpg.yml/badge.svg?branch=main)](https://github.com/DoctorPok42/RPG/actions/workflows/rpg.yml)
+
 ## Description
 
 RPG is a simple role-playing game written in C.
