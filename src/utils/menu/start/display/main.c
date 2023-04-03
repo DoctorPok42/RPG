@@ -7,10 +7,11 @@
 
 #include "lists.h"
 
-void create_buttons(button_t *button, sfIntRect *rect, sfVector2u size, int i)
+static void create_buttons(button_t *button, sfIntRect *rect, sfVector2u size,
+    int i)
 {
-    button->texture = sfTexture_createFromFile("assets/imgs/start/button.png",
-        NULL);
+    button->texture =
+    sfTexture_createFromFile("assets/imgs/start/button.png",NULL);
     button->sprite = sfSprite_create();
     sfSprite_setTexture(button->sprite, button->texture, sfTrue);
     sfSprite_setPosition(button->sprite,
@@ -20,7 +21,7 @@ void create_buttons(button_t *button, sfIntRect *rect, sfVector2u size, int i)
         rect->height};
 }
 
-void create_all(menu_t *menu)
+void create_start_all(menu_t *menu)
 {
     sfIntRect *rect[4] = {&(sfIntRect){5, 50, 180, 80},
         &(sfIntRect){0, 153, 180, 80}, &(sfIntRect){0, 360, 180, 80},
@@ -30,7 +31,7 @@ void create_all(menu_t *menu)
     for (int i = 0; i < 4; i++) {
         menu->button[i] = malloc(sizeof(button_t));
         create_buttons(menu->button[i], rect[i], window_size, i);
-        menu->button[i]->callback = (void *)FLAGS[i].functions;
+        menu->button[i]->callback = (void *)START_FLAGS[i].functions;
     }
     menu->rect = malloc(sizeof(sfRectangleShape *) * 1);
     menu->rect[0] = sfRectangleShape_create();
@@ -44,7 +45,7 @@ void create_all(menu_t *menu)
     sfMusic_setLoop(menu->song->music, sfTrue);
 }
 
-void display_buttons(menu_t *menu, sfVector2i mpos)
+static void display_buttons(menu_t *menu, sfVector2i mpos)
 {
     for (int i = 0; i < 4; i++) {
         sfVector2f pos = menu->button[i]->pos;
@@ -54,8 +55,7 @@ void display_buttons(menu_t *menu, sfVector2i mpos)
             sfSprite_setTextureRect(menu->button[i]->sprite,
                 menu->button[i]->rect_text);
                 (sfMouse_isButtonPressed(sfMouseLeft)) ?
-                menu->button[i]->callback(menu),
-                menu->close = true : 0;
+                menu->button[i]->callback(menu) : 0;
         } else {
             menu->button[i]->rect_text.left = 5;
             sfSprite_setTextureRect(menu->button[i]->sprite,
@@ -65,11 +65,13 @@ void display_buttons(menu_t *menu, sfVector2i mpos)
     }
 }
 
-void display_all(menu_t *menu)
+void display_start_all(game_t *game, menu_t *menu)
 {
     sfVector2i mpos = sfMouse_getPositionRenderWindow(menu->window);
+    sfRenderWindow_setTitle(menu->window, "Start | RPG");
     sfRenderWindow_clear(menu->window, sfBlue);
     sfRenderWindow_drawRectangleShape(menu->window, menu->rect[0], NULL);
     display_buttons(menu, mpos);
+    sfMusic_setVolume(menu->song->music, game->volume);
     sfRenderWindow_display(menu->window);
 }

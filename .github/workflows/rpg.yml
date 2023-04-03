@@ -8,6 +8,12 @@ on:
     branches-ignore:
       - " ga-ignore-"
 jobs:
+  size:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the size of the repo
+        run: du -skh --exclude=.git
+
   check_coding_style:
     runs-on: ubuntu-latest
     container: ghcr.io/epitech/coding-style-checker:latest

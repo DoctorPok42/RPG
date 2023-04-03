@@ -8,9 +8,10 @@
 SRC = src/main.c \
 	src/utils/error.c \
 	src/utils/menu/start/create.c \
-	src/utils/menu/start/display.c \
+	src/utils/menu/start/display/main.c \
+	src/utils/menu/start/display/settings.c \
 	src/utils/menu/start/events.c \
-	src/utils/menu/start/close.c
+	src/utils/menu/start/actions.c
 
 OBJ = $(SRC:.c=.o)
 
