@@ -17,7 +17,6 @@ enum stats {
     RELEASE,
 };
 
-
 typedef struct {
     sfMusic *music;
     sfSound *sound;
@@ -37,7 +36,16 @@ typedef struct {
     void (*callback)(void *);
 } button_t;
 
-typedef struct menu_s {
+typedef struct {
+    sfRectangleShape *container;
+    sfRectangleShape *content;
+    sfRectangleShape *bar;
+    sfVector2f pos;
+    sfVector2f size;
+    sfText *text;
+} settings_t;
+
+typedef struct {
     sfRenderWindow *window;
     sfEvent event;
     sfVector2u window_size;
@@ -45,26 +53,20 @@ typedef struct menu_s {
     button_t **button;
     song_t *song;
     bool close;
+    const char *title;
+    int current;
+    settings_t **set;
 } menu_t;
 
 typedef struct {
     sfVector2u window_size;
     menu_t **menu;
     int frameRate;
+    float volume;
+    sfVideoMode mode;
+    int scale;
 } game_t;
 
-void close_start_all(menu_t *menu);
-
-typedef struct flags_s {
-    void (*functions)(void *);
-} flags;
-
-static const flags FLAGS[] = {
-    {},
-    {},
-    {},
-    {functions : (void *)close_start_all},
-    {functions : NULL}
-};
+    #include "start.h"
 
 #endif /* !LISTS_H_ */
