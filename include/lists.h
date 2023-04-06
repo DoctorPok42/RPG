@@ -9,6 +9,8 @@
     #define LISTS_H_
 
     #include "rpg.h"
+    #include "perso.h"
+    #include "keys.h"
 
 enum stats {
     none,
@@ -43,19 +45,21 @@ typedef struct {
     sfVector2f pos;
     sfVector2f size;
     sfText *text;
+    button_t **button;
 } settings_t;
 
 typedef struct {
     sfRenderWindow *window;
+    sfView *view;
     sfEvent event;
-    sfVector2u window_size;
     sfRectangleShape **rect;
     button_t **button;
     song_t *song;
-    bool close;
+    int close;
     const char *title;
     int current;
     settings_t **set;
+    perso_t *perso;
 } menu_t;
 
 typedef struct {
@@ -65,6 +69,7 @@ typedef struct {
     float volume;
     sfVideoMode mode;
     int scale;
+    keys_t *keys;
 } game_t;
 
     #include "start.h"

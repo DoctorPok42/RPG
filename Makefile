@@ -11,7 +11,11 @@ SRC = src/main.c \
 	src/utils/menu/start/display/main.c \
 	src/utils/menu/start/display/settings.c \
 	src/utils/menu/start/events.c \
-	src/utils/menu/start/actions.c
+	src/utils/menu/start/actions.c \
+	src/utils/menu/game/create.c \
+	src/utils/menu/game/events.c \
+	src/utils/menu/game/display/main.c \
+	src/utils/menu/game/display/perso.c
 
 OBJ = $(SRC:.c=.o)
 

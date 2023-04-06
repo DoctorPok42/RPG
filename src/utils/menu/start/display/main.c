@@ -11,21 +11,17 @@ static void create_buttons(button_t *button, sfIntRect *rect, sfVector2u size,
     int i)
 {
     button->texture =
-    sfTexture_createFromFile("assets/imgs/start/button.png",NULL);
+    sfTexture_createFromFile("assets/imgs/button.png",NULL);
     button->sprite = sfSprite_create();
     sfSprite_setTexture(button->sprite, button->texture, sfTrue);
     sfSprite_setPosition(button->sprite,
-        (sfVector2f){size.x / 3.5 + (i * 190), size.y / 1.3});
-    button->pos = (sfVector2f){size.x / 3.5 + (i * 190), size.y / 1.3};
-    button->rect_text = (sfIntRect){rect->left, rect->top, rect->width,
-        rect->height};
+        (sfVector2f){size.x / 4.3 + (i * 250), size.y / 1.35});
+    button->pos = (sfVector2f){size.x / 4.3 + (i * 250), size.y / 1.35};
+    button->rect_text = *rect;
 }
 
-void create_start_all(menu_t *menu)
+void create_start_all(menu_t *menu, sfIntRect *rect[4])
 {
-    sfIntRect *rect[4] = {&(sfIntRect){5, 50, 180, 80},
-        &(sfIntRect){0, 153, 180, 80}, &(sfIntRect){0, 360, 180, 80},
-        &(sfIntRect){0, 460, 180, 80}};
     menu->button = malloc(sizeof(button_t *) * 5);
     sfVector2u window_size = sfRenderWindow_getSize(menu->window);
     for (int i = 0; i < 4; i++) {
@@ -49,9 +45,9 @@ static void display_buttons(menu_t *menu, sfVector2i mpos)
 {
     for (int i = 0; i < 4; i++) {
         sfVector2f pos = menu->button[i]->pos;
-        if (mpos.x >= pos.x && mpos.x <= pos.x + 180 && mpos.y >= pos.y &&
-            mpos.y <= pos.y + 80) {
-            menu->button[i]->rect_text.left = 5 + 207;
+        if (mpos.x >= pos.x && mpos.x <= pos.x + 225 && mpos.y >= pos.y &&
+            mpos.y <= pos.y + 105) {
+            menu->button[i]->rect_text.left = 5 + 225;
             sfSprite_setTextureRect(menu->button[i]->sprite,
                 menu->button[i]->rect_text);
                 (sfMouse_isButtonPressed(sfMouseLeft)) ?

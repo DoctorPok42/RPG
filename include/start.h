@@ -10,18 +10,19 @@
 
     #include "lists.h"
 
-void change_to_settings(menu_t *menu);
+void exit_start_all(menu_t *menu);
 void close_start_all(menu_t *menu);
+void change_to_settings(menu_t *menu);
 
 typedef struct start_flags_s {
     void (*functions)(void *);
 } start_flags;
 
 static const start_flags START_FLAGS[] = {
-    {},
+    {functions : (void *)&close_start_all},
     {},
     {functions : (void *)&change_to_settings},
-    {functions : (void *)&close_start_all},
+    {functions : (void *)&exit_start_all},
     {functions : NULL}
 };
 

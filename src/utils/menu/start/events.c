@@ -7,13 +7,13 @@
 
 #include "lists.h"
 
-void close_start_all(menu_t *menu);
+void exit_start_all(menu_t *menu);
 
-void events(game_t *game, menu_t *menu, sfEvent event)
+void events_start(game_t *game, menu_t *menu, sfEvent event)
 {
     while (sfRenderWindow_pollEvent(menu->window, &event)) {
         if (event.type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape)) {
-            close_start_all(menu);
+            exit_start_all(menu);
         }
 
         if (event.type == sfEvtMouseWheelScrolled) {
