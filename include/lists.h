@@ -53,6 +53,7 @@ typedef struct {
     sfView *view;
     sfEvent event;
     sfRectangleShape **rect;
+    sfImage *colls_image;
     button_t **button;
     song_t *song;
     int close;

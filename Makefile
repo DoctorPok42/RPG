@@ -15,7 +15,9 @@ SRC = src/main.c \
 	src/utils/menu/game/create.c \
 	src/utils/menu/game/events.c \
 	src/utils/menu/game/display/main.c \
-	src/utils/menu/game/display/perso.c
+	src/utils/menu/game/display/perso.c	\
+	src/utils/menu/game/display/player_move.c	\
+	src/utils/menu/game/collisions.c
 
 OBJ = $(SRC:.c=.o)
 

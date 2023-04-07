@@ -1,3 +1,4 @@
 *.o
 .vscode
 coding-style*
+compile_flags.txt
