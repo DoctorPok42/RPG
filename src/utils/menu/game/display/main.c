@@ -50,15 +50,3 @@ void display_game_all(game_t *game)
 
     sfRenderWindow_display(menu->window);
 }
-
-// sfTexture *test = sfTexture_createFromImage(game->menu[1]->colls_image, 0);
-// sfSprite *test1 = sfSprite_create();
-// sfSprite_setTexture(test1, test, 0);
-// sfSprite_setTextureRect(test1, (sfIntRect) {0, 0, game->window_size.x / 2,
-// game->window_size.y / 2});
-// sfSprite_setScale(test1, (sfVector2f) {2.25, 2.08});
-// sfSprite_setColor(test1, (sfColor) {255, 255, 255, 100});
-// sfRenderWindow_drawSprite(menu->window, test1, NULL);
-
-// sfTexture_destroy(test);
-// sfSprite_destroy(test1);
