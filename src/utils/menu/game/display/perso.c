@@ -7,6 +7,9 @@
 
 #include "lists.h"
 
+void move_player_vertical (menu_t *menu);
+void move_player_horizontal (menu_t *menu);
+
 sfClock *create_clock(void)
 {
     sfClock *clock = sfClock_create();
@@ -27,32 +30,11 @@ void anime_player(game_t *game)
     sfSprite_setTextureRect(menu->perso->sprite, menu->perso->rect);
 }
 
-void move_player(menu_t *menu)
-{
-    if (sfKeyboard_isKeyPressed(sfKeyUp)) {
-        menu->perso->pos.y -= 4;
-        menu->perso->rect.top = 600;
-        menu->perso->move = 1; menu->perso->direction = 1;
-    } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
-        menu->perso->pos.y += 4;
-        menu->perso->rect.top = 400;
-        menu->perso->move = 1; menu->perso->direction = 2;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
-        menu->perso->pos.x -= 4;
-        menu->perso->rect.top = 500;
-        menu->perso->move = 1; menu->perso->direction = 3;
-    } else if (sfKeyboard_isKeyPressed(sfKeyRight)) {
-        menu->perso->pos.x += 4;
-        menu->perso->rect.top = 700;
-        menu->perso->move = 1; menu->perso->direction = 4;
-    }
-}
-
 void display_perso(game_t *game)
 {
     menu_t *menu = game->menu[1];
-    move_player(game->menu[1]);
+    move_player_horizontal(game->menu[1]);
+    move_player_vertical(game->menu[1]);
     if (menu->perso->move == 1) {
         anime_player(game);
         menu->perso->move = 0;
