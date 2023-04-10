@@ -15,6 +15,7 @@ typedef struct {
     sfKeyCode down;
     sfKeyCode left;
     sfKeyCode right;
+    sfKeyCode space;
     sfKeyCode attack;
     sfKeyCode inventory;
     sfKeyCode pause;

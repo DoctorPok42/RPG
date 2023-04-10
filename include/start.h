@@ -8,11 +8,11 @@
 #ifndef START_H_
     #define START_H_
 
-    #include "lists.h"
+    #include "game.h"
 
-void exit_start_all(menu_t *menu);
-void close_start_all(menu_t *menu);
-void change_to_settings(menu_t *menu);
+void exit_start_all(game_t *game);
+void close_start_all(game_t *game);
+void change_to_settings(game_t *game);
 
 typedef struct start_flags_s {
     void (*functions)(void *);
