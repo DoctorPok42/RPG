@@ -42,8 +42,9 @@ void change_to_game(game_t *game)
         sfMusic_setVolume(game->window->song->music, game->params->volume);
         sfMusic_play(game->window->song->music);
 
-        fade_out(game, 1.5f);
-        game->params->tmp = 1;
+        fade_out(game, 0.5f);
         game->window->title = "Link's Awakening";
+        game->params->tmp = 0;
+        game->menu = 2;
     }
 }
