@@ -15,4 +15,7 @@
     #include <stdlib.h>
     #include <stdbool.h>
 
+    #define EPITECH_ERROR 84
+    #define EPITECH_SUCCESS 0
+
 #endif /* !RPG_H_ */
