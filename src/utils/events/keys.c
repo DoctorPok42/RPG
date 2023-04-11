@@ -9,5 +9,5 @@
 
 void keys_pressed(game_t *game)
 {
-    
+    return;
 }
