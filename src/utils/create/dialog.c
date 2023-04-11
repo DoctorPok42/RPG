@@ -35,7 +35,7 @@ void create_dialog(game_t *game)
     create_text(game);
     game->dialogs->texture = sfTexture_createFromFile("assets/imgs/dialog.png",
         NULL);
-    sfIntRect rect = {.left = 0, .top = 50, .width = 260, .height = 65};
+    sfIntRect rect = {.left = 0, .top = 0, .width = 260, .height = 60};
     game->dialogs->sprite = sfSprite_create();
     sfSprite_setTexture(game->dialogs->sprite, game->dialogs->texture, sfTrue);
     sfSprite_setTextureRect(game->dialogs->sprite, rect);

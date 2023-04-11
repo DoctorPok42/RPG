@@ -34,11 +34,11 @@ static int diplay_text(game_t *game)
 
 void display_dialog(game_t *game)
 {
-    if (game->menu != 2)
+    if (game->menu != 4)
         return;
     sfRenderWindow_drawSprite(game->window->window,
         game->dialogs->sprite, NULL);
     if (diplay_text(game) != 1)
         sfSleep(sfSeconds(2));
-    game->menu = 3;
+    game->menu = 5;
 }

@@ -5,7 +5,6 @@
 ** start_game
 */
 
-#include "rpg.h"
 #include "game.h"
 
 void create_game(game_t *game);
@@ -40,8 +39,7 @@ int start_game(game_t *game)
 {
     init_game(game);
     create_game(game);
-    while (sfRenderWindow_isOpen(game->window->window) &&
-        game->window->close == 0) {
+    while (sfRenderWindow_isOpen(game->window->window)) {
         events_window(game);
         display_all(game);
     }

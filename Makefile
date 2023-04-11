@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2023
-## navy
+## rpg
 ## File description:
 ## Makefile
 ##
@@ -33,6 +33,7 @@ SRC = src/main.c \
 	$(addprefix src/utils/events/, \
 		$(addsuffix .c, \
 			index \
+			keys \
 		) \
 	) \
 	src/utils/actions.c \

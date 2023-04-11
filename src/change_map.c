@@ -9,7 +9,7 @@
 
 void change_map(game_t *game)
 {
-    if (game->menu == 1) {
+    if (game->menu == 5) {
         if (game->perso->pos.x > game->map->rect.width * 3 - 32) {
             game->map->rect.left += game->map->rect.width / 2;
             game->perso->pos.x = (game->map->rect.width * 3) / 2;

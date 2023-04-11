@@ -5,7 +5,6 @@
 ** main
 */
 
-#include "rpg.h"
 #include "game.h"
 
 int start_game(game_t *game);

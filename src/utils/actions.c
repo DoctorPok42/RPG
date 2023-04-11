@@ -15,12 +15,12 @@ void go_back(game_t *game)
 void change_to_settings(game_t *game)
 {
     game->params->tmp = 0;
-    game->window->close = 0;
+    game->menu = 2;
 }
 
 void close_start_all(game_t *game)
 {
-    game->menu = 1;
+    game->menu = 3;
 }
 
 void exit_start_all(game_t *game)
@@ -28,6 +28,7 @@ void exit_start_all(game_t *game)
     sfMusic_stop(game->window->song->music);
     sfMusic_destroy(game->window->song->music);
     sfRenderWindow_close(game->window->window);
-    sfRenderWindow_destroy(game->window->window);
-    game->window->close = 1;
+    free(game->window->song);
+    free(game->perso);
+    free(game->params);
 }
