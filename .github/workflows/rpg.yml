@@ -11,6 +11,10 @@ jobs:
   size:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Checkout GH repository
+        uses: actions/checkout@v3
+
       - name: Get the size of the repo
         run: du -skh --exclude=.git
 
@@ -20,7 +24,7 @@ jobs:
     steps:
 
       - name: Checkout GH repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           repository: ''
 
@@ -41,7 +45,6 @@ jobs:
           if [ $NB_ERROR -gt 0 ]; then
             exit 1
           fi
-
 
   push_to_mirror:
     runs-on: ubuntu-latest
