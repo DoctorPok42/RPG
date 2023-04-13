@@ -51,13 +51,13 @@ SRC = src/main.c \
 	src/utils/collisions.c \
 	$(addprefix src/utils/functions/, \
 		$(addsuffix .c, \
-			my_getnbr \
 			my_strcmp \
 			my_len \
+			my_str_to_word_array \
+			my_strndup \
+			my_getnbr \
 		) \
 	) \
-			# my_str_to_word_array \
-			# my_strndup \
 
 OBJ = $(SRC:.c=.o)
 
