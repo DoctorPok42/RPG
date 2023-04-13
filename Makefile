@@ -18,6 +18,11 @@ SRC = src/main.c \
 			map \
 			perso \
 			dialog \
+			options/navbar \
+			options/fps \
+			options/music \
+			options/keyboard \
+			options/window \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -28,6 +33,12 @@ SRC = src/main.c \
 			change_to_game \
 			perso \
 			dialog \
+			option \
+			options/music \
+			options/fps \
+			options/keyboard \
+			options/window \
+			options/actions \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
@@ -37,7 +48,16 @@ SRC = src/main.c \
 		) \
 	) \
 	src/utils/actions.c \
-	src/utils/collisions.c
+	src/utils/collisions.c \
+	$(addprefix src/utils/functions/, \
+		$(addsuffix .c, \
+			my_getnbr \
+			my_strcmp \
+			my_len \
+		) \
+	) \
+			# my_str_to_word_array \
+			# my_strndup \
 
 OBJ = $(SRC:.c=.o)
 
