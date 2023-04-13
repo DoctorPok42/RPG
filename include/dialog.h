@@ -11,7 +11,7 @@
     #include "game.h"
 
     typedef struct dialog_s {
-        char *text;
+        char **text;
         struct dialog_s *next;
     } dialog_t;
 

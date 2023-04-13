@@ -37,7 +37,15 @@ SRC = src/main.c \
 		) \
 	) \
 	src/utils/actions.c \
-	src/utils/collisions.c
+	src/utils/collisions.c \
+	$(addprefix src/utils/functions/, \
+		$(addsuffix .c, \
+			my_len \
+			my_str_to_word_array \
+			my_strndup \
+			my_getnbr \
+		) \
+	) \
 
 OBJ = $(SRC:.c=.o)
 
