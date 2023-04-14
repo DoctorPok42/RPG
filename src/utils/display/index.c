@@ -14,6 +14,7 @@ void display_perso(game_t *game);
 void change_map(game_t *game);
 void display_dialog(game_t *game);
 void display_options(game_t *game);
+void display_save(game_t *game);
 
 void display_all(game_t *game)
 {
@@ -28,5 +29,6 @@ void display_all(game_t *game)
     change_map(game);
     display_dialog(game);
     display_options(game);
+    display_save(game);
     sfRenderWindow_display(game->window->window);
 }

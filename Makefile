@@ -23,6 +23,8 @@ SRC = src/main.c \
 			options/music \
 			options/keyboard \
 			options/window \
+			save \
+			go_back \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -39,6 +41,8 @@ SRC = src/main.c \
 			options/keyboard \
 			options/window \
 			options/actions \
+			save \
+			go_back \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
@@ -70,9 +74,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(CFLAGS)
+	# @clear
 	@if [ -f $(NAME) ]; then \
 		echo "\033[1;32mCompilation done\033[0m"; \
 	fi
+	# @cat text.txt
 
 clean:
 	rm -rf $(OBJ)
