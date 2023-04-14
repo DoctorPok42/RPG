@@ -67,7 +67,7 @@ void anime_player(game_t *game)
 
 void display_perso(game_t *game)
 {
-    if (game->menu < 5)
+    if (game->menu < 5 || game->menu >= 10)
         return;
     move_player_horizontal(game);
     move_player_vertical(game);

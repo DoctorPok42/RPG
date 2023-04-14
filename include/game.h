@@ -36,5 +36,6 @@
     } game_t;
 
     #include "start.h"
+    #include "params_fonctions.h"
 
 #endif /* !GAME_H_ */

@@ -13,7 +13,7 @@
     enum stats {
         none,
         HOVER,
-        CLICK,
+        ACTIVE,
         RELEASE,
     };
 
@@ -28,6 +28,7 @@
         sfText *text;
         sfFont *font;
         sfVector2f text_pos;
+        char *str;
         enum stats state;
         void (*callback)(void *);
     } buttons_t;
