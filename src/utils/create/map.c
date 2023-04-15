@@ -21,6 +21,8 @@ void create_map(game_t *game)
     game->map->sprite = sfSprite_create();
 
     sfSprite_setTexture(game->map->sprite, game->map->texture, sfTrue);
+    game->map->rect.left += game->map->rect.width / 2;
+    game->map->rect.top += game->map->rect.height * 3;
     sfSprite_setTextureRect(game->map->sprite, game->map->rect);
     sfSprite_setPosition(game->map->sprite, (sfVector2f){0, 0});
     sfSprite_setScale(game->map->sprite, (sfVector2f){3, 3});

@@ -23,6 +23,7 @@ SRC = src/main.c \
 			options/music \
 			options/keyboard \
 			options/window \
+			inventory \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -39,12 +40,15 @@ SRC = src/main.c \
 			options/keyboard \
 			options/window \
 			options/actions \
+			inventory \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
 		$(addsuffix .c, \
 			index \
 			keys \
+			inventory \
+			zoom \
 		) \
 	) \
 	src/utils/actions.c \
