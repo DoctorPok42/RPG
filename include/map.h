@@ -13,6 +13,8 @@
     typedef struct {
         sfTexture *texture;
         sfSprite *sprite;
+        sfTexture *iso_texture;
+        sfSprite *iso_sprite;
         sfRectangleShape *rectangle;
         sfVector2f scale;
         sfVector2f pos;

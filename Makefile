@@ -41,6 +41,7 @@ SRC = src/main.c \
 			options/window \
 			options/actions \
 			overlay \
+			map_iso \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
