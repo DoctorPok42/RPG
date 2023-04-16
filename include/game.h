@@ -17,6 +17,7 @@
     #include "params.h"
     #include "keys.h"
     #include "save.h"
+    #include "inventory.h"
     #include "overlay.h"
     #include "dialog.h"
     #include "clocks.h"
@@ -32,7 +33,8 @@
         keys_t *keys;
         int menu;
         save_t *save;
-        overlay_t **overlay;
+        inventory_t *inventory;
+        overlay_t *overlay;
         dialog_box_t *dialogs;
         clocks_t *clock;
     } game_t;

@@ -25,6 +25,8 @@ SRC = src/main.c \
 			options/window \
 			save \
 			go_back \
+			inventory \
+			overlay \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -43,12 +45,16 @@ SRC = src/main.c \
 			options/actions \
 			save \
 			go_back \
+			inventory \
+			overlay \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
 		$(addsuffix .c, \
 			index \
 			keys \
+			inventory \
+			zoom \
 		) \
 	) \
 	src/utils/actions.c \
