@@ -24,6 +24,7 @@ SRC = src/main.c \
 			options/keyboard \
 			options/window \
 			inventory \
+			overlay \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -41,6 +42,7 @@ SRC = src/main.c \
 			options/window \
 			options/actions \
 			inventory \
+			overlay \
 		) \
 	) \
 	$(addprefix src/utils/events/, \

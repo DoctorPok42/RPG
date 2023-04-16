@@ -15,12 +15,13 @@ void change_map(game_t *game);
 void display_dialog(game_t *game);
 void display_options(game_t *game);
 void display_inventory(game_t *game);
+void display_overlay(game_t *game);
 
 void display_all(game_t *game)
 {
     sfRenderWindow_clear(game->window->window, (sfColor){85, 61, 51, 255});
     sfWindow_setFramerateLimit((sfWindow *)game->window->window,
-        game->params->fps);
+    game->params->fps);
     display_window(game);
     display_start_menu(game);
     change_to_game(game);
@@ -30,5 +31,6 @@ void display_all(game_t *game)
     display_dialog(game);
     display_options(game);
     display_inventory(game);
+    display_overlay(game);
     sfRenderWindow_display(game->window->window);
 }

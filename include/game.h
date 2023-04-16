@@ -32,7 +32,7 @@
         keys_t *keys;
         int menu;
         inventory_t *inventory;
-        overlay_t **overlay;
+        overlay_t *overlay;
         dialog_box_t *dialogs;
         clocks_t *clock;
     } game_t;
