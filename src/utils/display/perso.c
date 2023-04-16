@@ -65,6 +65,22 @@ void anime_player(game_t *game)
     sfSprite_setTextureRect(game->perso->sprite, game->perso->rect);
 }
 
+static void anime_unmove_player(game_t *game)
+{
+    if (game->perso->direction == 1)
+        game->perso->rect.top = 200;
+    if (game->perso->direction == 2)
+        game->perso->rect.top = 0;
+    if (game->perso->direction == 3)
+        game->perso->rect.top = 100;
+    if (game->perso->direction == 4)
+        game->perso->rect.top = 300;
+
+    game->perso->rect.left = 0;
+
+    sfSprite_setTextureRect(game->perso->sprite, game->perso->rect);
+}
+
 void display_perso(game_t *game)
 {
     if (game->menu < 5 || game->menu >= 10)
@@ -74,7 +90,8 @@ void display_perso(game_t *game)
     if (game->perso->move == 1) {
         anime_player(game);
         game->perso->move = 0;
-    }
+    } else
+        anime_unmove_player(game);
     sfSprite_setPosition(game->perso->sprite, game->perso->pos);
     sfRenderWindow_drawSprite(game->window->window, game->perso->sprite, NULL);
 }
