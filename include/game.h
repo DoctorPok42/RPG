@@ -16,6 +16,7 @@
     #include "buttons.h"
     #include "params.h"
     #include "keys.h"
+    #include "inventory.h"
     #include "overlay.h"
     #include "dialog.h"
     #include "clocks.h"
@@ -30,6 +31,7 @@
         params_t *params;
         keys_t *keys;
         int menu;
+        inventory_t *inventory;
         overlay_t *overlay;
         dialog_box_t *dialogs;
         clocks_t *clock;
