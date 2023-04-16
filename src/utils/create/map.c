@@ -22,7 +22,6 @@ static void create_iso_map(game_t *game)
 void create_map(game_t *game)
 {
     game->map = malloc(sizeof(map_t));
-
     game->map->rect = (sfIntRect){.left = 0, .top = 0,
         .width = game->params->window_size.x / 3,
         .height = game->params->window_size.y / 3
