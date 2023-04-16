@@ -11,7 +11,7 @@ int is_colliding(game_t *game, sfVector2f pos);
 
 void move_player_vertical (game_t *game)
 {
-    float speed = game->perso->speed;
+    float speed = game->perso->combat->speed;
     if (sfKeyboard_isKeyPressed(sfKeyLeft) ||
     sfKeyboard_isKeyPressed(sfKeyRight))
         speed = 2.8;
@@ -33,7 +33,7 @@ void move_player_vertical (game_t *game)
 
 void move_player_horizontal (game_t *game)
 {
-    float speed = game->perso->speed;
+    float speed = game->perso->combat->speed;
     if (sfKeyboard_isKeyPressed(sfKeyUp) ||
     sfKeyboard_isKeyPressed(sfKeyDown))
         speed = 2.8;
