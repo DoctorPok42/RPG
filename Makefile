@@ -60,6 +60,8 @@ SRC = src/main.c \
 			my_str_to_word_array \
 			my_strndup \
 			my_getnbr \
+			my_itoa \
+			my_strcat \
 		) \
 	) \
 

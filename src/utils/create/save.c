@@ -5,7 +5,29 @@
 ** save
 */
 
+#include <sys/stat.h>
 #include "game.h"
+
+char *my_itoa(int nb);
+char *my_strcat(char *dest, char const *src);
+
+static void add_img(game_t *game, int i)
+{
+    struct stat st;
+    char *path = "save/save";
+    path = my_strcat(path, my_itoa(i + 1));
+    path = my_strcat(path, ".png\0");
+    if (stat(path, &st) == 0) {
+        game->save->view->texture[i] = sfTexture_createFromFile(path, NULL);
+        sfRectangleShape_setTexture(game->save->view->rect[i],
+            game->save->view->texture[i], sfTrue);
+        sfRectangleShape_setFillColor(game->save->view->rect[i],
+            (sfColor){255, 255, 255, 255});
+    } else {
+        game->save->view->texture[i] = NULL;
+        sfText_setString(game->save->view->name[i], "No save");
+    }
+}
 
 static void create_div(game_t *game, int i, char *txt_save)
 {
@@ -34,7 +56,7 @@ void create_save_menu(game_t *game)
     game->save = malloc(sizeof(save_t));
     game->save->view = malloc(sizeof(save_view_t));
     game->save->view->rect = malloc(sizeof(sfRectangleShape *) * 3);
-    game->save->view->image = malloc(sizeof(sfImage *) * 3);
+    game->save->view->texture = malloc(sizeof(sfTexture *) * 3);
     game->save->view->name = malloc(sizeof(sfText *) * 3);
     game->save->view->title = sfText_create();
 
@@ -42,6 +64,7 @@ void create_save_menu(game_t *game)
 
     for (int i = 0; i < 3; i++) {
         create_div(game, i, txt_save[i]);
+        add_img(game, i);
     }
     sfFont *font = sfFont_createFromFile("assets/fonts/dialog.ttf");
     sfText_setString(game->save->view->title, "Save");

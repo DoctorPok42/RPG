@@ -12,7 +12,7 @@
 
     typedef struct {
         sfRectangleShape **rect;
-        sfImage **image;
+        sfTexture **texture;
         sfText *title;
         sfText **name;
     } save_view_t;
