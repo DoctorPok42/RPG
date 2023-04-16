@@ -34,7 +34,7 @@ static void change_life_color(game_t *game)
 
 void display_overlay(game_t *game)
 {
-    if (game->menu < 5)
+    if (game->menu < 5 || game->menu > 6)
         return;
 
     sfRenderWindow_drawSprite(game->window->window,
