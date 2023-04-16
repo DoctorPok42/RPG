@@ -23,6 +23,7 @@ SRC = src/main.c \
 			options/music \
 			options/keyboard \
 			options/window \
+			overlay \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -39,6 +40,7 @@ SRC = src/main.c \
 			options/keyboard \
 			options/window \
 			options/actions \
+			overlay \
 		) \
 	) \
 	$(addprefix src/utils/events/, \

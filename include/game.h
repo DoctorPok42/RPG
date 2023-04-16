@@ -30,7 +30,7 @@
         params_t *params;
         keys_t *keys;
         int menu;
-        overlay_t **overlay;
+        overlay_t *overlay;
         dialog_box_t *dialogs;
         clocks_t *clock;
     } game_t;
