@@ -1,9 +1,10 @@
 Hello  there
-How  are  you  feeling  ?  I  hope  you are fine  because  you  just  slept  for  a  very  long  time
+How  are  you  feeling  ?
+I  hope  you are fine  because  you  just  slept  for  a  very  long  time
 Oh  you  do  not  have  any  memories ?
 Let  me  tell  you  who  you  are
-Your  name  is  Link  you  are  a  hero  from  the  past  If  you  woke  up  just  now  it
-must  be  an  important  matter
+Your  name  is  Link  you  are  a  hero  from  the  past
+If  you  woke  up  just  now  it must  be  an  important  matter
 Now  hurry  up  and  go  have  a  look  around
 #
 Hi there You must be the hero if you are just getting out this home
