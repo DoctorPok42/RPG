@@ -8,19 +8,12 @@
 #include "game.h"
 
 int my_getnbr(char const *str);
-
-static void relase_button(game_t *game, int i)
-{
-    for (int j = 0; j < 4; j++) {
-        if (j != i)
-            game->params->visu->fps->button[j]->state = RELEASE;
-    }
-}
+void relase_button(buttons_t **button, int i, int max);
 
 static int active_button(game_t *game, int i)
 {
     game->params->visu->fps->button[i]->state = ACTIVE;
-    relase_button(game, i);
+    relase_button(game->params->visu->fps->button, i, 4);
     return my_getnbr(game->params->visu->fps->button[i]->str);
 }
 

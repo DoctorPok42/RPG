@@ -25,6 +25,8 @@ SRC = src/main.c \
 			options/window \
 			inventory \
 			overlay \
+			menu \
+			menu/sidebar \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -43,6 +45,7 @@ SRC = src/main.c \
 			options/actions \
 			inventory \
 			overlay \
+			menu \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
@@ -51,6 +54,7 @@ SRC = src/main.c \
 			keys \
 			inventory \
 			zoom \
+			menu \
 		) \
 	) \
 	src/utils/actions.c \

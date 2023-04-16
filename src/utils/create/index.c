@@ -15,6 +15,7 @@ void create_dialog(game_t *game);
 void create_options(game_t *game);
 void create_inventory(game_t *game);
 void create_overlay(game_t *game);
+void create_menu(game_t *game);
 
 void create_game(game_t *game)
 {
@@ -26,4 +27,5 @@ void create_game(game_t *game)
     create_options(game);
     create_inventory(game);
     create_overlay(game);
+    create_menu(game);
 }

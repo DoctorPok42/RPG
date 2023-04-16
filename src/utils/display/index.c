@@ -16,6 +16,7 @@ void display_dialog(game_t *game);
 void display_options(game_t *game);
 void display_inventory(game_t *game);
 void display_overlay(game_t *game);
+void display_menu(game_t *game);
 
 void display_all(game_t *game)
 {
@@ -32,5 +33,6 @@ void display_all(game_t *game)
     display_options(game);
     display_inventory(game);
     display_overlay(game);
+    display_menu(game);
     sfRenderWindow_display(game->window->window);
 }

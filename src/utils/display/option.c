@@ -12,19 +12,19 @@ void display_fps(game_t *game);
 void display_keyboard(game_t *game);
 void display_window_buttons(game_t *game);
 
-static void relase_button(game_t *game, int i)
+void relase_button(buttons_t **button, int i, int max)
 {
-    for (int j = 0; j < 5; j++) {
+    for (int j = 0; j < max; j++) {
         if (j != i)
-            game->params->visu->navbar->button[j]->state = RELEASE;
+            button[j]->state = RELEASE;
     }
 }
 
-static int active_button(game_t *game, int i)
+static void active_button(game_t *game, int i)
 {
     game->menu = game->params->visu->navbar->button[i]->state = ACTIVE;
-    relase_button(game, i);
-    return game->menu = game->menu * 10 + i;
+    relase_button(game->params->visu->navbar->button, i, 5);
+    game->menu = game->menu * 10 + i;
 }
 
 static void display_buttons(game_t *game, sfVector2i mpos)
@@ -36,8 +36,8 @@ static void display_buttons(game_t *game, sfVector2i mpos)
             mpos.y <= pos.y + 50) {
             sfRectangleShape_setFillColor(button[i]->rect,
                 (sfColor){25, 118, 210, 150});
-                game->menu = (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) ?
-                    active_button(game, i) : game->menu;
+                (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) ?
+                    active_button(game, i) : 0;
         } else
             sfRectangleShape_setFillColor(button[i]->rect,
                 (sfColor){25, 118, 210, 100});
