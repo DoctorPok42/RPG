@@ -36,13 +36,19 @@ SRC = src/main.c \
 			keys \
 		) \
 	) \
+	$(addprefix src/utils/mobs/, \
+		$(addsuffix .c, \
+			manage_mobs \
+			set_vector_speed \
+		) \
+	) \
 	src/utils/actions.c \
 	src/utils/collisions.c
 
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
-		-lcsfml-system -lcsfml-audio
+		-lcsfml-system -lcsfml-audio -lm
 
 NAME = my_rpg
 

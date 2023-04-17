@@ -24,5 +24,4 @@ void display_all(game_t *game)
     display_perso(game);
     change_map(game);
     display_dialog(game);
-    sfRenderWindow_display(game->window->window);
 }
