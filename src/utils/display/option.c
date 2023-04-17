@@ -11,6 +11,7 @@ void display_music(game_t *game);
 void display_fps(game_t *game);
 void display_keyboard(game_t *game);
 void display_window_buttons(game_t *game);
+void display_go_back(game_t *game);
 
 static void relase_button(game_t *game, int i)
 {
@@ -57,16 +58,20 @@ void display_options(game_t *game)
         return;
     if (game->menu == 2) {
         game->params->visu->navbar->button[0]->state = ACTIVE;
-        game->menu = 20;
     }
+    game->go_back->pos = (sfVector2f){20, 100};
+    sfSprite_setPosition(game->go_back->sprite, game->go_back->pos);
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->params->visu->navbar->container, NULL);
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->params->visu->navbar->content, NULL);
+    display_go_back(game);
     display_buttons(game, mpos);
     display_music(game);
     display_fps(game);
     display_keyboard(game);
     display_window_buttons(game);
+    game->go_back->pos = (sfVector2f){100, 100};
+    sfSprite_setPosition(game->go_back->sprite, game->go_back->pos);
 }

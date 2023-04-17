@@ -66,7 +66,7 @@ static void display_button(game_t *game, sfVector2i mpos)
 
 void display_fps(game_t *game)
 {
-    if (game->menu != 20)
+    if (game->menu != 2 && game->menu != 20)
         return;
     game->params->visu->fps->button[check_button(game)]->state = ACTIVE;
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
