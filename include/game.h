@@ -16,6 +16,7 @@
     #include "buttons.h"
     #include "params.h"
     #include "keys.h"
+    #include "save.h"
     #include "inventory.h"
     #include "overlay.h"
     #include "dialog.h"
@@ -27,10 +28,11 @@
         perso_t *perso;
         mobs_t *mobs;
         buttons_t **start;
-        buttons_t **game;
+        buttons_t *go_back;
         params_t *params;
         keys_t *keys;
         int menu;
+        save_t *save;
         inventory_t *inventory;
         overlay_t *overlay;
         dialog_box_t *dialogs;

@@ -9,7 +9,7 @@
 
 void display_inventory(game_t *game)
 {
-    if (game->menu < 5)
+    if (game->menu < 5 || game->menu > 6)
         return;
     for (int i = 0; i < 3; i++) {
         sfRectangleShape *container = game->inventory->items[i]->container;

@@ -23,6 +23,8 @@ SRC = src/main.c \
 			options/music \
 			options/keyboard \
 			options/window \
+			save \
+			go_back \
 			inventory \
 			overlay \
 		) \
@@ -41,6 +43,8 @@ SRC = src/main.c \
 			options/keyboard \
 			options/window \
 			options/actions \
+			save \
+			go_back \
 			inventory \
 			overlay \
 			map_iso \
@@ -63,6 +67,8 @@ SRC = src/main.c \
 			my_str_to_word_array \
 			my_strndup \
 			my_getnbr \
+			my_itoa \
+			my_strcat \
 		) \
 	) \
 
@@ -77,9 +83,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(CFLAGS)
+	# @clear
 	@if [ -f $(NAME) ]; then \
 		echo "\033[1;32mCompilation done\033[0m"; \
 	fi
+	# @cat text.txt
 
 clean:
 	rm -rf $(OBJ)
