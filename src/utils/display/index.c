@@ -38,5 +38,6 @@ void display_all(game_t *game)
     display_inventory(game);
     display_overlay(game);
     display_menu(game);
+    printf("menu :: %d\n", game->menu);
     sfRenderWindow_display(game->window->window);
 }

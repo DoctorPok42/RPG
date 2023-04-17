@@ -47,9 +47,11 @@ SRC = src/main.c \
 			options/actions \
 			save \
 			go_back \
-			inventory \
+			inventory_bar \
 			overlay \
 			menu \
+			menu/inventory \
+			menu/actions \
 			map_iso \
 		) \
 	) \

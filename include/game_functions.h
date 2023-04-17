@@ -10,6 +10,7 @@
 
     #include "game.h"
 
+    void change_to_inventory(game_t *game);
     void exit_start_all(game_t *game);
 
     typedef struct game_functions_s {
@@ -17,7 +18,7 @@
     } game_functions_t;
 
     static const game_functions_t MENU_FLAGS[] = {
-        {},
+        {function : &change_to_inventory},
         {},
         {},
         {function : &exit_start_all},
