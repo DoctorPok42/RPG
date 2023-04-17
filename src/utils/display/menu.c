@@ -13,6 +13,7 @@ static void active_button(game_t *game, int i)
 {
     game->game_menu->sidebar->buttons[i]->state = ACTIVE;
     relase_button(game->game_menu->sidebar->buttons, i, 4);
+    game->game_menu->sidebar->buttons[i]->callback(game);
 }
 
 static void display_buttons(game_t *game, sfVector2i mpos)

@@ -41,5 +41,6 @@
 
     #include "start.h"
     #include "params_fonctions.h"
+    #include "game_functions.h"
 
 #endif /* !GAME_H_ */

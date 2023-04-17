@@ -41,6 +41,9 @@ static void create_sidebar_buttons(game_t *game)
         game->game_menu->sidebar->buttons[i] = malloc(sizeof(buttons_t));
         create_buttons(game, game->game_menu->sidebar->buttons[i],
             buttons[i], i);
+        game->game_menu->sidebar->buttons[i]->state = none;
+        game->game_menu->sidebar->buttons[i]->callback =
+            (void *)MENU_FLAGS[i].function;
     }
 }
 
