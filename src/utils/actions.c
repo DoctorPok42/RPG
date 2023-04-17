@@ -9,7 +9,7 @@
 
 void go_back(game_t *game)
 {
-    game->window->close = 0;
+    game->menu /= 10;
 }
 
 void change_to_settings(game_t *game)
@@ -20,7 +20,7 @@ void change_to_settings(game_t *game)
 
 void close_start_all(game_t *game)
 {
-    game->menu = 3;
+    game->menu = 4;
 }
 
 void exit_start_all(game_t *game)
@@ -31,4 +31,9 @@ void exit_start_all(game_t *game)
     free(game->window->song);
     free(game->perso);
     free(game->params);
+}
+
+void change_to_save(game_t *game)
+{
+    game->menu = 3;
 }

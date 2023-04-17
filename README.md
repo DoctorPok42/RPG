@@ -10,11 +10,11 @@
 
 RPG is a simple role-playing game written in C.
 
+It is a school project for the first year at Epitech.
+
 We based our game on the game Link's Awakening.
 
 We used the same map, the same sprites and the same music.
-
-It is a school project for the first year at Epitech.
 
 ## Installation
 
