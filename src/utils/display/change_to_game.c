@@ -32,7 +32,7 @@ void fade_out(game_t *game, float duration)
 
 void change_to_game(game_t *game)
 {
-    if (game->menu == 3 && game->params->tmp == 0) {
+    if (game->menu == 4 && game->params->tmp == 0) {
         sfMusic_stop(game->window->song->music);
         sfMusic_destroy(game->window->song->music);
 

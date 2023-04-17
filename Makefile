@@ -18,6 +18,15 @@ SRC = src/main.c \
 			map \
 			perso \
 			dialog \
+			options/navbar \
+			options/fps \
+			options/music \
+			options/keyboard \
+			options/window \
+			save \
+			go_back \
+			inventory \
+			overlay \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -28,12 +37,25 @@ SRC = src/main.c \
 			change_to_game \
 			perso \
 			dialog \
+			option \
+			options/music \
+			options/fps \
+			options/keyboard \
+			options/window \
+			options/actions \
+			save \
+			go_back \
+			inventory \
+			overlay \
+			map_iso \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
 		$(addsuffix .c, \
 			index \
 			keys \
+			inventory \
+			zoom \
 		) \
 	) \
 	$(addprefix src/utils/mobs/, \
@@ -43,7 +65,18 @@ SRC = src/main.c \
 		) \
 	) \
 	src/utils/actions.c \
-	src/utils/collisions.c
+	src/utils/collisions.c \
+	$(addprefix src/utils/functions/, \
+		$(addsuffix .c, \
+			my_strcmp \
+			my_len \
+			my_str_to_word_array \
+			my_strndup \
+			my_getnbr \
+			my_itoa \
+			my_strcat \
+		) \
+	) \
 
 OBJ = $(SRC:.c=.o)
 
@@ -56,9 +89,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(CFLAGS)
+	# @clear
 	@if [ -f $(NAME) ]; then \
 		echo "\033[1;32mCompilation done\033[0m"; \
 	fi
+	# @cat text.txt
 
 clean:
 	rm -rf $(OBJ)
