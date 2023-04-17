@@ -18,6 +18,7 @@ void create_go_back(game_t *game);
 void create_inventory(game_t *game);
 void create_overlay(game_t *game);
 void create_menu(game_t *game);
+void create_mobs (game_t *game);
 
 void create_game(game_t *game)
 {
@@ -32,4 +33,5 @@ void create_game(game_t *game)
     create_inventory(game);
     create_overlay(game);
     create_menu(game);
+    create_mobs(game);
 }
