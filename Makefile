@@ -27,6 +27,7 @@ SRC = src/main.c \
 			go_back \
 			inventory \
 			overlay \
+			mobs \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -48,6 +49,7 @@ SRC = src/main.c \
 			inventory \
 			overlay \
 			map_iso \
+			mobs \
 		) \
 	) \
 	$(addprefix src/utils/events/, \

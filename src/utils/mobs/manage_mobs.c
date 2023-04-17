@@ -68,8 +68,7 @@ sfVector2f update_and_draw_ennemy (game_t *game, int i)
     sfSprite_setPosition(game->mobs[i]->sprite, mob_pos);
     sfSprite_setTextureRect(game->mobs[i]->sprite,
     game->mobs[i]->TextureRect);
-    sfRenderWindow_drawSprite(game->window->window,
-    game->mobs[i]->sprite, NULL);
+
 
     return mob_pos;
 }
