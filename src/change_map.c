@@ -27,5 +27,6 @@ void change_map(game_t *game)
             game->perso->pos.y = (game->map->rect.height * 3) / 2;
         }
         sfSprite_setTextureRect(game->map->sprite, game->map->rect);
+        sfSprite_setTextureRect(game->map->iso_sprite, game->map->rect);
     }
 }

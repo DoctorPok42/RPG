@@ -47,6 +47,7 @@ SRC = src/main.c \
 			go_back \
 			inventory \
 			overlay \
+			map_iso \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
