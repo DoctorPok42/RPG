@@ -43,5 +43,6 @@ int start_game(game_t *game)
         events_window(game);
         display_all(game);
     }
+
     return (0);
 }

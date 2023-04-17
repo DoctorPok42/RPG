@@ -26,7 +26,7 @@
         window_t *window;
         map_t *map;
         perso_t *perso;
-        mobs_t *mobs;
+        mobs_t **mobs;
         buttons_t **start;
         buttons_t *go_back;
         params_t *params;
