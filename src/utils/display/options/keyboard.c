@@ -36,7 +36,7 @@ static void display_button(game_t *game, sfVector2i mpos)
 
 void display_keyboard(game_t *game)
 {
-    if (game->menu != 22)
+    if (game->menu != 22 && game->menu % 10 != 2)
         return;
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
     display_button(game, mpos);

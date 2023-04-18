@@ -15,12 +15,12 @@ void go_back(game_t *game)
 void change_to_settings(game_t *game)
 {
     game->params->tmp = 0;
-    game->menu = 2;
+    game->menu = game->menu * 10 + 2;
 }
 
 void close_start_all(game_t *game)
 {
-    game->menu = 4;
+    game->menu = game->menu * 10 + 4;
 }
 
 void exit_start_all(game_t *game)
@@ -35,5 +35,5 @@ void exit_start_all(game_t *game)
 
 void change_to_save(game_t *game)
 {
-    game->menu = 3;
+    game->menu = game->menu * 10 + 3;
 }

@@ -9,6 +9,7 @@
 
 void relase_button(buttons_t **button, int i, int max);
 void display_inventory_menu(game_t *game);
+void display_charracter(game_t *game);
 
 static void active_button(game_t *game, int i)
 {
@@ -44,22 +45,24 @@ static void display_buttons(game_t *game, sfVector2i mpos)
 
 void display_menu(game_t *game)
 {
-    if (game->menu % 10 != 6 && ((game->menu / 10) % 10 != 6))
+    if ((game->menu % 10 != 6 && ((game->menu / 10) % 10 != 6)) ||
+        game->menu >= 562)
         return;
-
     if (game->menu % 10 == 6)
-        relase_button(game->game_menu->sidebar->buttons, 0, 4);
-
+        relase_button(game->game_menu->sidebar->buttons, 5, 4);
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
-
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->game_menu->container, NULL);
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->game_menu->content, NULL);
-
     sfRenderWindow_drawRectangleShape(game->window->window,
         game->game_menu->sidebar->container, NULL);
+    if (game->params->tmp == 0) {
+        game->perso->pos_save = game->perso->pos;
+        game->params->tmp = 1;
+    }
 
     display_buttons(game, mpos);
     display_inventory_menu(game);
+    display_charracter(game);
 }

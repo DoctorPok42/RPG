@@ -88,7 +88,7 @@ static void display_size_buttons(game_t *game, sfVector2i mpos)
 
 void display_window_buttons(game_t *game)
 {
-    if (game->menu != 24)
+    if (game->menu != 24 && game->menu % 10 != 4)
         return;
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
     if (game->params->is_fullscreen == true) {

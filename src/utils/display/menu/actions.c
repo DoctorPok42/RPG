@@ -16,3 +16,8 @@ void change_to_character(game_t *game)
 {
     game->menu = 561;
 }
+
+void change_to_option(game_t *game)
+{
+    game->menu = 5620;
+}

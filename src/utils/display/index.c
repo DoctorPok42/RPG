@@ -33,12 +33,14 @@ void display_all(game_t *game)
     display_perso(game);
     change_map(game);
     display_dialog(game);
-    display_options(game);
     display_iso_map(game);
     display_save(game);
     display_inventory(game);
     display_overlay(game);
     display_menu(game);
+    display_options(game);
     display_mobs(game);
+
+    printf("menu: %d\n", game->menu);
     sfRenderWindow_display(game->window->window);
 }
