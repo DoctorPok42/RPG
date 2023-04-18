@@ -9,8 +9,10 @@
 
 void change_to_inventory(game_t *game)
 {
-    if (game->menu / 10 == 6 && game->menu == 56)
-        return;
-    else
-        game->menu *= 10;
+    game->menu = 560;
+}
+
+void change_to_character(game_t *game)
+{
+    game->menu = 561;
 }

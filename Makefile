@@ -29,6 +29,7 @@ SRC = src/main.c \
 			overlay \
 			menu \
 			menu/sidebar \
+			menu/character \
 			mobs \
 		) \
 	) \
@@ -53,6 +54,7 @@ SRC = src/main.c \
 			menu \
 			menu/inventory \
 			menu/actions \
+			menu/character \
 			map_iso \
 			mobs \
 		) \

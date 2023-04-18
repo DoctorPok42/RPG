@@ -17,9 +17,15 @@
     } sidebar_t;
 
     typedef struct {
+        sfText **name;
+        sfText **value;
+    } character_t;
+
+    typedef struct {
         sfRectangleShape *container;
         sfRectangleShape *content;
         sidebar_t *sidebar;
+        character_t *character;
     } game_menu_t;
 
 #endif /* !GAME_MENU_H_ */

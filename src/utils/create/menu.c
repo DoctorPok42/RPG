@@ -8,6 +8,8 @@
 #include "game.h"
 
 void create_sidebar(game_t *game);
+void create_character(game_t *game);
+void display_charracter(game_t *game);
 
 static void create_background(game_t *game, game_menu_t *game_menu)
 {
@@ -32,4 +34,5 @@ void create_menu(game_t *game)
     create_background(game, game->game_menu);
 
     create_sidebar(game);
+    create_character(game);
 }
