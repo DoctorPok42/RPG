@@ -7,11 +7,20 @@
 
 #include "game.h"
 
-static void change_keaboard(game_t *game, int i)
+static void change_keyboard(game_t *game, int i)
 {
-    sfRenderWindow_waitEvent(game->window->window, &game->window->event);
-    if (game->window->event.type == sfEvtKeyPressed) {
+    if (game->keys->swith_keys == 1) {
+        game->keys->up = sfKeyUp;
+        game->keys->down = sfKeyDown;
+        game->keys->left = sfKeyLeft;
+        game->keys->right = sfKeyRight;
+    } else {
+        game->keys->up = sfKeyZ;
+        game->keys->down = sfKeyS;
+        game->keys->left = sfKeyQ;
+        game->keys->right = sfKeyD;
     }
+    game->keys->swith_keys = (game->keys->swith_keys == 1) ? 0 : 1;
 }
 
 static void display_button(game_t *game, sfVector2i mpos)
@@ -23,7 +32,7 @@ static void display_button(game_t *game, sfVector2i mpos)
                 sfRectangleShape_setFillColor(button[i]->rect, sfRed);
                 sfText_setColor(button[i]->text, sfBlack);
                 (sfMouse_isButtonPressed(sfMouseLeft)) ?
-                    change_keaboard(game, i) : 0;
+                    change_keyboard(game, i) : 0;
         } else {
             sfRectangleShape_setFillColor(button[i]->rect, sfBlack);
             sfText_setColor(button[i]->text, sfWhite);
