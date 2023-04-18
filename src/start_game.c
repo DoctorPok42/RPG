@@ -46,6 +46,5 @@ int start_game(game_t *game)
     }
 
     sfTcpSocket_disconnect(game->network->server);
-
     return (0);
 }

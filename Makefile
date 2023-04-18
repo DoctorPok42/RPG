@@ -28,6 +28,7 @@ SRC = src/main.c \
 			go_back \
 			inventory \
 			overlay \
+			mobs \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -50,6 +51,7 @@ SRC = src/main.c \
 			overlay \
 			map_iso \
 			clients \
+			mobs \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
@@ -58,6 +60,12 @@ SRC = src/main.c \
 			keys \
 			inventory \
 			zoom \
+		) \
+	) \
+	$(addprefix src/utils/mobs/, \
+		$(addsuffix .c, \
+			manage_mobs \
+			set_vector_speed \
 		) \
 	) \
 	src/utils/actions.c \
@@ -84,6 +92,7 @@ OBJ = $(SRC:.c=.o)
 
 CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
 		-lcsfml-system -lcsfml-audio -lcsfml-network
+		-lcsfml-system -lcsfml-audio -lm
 
 NAME = my_rpg
 
