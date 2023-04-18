@@ -8,6 +8,7 @@
 #include "game.h"
 
 int is_colliding(game_t *game, sfVector2f pos);
+void send_player_position (game_t *game);
 
 void move_player_vertical (game_t *game)
 {
@@ -28,7 +29,6 @@ void move_player_vertical (game_t *game)
         game->perso->rect.top = 400;
         game->perso->move = 1; game->perso->direction = 2;
     }
-
 }
 
 void move_player_horizontal (game_t *game)
@@ -85,9 +85,13 @@ void display_perso(game_t *game)
 {
     if (game->menu < 5 || game->menu >= 10)
         return;
+
     move_player_horizontal(game);
     move_player_vertical(game);
+
     if (game->perso->move == 1) {
+        if (game->network != NULL)
+            send_player_position(game);
         anime_player(game);
         game->perso->move = 0;
     } else

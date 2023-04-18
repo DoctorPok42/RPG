@@ -1,0 +1,53 @@
+/*
+** EPITECH PROJECT, 2023
+** RPG
+** File description:
+** server_connection
+*/
+
+#include <stdio.h>
+#include <unistd.h>
+
+#include "game.h"
+
+sfTcpSocket *check_connection (sfTcpSocket *server)
+{
+    sfSocketSelector* selector = sfSocketSelector_create();
+    sfSocketSelector_addTcpSocket(selector, server);
+
+    if (sfSocketSelector_wait(selector, sfMilliseconds(1000)) == 0)
+        printf("Connected to server\n");
+    else {
+        sfSocketSelector_removeTcpSocket(selector, server);
+        sfSocketSelector_destroy(selector);
+        printf("Connection refused by server\n");
+        sfTcpSocket_destroy(server);
+        return NULL;
+    }
+
+    sfSocketSelector_removeTcpSocket(selector, server);
+    sfSocketSelector_destroy(selector);
+
+    return server;
+}
+
+network_t *connect_to_server (void)
+{
+    network_t *network = malloc(sizeof(network_t));
+    network->server = sfTcpSocket_create();
+    sfTcpSocket_setBlocking(network->server, sfFalse);
+
+    if (sfTcpSocket_connect(network->server, sfIpAddress_fromString
+    ("185.157.247.171"), 6061, sfSeconds(2)) == sfSocketError) {
+
+        write(2, "Connection failed\n", 18);
+        sfTcpSocket_destroy(network->server);
+        return NULL;
+
+    }
+
+    if (check_connection(network->server) == NULL)
+        return NULL;
+
+    return network;
+}

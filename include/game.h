@@ -21,6 +21,7 @@
     #include "overlay.h"
     #include "dialog.h"
     #include "clocks.h"
+    #include "network.h"
 
     typedef struct {
         window_t *window;
@@ -37,6 +38,7 @@
         overlay_t *overlay;
         dialog_box_t *dialogs;
         clocks_t *clock;
+        network_t *network;
     } game_t;
 
     #include "start.h"

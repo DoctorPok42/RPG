@@ -11,6 +11,7 @@ SRC = src/main.c \
 	src/change_map.c \
 	$(addprefix src/utils/create/, \
 		$(addsuffix .c, \
+			clients \
 			index \
 			start_menu \
 			window \
@@ -48,6 +49,7 @@ SRC = src/main.c \
 			inventory \
 			overlay \
 			map_iso \
+			clients \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
@@ -71,11 +73,17 @@ SRC = src/main.c \
 			my_strcat \
 		) \
 	) \
+	$(addprefix src/utils/network/, \
+		$(addsuffix .c, \
+			connection \
+			communication \
+		) \
+	) \
 
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
-		-lcsfml-system -lcsfml-audio
+		-lcsfml-system -lcsfml-audio -lcsfml-network
 
 NAME = my_rpg
 

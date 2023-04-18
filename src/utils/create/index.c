@@ -17,9 +17,11 @@ void create_save_menu(game_t *game);
 void create_go_back(game_t *game);
 void create_inventory(game_t *game);
 void create_overlay(game_t *game);
+void create_clients(game_t *game);
 
 void create_game(game_t *game)
 {
+    create_clients(game);
     create_window(game);
     create_start_menu(game);
     create_map(game);
