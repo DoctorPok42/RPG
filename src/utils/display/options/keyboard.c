@@ -7,7 +7,7 @@
 
 #include "game.h"
 
-static void change_keyboard(game_t *game, int i)
+static void change_keyboard(game_t *game)
 {
     if (game->keys->swith_keys == 1) {
         game->keys->up = sfKeyUp;
@@ -32,7 +32,7 @@ static void display_button(game_t *game, sfVector2i mpos)
                 sfRectangleShape_setFillColor(button[i]->rect, sfRed);
                 sfText_setColor(button[i]->text, sfBlack);
                 (sfMouse_isButtonPressed(sfMouseLeft)) ?
-                    change_keyboard(game, i) : 0;
+                    change_keyboard(game) : 0;
         } else {
             sfRectangleShape_setFillColor(button[i]->rect, sfBlack);
             sfText_setColor(button[i]->text, sfWhite);
