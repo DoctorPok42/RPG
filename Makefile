@@ -91,7 +91,7 @@ SRC = src/main.c \
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
-		-lcsfml-system -lcsfml-audio -lcsfml-network
+		-lcsfml-system -lcsfml-audio -lcsfml-network \
 		-lcsfml-system -lcsfml-audio -lm
 
 NAME = my_rpg
