@@ -90,8 +90,10 @@ void display_perso(game_t *game)
 {
     if (game->menu < 5 || game->menu >= 10)
         return;
+
     move_player_horizontal(game);
     move_player_vertical(game);
+
     if (game->perso->move == 1) {
         anime_player(game);
         game->perso->move = 0;

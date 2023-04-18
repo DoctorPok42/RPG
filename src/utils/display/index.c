@@ -19,6 +19,7 @@ void display_inventory(game_t *game);
 void display_overlay(game_t *game);
 void display_menu(game_t *game);
 void display_iso_map(game_t *game);
+void display_clients (game_t *game);
 void display_mobs (game_t *game);
 
 void display_all(game_t *game)
@@ -39,6 +40,7 @@ void display_all(game_t *game)
     display_overlay(game);
     display_menu(game);
     display_options(game);
+    display_clients(game);
     display_mobs(game);
 
     printf("menu: %d\n", game->menu);
