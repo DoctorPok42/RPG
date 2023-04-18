@@ -43,6 +43,5 @@ void display_all(game_t *game)
     display_clients(game);
     display_mobs(game);
 
-    printf("menu: %d\n", game->menu);
     sfRenderWindow_display(game->window->window);
 }
