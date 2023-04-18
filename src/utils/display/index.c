@@ -19,6 +19,7 @@ void display_inventory(game_t *game);
 void display_overlay(game_t *game);
 void display_iso_map(game_t *game);
 void display_clients (game_t *game);
+void display_mobs (game_t *game);
 
 void display_all(game_t *game)
 {
@@ -38,5 +39,7 @@ void display_all(game_t *game)
     display_inventory(game);
     display_overlay(game);
     display_clients(game);
+    display_mobs(game);
+
     sfRenderWindow_display(game->window->window);
 }
