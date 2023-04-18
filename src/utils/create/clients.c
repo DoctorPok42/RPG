@@ -9,6 +9,9 @@
 
 void create_clients(game_t *game)
 {
+    if (game->network == NULL)
+        return;
+
     game->network->clients = malloc(sizeof(client_t) * 100);
     game->network->client_sprite = sfSprite_create();
     sfSprite_setScale(game->network->client_sprite, (sfVector2f) {0.7, 0.7});

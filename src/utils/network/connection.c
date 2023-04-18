@@ -38,7 +38,7 @@ network_t *connect_to_server (void)
     sfTcpSocket_setBlocking(network->server, sfFalse);
 
     if (sfTcpSocket_connect(network->server, sfIpAddress_fromString
-    ("185.157.247.171"), 6061, sfSeconds(2)) == sfSocketError) {
+    ("142.93.35.112"), 6060, sfSeconds(2)) == sfSocketError) {
 
         write(2, "Connection failed\n", 18);
         sfTcpSocket_destroy(network->server);
@@ -51,3 +51,5 @@ network_t *connect_to_server (void)
 
     return network;
 }
+
+// ("185.157.247.171"), 6060, sfSeconds(2)) == sfSocketError) {
