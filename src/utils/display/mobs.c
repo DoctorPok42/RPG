@@ -11,7 +11,7 @@ void manage_mobs (game_t *game);
 
 void display_mobs (game_t *game)
 {
-    if (game->menu < 5)
+    if (game->menu < 5 || game->menu > 6)
         return;
 
     manage_mobs(game);
