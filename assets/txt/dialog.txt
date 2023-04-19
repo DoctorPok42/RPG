@@ -1,21 +1,43 @@
 Hello  there
-How  are  you  feeling  ?  I  hope  you are fine  because  you  just  slept  for  a  very  long  time
+How  are  you  feeling  ?
+I  hope  you  are  fine  because  you  just  slept  for  a  very  long  time
 Oh  you  do  not  have  any  memories ?
 Let  me  tell  you  who  you  are
-Your  name  is  Link  you  are  a  hero  from  the  past  If  you  woke  up  just  now  it
-must  be  an  important  matter
-Now  hurry  up  and  go  have  a  look  around
+Your  name  is  Link  you  are  a  hero  from  the  past
+If  you  woke  up  now  it must  be  for  an  important  matter
+Now  hurry  up  and  go  have  a  look  outside
+
+# Key Reminder
+Good  morning
+I  just  need  to  give  you  a  reminder  on  how  you  do actions
+-Arrow keys-  are  for  movements
+(They  can  be  swapped  in  the  option  menu)
+-E-  is  to  interact  with  people  or  elements
+-A-  is  to  attack
+-I-  is  to  check  your  full  inventory
+I  think  that's  all  for  me  then
+Have  fun
 #
-Hi there You must be the hero if you are just getting out this home
-We villagers have prayed for you to wake up since the village is threatened
-by a mighty dragon...
-It just flew here a few days ago and started to destroy everything around looking
-for some gold or so
-I beg you please save us all from him before he gets to village
+
+# Main Quest Dialog
+Hi
+You  must  be  the  Hero  if  you  are  just  getting  out  this  home
+We  villagers  have  prayed  for  you  to  wake  up
+The  village  is  threatened  by  a  mighty  dragon...
+It  just  flew  here  a  few  days  ago  and  started  to  destroy
+everything  around  looking  for  some  gold  or  so
+I  beg  you
+Please  save  us  all  from  it  before  he  gets  to  the  village
 #
-Quest started:
-Go get this dragon dude
+
+#Main Quest Popup
+QUEST  STARTED
+-  Go  get  this  dragon  dude -
 #
-What a beautiful weather
-Have you seen the beast flying around ?
-There is strange monster near the village...
+
+# Random Sentences to attribute to NPC
+What  a  beautiful  weather
+Have  you  seen  the  beast  flying  around  ?
+There  is  strange  monsters  near  the  village...
+Oh  saints  who  are  you  ?
+#
