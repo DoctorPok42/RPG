@@ -9,13 +9,6 @@ SRC = src/main.c \
 	src/utils/error.c \
 	src/start_game.c \
 	src/change_map.c \
-	src/save/load_save.c \
-	src/save/put_nb_float \
-	src/save/put_nbr.c \
-	src/save/write_save.c \
-	src/save/save.c \
-	src/save/open_file.c \
-	src/save/tab_handling.c \
 	$(addprefix src/utils/create/, \
 		$(addsuffix .c, \
 			index \
@@ -34,6 +27,15 @@ SRC = src/main.c \
 			go_back \
 			inventory \
 			overlay \
+		) \
+	) \
+	$(addprefix src/save/, \
+		$(addsuffix .c, \
+			load_save \
+			write_save \
+			save \
+			open_file \
+			tab_handling \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -69,6 +71,8 @@ SRC = src/main.c \
 	src/utils/collisions.c \
 	$(addprefix src/utils/functions/, \
 		$(addsuffix .c, \
+			put_nbr \
+			put_nb_float \
 			my_strcmp \
 			my_len \
 			my_str_to_word_array \
