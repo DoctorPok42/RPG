@@ -22,6 +22,7 @@ jobs:
             echo "Size of the repository is too big"
             exit 1
           fi
+          du -skh --exclude=.git
 
   check_coding_style:
     runs-on: ubuntu-latest
