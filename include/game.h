@@ -16,6 +16,7 @@
     #include "buttons.h"
     #include "params.h"
     #include "keys.h"
+    #include "game_menu.h"
     #include "save.h"
     #include "inventory.h"
     #include "overlay.h"
@@ -33,6 +34,7 @@
         params_t *params;
         keys_t *keys;
         int menu;
+        game_menu_t *game_menu;
         save_t *save;
         inventory_t *inventory;
         overlay_t *overlay;
@@ -43,5 +45,6 @@
 
     #include "start.h"
     #include "params_fonctions.h"
+    #include "game_functions.h"
 
 #endif /* !GAME_H_ */

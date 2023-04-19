@@ -19,6 +19,7 @@ void create_perso(game_t *game)
     sfSprite_setTextureRect(game->perso->sprite, game->perso->rect);
     sfSprite_setScale(game->perso->sprite, (sfVector2f){0.7, 0.7});
     game->perso->combat = malloc(sizeof(combat_t));
+    game->perso->name = "Link";
     game->perso->combat->life = 100;
     game->perso->combat->attack = 10;
     game->perso->combat->defense = 5;

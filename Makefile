@@ -28,6 +28,10 @@ SRC = src/main.c \
 			go_back \
 			inventory \
 			overlay \
+			menu \
+			menu/sidebar \
+			menu/character \
+			menu/quest \
 			mobs \
 		) \
 	) \
@@ -56,8 +60,13 @@ SRC = src/main.c \
 			options/actions \
 			save \
 			go_back \
-			inventory \
+			inventory_bar \
 			overlay \
+			menu \
+			menu/inventory \
+			menu/actions \
+			menu/character \
+			menu/quest \
 			map_iso \
 			clients \
 			mobs \
@@ -69,6 +78,7 @@ SRC = src/main.c \
 			keys \
 			inventory \
 			zoom \
+			menu \
 		) \
 	) \
 	$(addprefix src/utils/mobs/, \
