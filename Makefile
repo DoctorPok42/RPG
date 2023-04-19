@@ -31,6 +31,15 @@ SRC = src/main.c \
 			mobs \
 		) \
 	) \
+	$(addprefix src/save/, \
+		$(addsuffix .c, \
+			load_save \
+			write_save \
+			save \
+			open_file \
+			tab_handling \
+		) \
+	) \
 	$(addprefix src/utils/display/, \
 		$(addsuffix .c, \
 			index \
@@ -73,6 +82,8 @@ SRC = src/main.c \
 	src/utils/collisions.c \
 	$(addprefix src/utils/functions/, \
 		$(addsuffix .c, \
+			put_nbr \
+			put_nb_float \
 			my_strcmp \
 			my_len \
 			my_str_to_word_array \
