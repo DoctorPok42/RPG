@@ -10,6 +10,7 @@
 void relase_button(buttons_t **button, int i, int max);
 void display_inventory_menu(game_t *game);
 void display_charracter(game_t *game);
+void display_quest(game_t *game);
 
 static void active_button(game_t *game, int i)
 {
@@ -22,7 +23,7 @@ static void active_button(game_t *game, int i)
 static void display_buttons(game_t *game, sfVector2i mpos)
 {
     buttons_t **button = game->game_menu->sidebar->buttons;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         sfVector2f pos = button[i]->pos;
         if (mpos.x >= pos.x && mpos.x <= pos.x + 200 && mpos.y >= pos.y &&
             mpos.y <= pos.y + 50) {
@@ -46,7 +47,7 @@ static void display_buttons(game_t *game, sfVector2i mpos)
 void display_menu(game_t *game)
 {
     if ((game->menu % 10 != 6 && ((game->menu / 10) % 10 != 6)) ||
-        game->menu >= 562)
+        game->menu >= 563)
         return;
     if (game->menu % 10 == 6)
         relase_button(game->game_menu->sidebar->buttons, 5, 4);
@@ -61,8 +62,8 @@ void display_menu(game_t *game)
         game->perso->pos_save = game->perso->pos;
         game->params->tmp = 1;
     }
-
     display_buttons(game, mpos);
     display_inventory_menu(game);
     display_charracter(game);
+    display_quest(game);
 }

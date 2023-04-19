@@ -14,6 +14,7 @@
     void change_to_character(game_t *game);
     void change_to_option(game_t *game);
     void exit_start_all(game_t *game);
+    void change_to_quest(game_t *game);
 
     typedef struct game_functions_s {
         void (*function)(game_t *game);
@@ -22,6 +23,7 @@
     static const game_functions_t MENU_FLAGS[] = {
         {function : &change_to_inventory},
         {function : &change_to_character},
+        {function : &change_to_quest},
         {function : &change_to_option},
         {function : &exit_start_all},
         {function : NULL},

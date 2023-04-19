@@ -31,6 +31,7 @@ SRC = src/main.c \
 			menu \
 			menu/sidebar \
 			menu/character \
+			menu/quest \
 			mobs \
 		) \
 	) \
@@ -56,6 +57,7 @@ SRC = src/main.c \
 			menu/inventory \
 			menu/actions \
 			menu/character \
+			menu/quest \
 			map_iso \
 			clients \
 			mobs \

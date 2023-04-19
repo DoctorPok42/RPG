@@ -32,12 +32,12 @@ static void create_buttons(game_t *game, buttons_t *buttons,
 
 static void create_sidebar_buttons(game_t *game)
 {
-    game->game_menu->sidebar->buttons = malloc(sizeof(buttons_t *) * 5);
+    game->game_menu->sidebar->buttons = malloc(sizeof(buttons_t *) * 6);
     game->game_menu->sidebar->buttons[4] = NULL;
 
-    char *buttons[4] = {"inventory", "character", "options", "quit"};
+    char *buttons[5] = {"inventory", "character", "quest", "options", "quit"};
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         game->game_menu->sidebar->buttons[i] = malloc(sizeof(buttons_t));
         create_buttons(game, game->game_menu->sidebar->buttons[i],
             buttons[i], i);
