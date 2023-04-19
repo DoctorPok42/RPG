@@ -66,6 +66,7 @@ SRC = src/main.c \
 		$(addsuffix .c, \
 			manage_mobs \
 			set_vector_speed \
+			movement \
 		) \
 	) \
 	src/utils/actions.c \

@@ -12,6 +12,9 @@ sfTexture *texture)
 {
     int mob_index = 0;
 
+    pos.x *= 3;
+    pos.y *= 3;
+
     for (;game->mobs[mob_index] != NULL; mob_index++);
     game->mobs[mob_index + 1] = NULL;
 
@@ -23,6 +26,7 @@ sfTexture *texture)
     game->mobs[mob_index]->state = Neutral;
     game->mobs[mob_index]->TextureRect = texture_rec;
     game->mobs[mob_index]->sprite = sfSprite_create();
+
     sfSprite_setTexture(game->mobs[mob_index]->sprite, texture, 0);
 }
 
@@ -33,9 +37,9 @@ void create_mobs (game_t *game)
 
     sfTexture *texture = sfTexture_createFromFile("assets/imgs/mobs.png", NULL);
 
-    add_mob(game, (sfVector2f) {1000, 500}, (sfIntRect)
+    add_mob(game, (sfVector2f) {800, 1300}, (sfIntRect)
     {10, 20, 25, 25}, texture);
 
-    add_mob(game, (sfVector2f) {1100, 600}, (sfIntRect)
+    add_mob(game, (sfVector2f) {850, 1350}, (sfIntRect)
     {10, 20, 25, 25}, texture);
 }
