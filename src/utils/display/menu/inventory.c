@@ -50,9 +50,9 @@ void display_inventory_menu(game_t *game)
     game->perso->pos = (sfVector2f){game->params->window_size.x / 2 - 100,
         game->params->window_size.y / 2 - 100};
     sfSprite_setPosition(game->perso->sprite, game->perso->pos);
-    sfSprite_setScale(game->perso->sprite, (sfVector2f){2, 2});
+    sfSprite_setScale(game->perso->sprite, (sfVector2f){9, 9});
     sfRenderWindow_drawSprite(game->window->window, game->perso->sprite, NULL);
-    sfSprite_setScale(game->perso->sprite, (sfVector2f){0.7, 0.7});
+    sfSprite_setScale(game->perso->sprite, (sfVector2f){4, 4});
     display_bar(game);
     game->perso->pos = game->perso->pos_save;
 }
