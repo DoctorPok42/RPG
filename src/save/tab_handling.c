@@ -54,7 +54,7 @@ char **add_str(char **tab, char *new_var)
     if (tab == NULL)
         return tab_null(new_var);
     char **new_tab =
-    malloc(sizeof(char *) * my_tab_len(tab) + sizeof(char *) * 2);
+    malloc(sizeof(char *) * my_tablen(tab) + sizeof(char *) * 2);
     for (; tab[i] != NULL;i++) {
         new_tab[i] = my_strdup(tab[i]);
     }

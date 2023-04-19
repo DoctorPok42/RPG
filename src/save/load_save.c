@@ -59,14 +59,12 @@ perso_t *get_perso(perso_t *perso, char **text, int i)
     perso->move = my_getnbr(text[i + 28]);
     perso->pos.x = my_getnbr(text[i + 29]);
     perso->pos.y = my_getnbr(text[i + 30]);
+    return perso;
 }
 
 game_t *load_save(char *filepath, game_t *game)
 {
     FILE * file = fopen(filepath, "r");
-    char *list = NULL;
-    size_t len;
-    int loop = 0;
     char **text = NULL;
     text = get_text(file);
     int i = 0;

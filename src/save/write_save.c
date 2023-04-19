@@ -21,9 +21,6 @@ int free_tab(char **tab);
 void write_dialogs(dialog_t *dialog, int fd)
 {
     FILE * file = fopen("assets/text/dialog.txt", "r");
-    char *list = NULL;
-    size_t len;
-    int loop = 0;
     char **text = NULL;
     text = get_text(file);
     int i = 0;
