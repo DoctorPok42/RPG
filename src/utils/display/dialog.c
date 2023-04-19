@@ -45,12 +45,15 @@ static int diplay_text(game_t *game)
     char *str = malloc(sizeof(char) * len);
     clock = sfClock_create();
     elapsed_time = sfTime_Zero;
+
     for (int i = 0; game->dialogs->dialog->text[i] != NULL; i++) {
         if (print_caract(game, i, str) == 1)
             return 1;
         sfSleep(sfSeconds(1));
     }
+
     sfClock_destroy(clock); free(str);
+
     return 0;
 }
 
@@ -58,9 +61,12 @@ void display_dialog(game_t *game)
 {
     if (game->menu != 4)
         return;
+
     sfRenderWindow_drawSprite(game->window->window,
-        game->dialogs->sprite, NULL);
+    game->dialogs->sprite, NULL);
+
     if (diplay_text(game) != 1)
         sfSleep(sfSeconds(1));
+
     game->menu = 5;
 }

@@ -1,4 +1,3 @@
-#
 Hello  there
 How  are  you  feeling  ?
 I  hope  you  are  fine  because  you  just  slept  for  a  very  long  time
@@ -37,4 +36,3 @@ Have  you  seen  the  beast  flying  around  ?
 There  is  strange  monsters  near  the  village...
 #
 Oh  saints  who  are  you  ?
-#

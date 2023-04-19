@@ -14,7 +14,9 @@
         int attack;
         int defense;
         int life;
-        int force;
+        int strength;
+        int speed;
+        int level;
     } combat_t;
 
     typedef struct {
@@ -27,7 +29,7 @@
         float seconds;
         int move;
         int direction;
-        combat_t combat;
+        combat_t *combat;
     } perso_t;
 
 #endif /* !PERSO_H_ */

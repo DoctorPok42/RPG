@@ -11,7 +11,7 @@ static void create_start_buttons(buttons_t *button, sfIntRect *rect,
     sfVector2u size, int i)
 {
     button->texture =
-    sfTexture_createFromFile("assets/imgs/button 1.png",NULL);
+    sfTexture_createFromFile("assets/imgs/button.png",NULL);
 
     button->sprite = sfSprite_create();
     sfSprite_setTexture(button->sprite, button->texture, sfTrue);
