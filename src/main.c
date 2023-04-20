@@ -11,7 +11,7 @@ bool is_error(const char **env);
 int start_game(game_t *game);
 network_t *connect_to_server (void);
 
-int main(int ac, char **av, char **env)
+int main(int ac, char **av, const char **env)
 {
     (void)ac;
     (void)av;
