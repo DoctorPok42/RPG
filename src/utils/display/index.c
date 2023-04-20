@@ -21,6 +21,7 @@ void display_menu(game_t *game);
 void display_iso_map(game_t *game);
 void display_clients (game_t *game);
 void display_mobs (game_t *game);
+void display_npc(game_t *game);
 
 void display_all(game_t *game)
 {
@@ -42,6 +43,6 @@ void display_all(game_t *game)
     display_options(game);
     display_clients(game);
     display_mobs(game);
-
+    display_npc(game);
     sfRenderWindow_display(game->window->window);
 }

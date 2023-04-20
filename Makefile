@@ -33,6 +33,7 @@ SRC = src/main.c \
 			menu/character \
 			menu/quest \
 			mobs \
+			npc \
 		) \
 	) \
 	$(addprefix src/save/, \
@@ -70,6 +71,7 @@ SRC = src/main.c \
 			map_iso \
 			clients \
 			mobs \
+			npc \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
