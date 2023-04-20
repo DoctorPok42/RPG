@@ -1,33 +1,58 @@
 Hello  there
+
 How  are  you  feeling  ?
+
 I  hope  you  are  fine  because  you  just  slept  for  a  very  long  time
+
 Oh  you  do  not  have  any  memories ?
+
 Let  me  tell  you  who  you  are
+
 Your  name  is  Link  you  are  a  hero  from  the  past
+
 If  you  woke  up  now  it must  be  for  an  important  matter
-Now  hurry  up  and  go  have  a  look  outside
+
+Now  hurry  up  and  go  talk  to  that  lady  outside
 #
 Good  morning
+
 I  just  need  to  give  you  a  reminder  on  how  you  do actions
+
 -Arrow keys-  are  for  movements
+
 They  can  be  swapped  in  the  option  menu
+
 -E-  is  to  interact  with  people  or  elements
+
 -A-  is  to  attack
+
 -I-  is  to  check  your  full  inventory
+
 I  think  that's  all  for  me  then
-Have  fun
+
+Maybe  this  old  wizzard  over  there  has  something  to  tell  you
 #
 Hi
-You  must  be  the  Hero  if  you  are  just  getting  out  this  home
+
+You  must  be  the  Hero  if  you  are  just  getting  out  of  this  home
+
+I  am  Merlin  the  village  elder
+
 We  villagers  have  prayed  for  you  to  wake  up
-The  village  is  threatened  by  a  mighty  dragon...
-It  just  flew  here  a  few  days  ago  and  started  to  destroy
+
+The  village  is  threatened  by  a  mighty  dragon
+
+It  just  flew  here  a  few  months  ago  and  started  to  destroy
+
 everything  around  looking  for  some  gold  or  so
+
 I  beg  you
+
 Please  save  us  all  from  it  before  he  gets  to  the  village
-#
-QUEST  STARTED
--  Go  get  this  dragon  dude  -
+
+Go  get  this  Green  Dragon
+
+Come  back  when  you  will  be  done
 #
 What  a  beautiful  weather
 #
@@ -38,3 +63,17 @@ There  is  strange  monsters  near  the  village...
 Oh  saints  who  are  you  ?
 #
 My  big  cat  is  always  hungry
+#
+- THE  END -
+
+You  finally  did  it
+
+You  defeated  the  Green  dragon
+
+Thank  to  you  the  village  will  be  able  to  start  over  their
+
+usual  lives
+
+You  saved  us  all  Link
+
+You  are  a  true  Hero
