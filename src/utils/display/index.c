@@ -37,11 +37,11 @@ void display_all(game_t *game)
     display_iso_map(game);
     display_save(game);
     display_inventory(game);
-    display_overlay(game);
     display_menu(game);
     display_options(game);
     display_clients(game);
     display_mobs(game);
+    display_overlay(game);
 
     sfRenderWindow_display(game->window->window);
 }
