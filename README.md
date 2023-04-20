@@ -35,7 +35,7 @@ We used the 3D isometric projection to display the map.
 
 We used another map to display the map in 3D. This map have just the sprite that we want in 3D (like the trees and the houses).
 
-<img src="assets/imgs/iso2.png" />
+<img src="assets/imgs/iso3.png" />
 
 ### Colision
 
@@ -43,7 +43,7 @@ The colision is based on the pixel perfect colision. It means that the colision 
 
 We use a another map to check the colision. This map is a copy of the map but with the alpha channel of the sprite.
 
-<img src="assets/imgs/map_colls.png" />
+<img src="assets/imgs/collision3.png" />
 
 ## Usage
 
