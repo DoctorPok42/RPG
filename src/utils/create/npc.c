@@ -50,7 +50,7 @@ void create_npc(game_t *game)
         (sfIntRect){395, 0, 100, 100}, (sfIntRect){0, 105, 100, 100},
         (sfIntRect){105, 100, 110, 110}};
 
-    int *dialog_index[7] = {0, 2, 0, 0, 0, 0, 1};
+    int dialog_index[7] = {0, 2, 0, 0, 0, 0, 1};
     for (int i = 0; i < 7; i++) {
         game->npc[i] = malloc(sizeof(npc_t));
         create_each_npc(game, i, pos[i], rect[i]);
