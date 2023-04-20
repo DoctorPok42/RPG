@@ -10,6 +10,7 @@
 void create_game(game_t *game);
 void events_window(game_t *game);
 void display_all(game_t *game);
+int raycasting (game_t *game);
 
 static void init_game(game_t *game)
 {
@@ -41,8 +42,11 @@ int start_game(game_t *game)
     create_game(game);
 
     while (sfRenderWindow_isOpen(game->window->window)) {
-        events_window(game);
-        display_all(game);
+        if (game->is_raycasting == false) {
+            events_window(game);
+            display_all(game);
+        } else
+            raycasting(game);
     }
 
     if (game->network != NULL)

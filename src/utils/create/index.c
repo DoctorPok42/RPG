@@ -19,6 +19,7 @@ void create_inventory(game_t *game);
 void create_overlay(game_t *game);
 void create_clients(game_t *game);
 void create_mobs (game_t *game);
+int create_raycasting (game_t *game);
 
 void create_game(game_t *game)
 {
@@ -34,4 +35,6 @@ void create_game(game_t *game)
     create_inventory(game);
     create_overlay(game);
     create_mobs(game);
+    create_raycasting(game);
+
 }

@@ -12,6 +12,7 @@
     #include "window.h"
     #include "map.h"
     #include "perso.h"
+    #include "raycasting.h"
     #include "mobs.h"
     #include "buttons.h"
     #include "params.h"
@@ -39,6 +40,8 @@
         dialog_box_t *dialogs;
         clocks_t *clock;
         network_t *network;
+        raycasting_t *raycasting;
+        bool is_raycasting;
     } game_t;
 
     #include "start.h"
