@@ -92,6 +92,8 @@ SRC = src/main.c \
 	src/utils/collisions.c \
 	$(addprefix src/utils/functions/, \
 		$(addsuffix .c, \
+			free \
+			free2 \
 			put_nbr \
 			put_nb_float \
 			my_strcmp \
@@ -114,7 +116,7 @@ OBJ = $(SRC:.c=.o)
 
 CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
 		-lcsfml-system -lcsfml-audio -lcsfml-network \
-		-lcsfml-system -lcsfml-audio -lm
+		-lcsfml-system -lcsfml-audio -lm -g3
 
 NAME = my_rpg
 
