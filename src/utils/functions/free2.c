@@ -18,6 +18,7 @@ void free_navbar(game_t *game)
     sfRectangleShape_destroy(game->params->visu->navbar->content);
     free(game->params->visu->navbar);
 }
+
 void free_params2(game_t *game)
 {
     for (int i = 0; i < 4; i++) {
@@ -39,6 +40,7 @@ void free_params2(game_t *game)
         free(game->params->visu->keyboard->button[i]);
     }
 }
+
 void free_params(game_t * game)
 {
     free_navbar(game);
@@ -51,7 +53,8 @@ void free_params(game_t * game)
     }
     free(game->params->visu->windows->size);
     for (int i = 0; i < 3; i++) {
-        sfRectangleShape_destroy(game->params->visu->windows->resolution[i]->rect);
+        sfRectangleShape_destroy(
+            game->params->visu->windows->resolution[i]->rect);
         sfText_destroy(game->params->visu->windows->resolution[i]->text);
         sfFont_destroy(game->params->visu->windows->resolution[i]->font);
         free(game->params->visu->windows->resolution[i]);
