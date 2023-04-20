@@ -12,19 +12,19 @@ int is_colliding(game_t *game, sfVector2f pos, sfVector2f offset);
 void move_player_vertical (game_t *game)
 {
     float speed = game->perso->combat->speed;
-    if (sfKeyboard_isKeyPressed(sfKeyLeft) ||
-    sfKeyboard_isKeyPressed(sfKeyRight))
+    if (sfKeyboard_isKeyPressed(game->keys->left) ||
+    sfKeyboard_isKeyPressed(game->keys->right))
         speed = 2.8;
 
     sfVector2f pos = game->perso->pos;
 
-    if (sfKeyboard_isKeyPressed(sfKeyUp) &&
+    if (sfKeyboard_isKeyPressed(game->keys->up) &&
     is_colliding(game, (sfVector2f){pos.x, pos.y - 4},
     (sfVector2f) {45, 50}) == 0) {
         game->perso->pos.y -= speed;
         game->perso->rect.top = 18;
         game->perso->move = 1; game->perso->direction = 1;
-    } else if (sfKeyboard_isKeyPressed(sfKeyDown) &&
+    } else if (sfKeyboard_isKeyPressed(game->keys->down) &&
     is_colliding(game, (sfVector2f){pos.x, pos.y + 4},
     (sfVector2f) {45, 50}) == 0) {
         game->perso->pos.y += speed;
@@ -36,19 +36,19 @@ void move_player_vertical (game_t *game)
 void move_player_horizontal (game_t *game)
 {
     float speed = game->perso->combat->speed;
-    if (sfKeyboard_isKeyPressed(sfKeyUp) ||
-    sfKeyboard_isKeyPressed(sfKeyDown))
+    if (sfKeyboard_isKeyPressed(game->keys->up) ||
+    sfKeyboard_isKeyPressed(game->keys->down))
         speed = 2.8;
 
     sfVector2f pos = game->perso->pos;
 
-    if (sfKeyboard_isKeyPressed(sfKeyLeft) &&
+    if (sfKeyboard_isKeyPressed(game->keys->left) &&
     is_colliding(game, (sfVector2f){pos.x - 4, pos.y},
     (sfVector2f) {45, 50}) == 0) {
         game->perso->pos.x -= speed;
         game->perso->rect.top = 36;
         game->perso->move = 1; game->perso->direction = 3;
-    } else if (sfKeyboard_isKeyPressed(sfKeyRight) &&
+    } else if (sfKeyboard_isKeyPressed(game->keys->right) &&
     is_colliding(game, (sfVector2f){pos.x + 4, pos.y},
     (sfVector2f) {45, 50}) == 0) {
         game->perso->pos.x += speed;

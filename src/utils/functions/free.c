@@ -7,6 +7,9 @@
 
 #include "game.h"
 int free_tab(char **tab);
+void free_params(game_t * game);
+void free_game_menu2(game_t *game);
+void free_save(game_t *game);
 
 void free_game_menu(game_t *game)
 {
@@ -20,7 +23,6 @@ void free_game_menu(game_t *game)
     sfRectangleShape_destroy(game->game_menu->sidebar->container);
     for (int i = 0; i < 5; i++) {
         sfRectangleShape_destroy(game->game_menu->sidebar->buttons[i]->rect);
-        sfFont_destroy(game->game_menu->sidebar->buttons[i]->font);
         sfText_destroy(game->game_menu->sidebar->buttons[i]->text);
         free(game->game_menu->sidebar->buttons[i]);
     }
@@ -39,10 +41,11 @@ void do_free2(game_t *game)
     free(game->perso->combat);
     sfClock_destroy(game->perso->clock);
     free(game->perso);
-    free(game->network->clients);
-    sfTexture_destroy(sfSprite_getTexture(game->network->client_sprite));
-    sfSprite_destroy(game->network->client_sprite);
-    free(game->network);
+    if (game->network != NULL) {
+        sfTexture_destroy(sfSprite_getTexture(game->network->client_sprite));
+        sfSprite_destroy(game->network->client_sprite);
+        free(game->network->clients); free(game->network);
+    }
     sfView_destroy(game->window->view);
     sfMusic_destroy(game->window->song->music);
     free(game->window->song);
@@ -56,7 +59,7 @@ void do_free3(game_t *game)
 {
     for (int i = 0; i < 4; i++) {
         sfSprite_destroy(game->start[i]->sprite);
-        sfRenderTexture_destroy(game->start[i]->texture);
+        sfTexture_destroy(game->start[i]->texture);
         free(game->start[i]);
     }
     free(game->start);
