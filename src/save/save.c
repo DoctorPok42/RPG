@@ -19,13 +19,10 @@ int my_strncmp(char const *s1, char const *s2, int n);
 int free_tab(char **tab);
 void write_keys(keys_t *key, int fd);
 void write_params(params_t *params, int fd);
-void write_dialogs(dialog_t *dialog, int fd);
 void write_perso(perso_t *perso, int fd);
 
 void write_save(game_t *game, int fd)
 {
-    write_dialogs(game->dialogs->dialog, fd);
-    write(fd, "params\n", 7);
     my_put_nbr(game->params->fps, fd);
     write(fd, "\n", 1);
     write_params(game->params, fd);
@@ -44,14 +41,17 @@ int save(game_t *game)
     if (access(filepath1, F_OK) == -1) {
         fd = open(filepath1, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
         write_save(game, fd);
+        close(fd);
         return 0;
     }
     if (access(filepath2, F_OK) == -1) {
         fd = open(filepath2, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
         write_save(game, fd);
+        close(fd);
         return 0;
     }
     fd = open(filepath3, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
     write_save(game, fd);
+    close(fd);
     return 0;
 }
