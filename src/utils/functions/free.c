@@ -102,7 +102,7 @@ void do_free(game_t *game)
     sfRectangleShape_destroy(game->overlay->life->content);
     free(game->overlay->life);
     free(game->overlay);
-    sfTexture_destroy(game->mobs[0]->sprite);
+    sfSprite_destroy(game->mobs[0]->sprite);
     for (int i = 0; game->mobs[i] != NULL; i++) {
         sfClock_destroy(game->mobs[i]->clock);
         sfSprite_destroy(game->mobs[i]->sprite);
