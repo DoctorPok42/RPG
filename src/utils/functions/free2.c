@@ -33,7 +33,7 @@ void free_params2(game_t *game)
     sfRectangleShape_destroy(game->params->visu->music->bar);
     free(game->params->visu->music);
     free(game->params->visu->keyboard);
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
         sfRectangleShape_destroy(game->params->visu->keyboard->button[i]->rect);
         sfText_destroy(game->params->visu->keyboard->button[i]->text);
         sfFont_destroy(game->params->visu->keyboard->button[i]->font);
@@ -84,8 +84,6 @@ void free_save(game_t *game)
 void free_game_menu2(game_t *game)
 {
     for (int i = 0; i < 7; i++) {
-        sfFont_destroy(sfText_getFont(game->game_menu->character->name[i]));
-        sfFont_destroy(sfText_getFont(game->game_menu->character->value[i]));
         sfText_destroy(game->game_menu->character->value[i]);
         sfText_destroy(game->game_menu->character->name[i]);
     }

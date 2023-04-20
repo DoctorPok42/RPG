@@ -20,6 +20,7 @@
     #include "save.h"
     #include "inventory.h"
     #include "overlay.h"
+    #include "npc.h"
     #include "dialog.h"
     #include "clocks.h"
     #include "network.h"
@@ -38,6 +39,7 @@
         save_t *save;
         inventory_t *inventory;
         overlay_t *overlay;
+        npc_t **npc;
         dialog_box_t *dialogs;
         clocks_t *clock;
         network_t *network;

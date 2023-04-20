@@ -10,13 +10,8 @@
 
     #include "game.h"
 
-    typedef struct dialog_s {
-        char **text;
-        struct dialog_s *next;
-    } dialog_t;
-
     typedef struct {
-        dialog_t *dialog;
+        char **dialog_text;
         sfTexture *texture;
         sfSprite *sprite;
         sfText *text;

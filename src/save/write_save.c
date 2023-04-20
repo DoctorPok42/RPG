@@ -18,19 +18,6 @@ char **get_text(FILE *file);
 int my_strncmp(char const *s1, char const *s2, int n);
 int free_tab(char **tab);
 
-void write_dialogs(dialog_t *dialog, int fd)
-{
-    FILE * file = fopen("assets/text/dialog.txt", "r");
-    char **text = NULL;
-    text = get_text(file);
-    int i = 0;
-    while (my_strncmp(text[i], dialog->text[0], 2))
-        i++;
-    my_put_nbr(i, fd);
-    write(fd, "\n", 1);
-    free_tab(text);
-}
-
 void write_params(params_t *params, int fd)
 {
     my_put_nbr(params->fullscreen, fd);

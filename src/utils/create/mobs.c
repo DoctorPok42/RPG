@@ -27,7 +27,32 @@ sfTexture *texture)
     game->mobs[mob_index]->TextureRect = texture_rec;
     game->mobs[mob_index]->sprite = sfSprite_create();
 
+    sfSprite_setScale(game->mobs[mob_index]->sprite, (sfVector2f) {2.5, 2.5});
     sfSprite_setTexture(game->mobs[mob_index]->sprite, texture, 0);
+}
+
+void create_second_zone_mobs(game_t *game, sfIntRect betterfly,
+    sfTexture *texture)
+{
+    add_mob(game, (sfVector2f) {810, 100}, betterfly, texture);
+    add_mob(game, (sfVector2f) {810, 360}, betterfly, texture);
+    add_mob(game, (sfVector2f) {600, 515}, betterfly, texture);
+    add_mob(game, (sfVector2f) {570, 290}, betterfly, texture);
+    add_mob(game, (sfVector2f) {340, 200}, betterfly, texture);
+    add_mob(game, (sfVector2f) {150, 430}, betterfly, texture);
+    add_mob(game, (sfVector2f) {170, 560}, betterfly, texture);
+
+    add_mob(game, (sfVector2f) {2215, 1100}, betterfly, texture);
+    add_mob(game, (sfVector2f) {2300, 1050}, betterfly, texture);
+    add_mob(game, (sfVector2f) {2170, 1300}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1330, 1250}, betterfly, texture);
+
+    add_mob(game, (sfVector2f) {2190, 300}, (sfIntRect) {205, 0, 50, 70},
+        texture);
+    add_mob(game, (sfVector2f) {2030, 495}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1990, 220}, betterfly, texture);
+    add_mob(game, (sfVector2f) {2430, 150}, betterfly, texture);
+    add_mob(game, (sfVector2f) {2440, 390}, betterfly, texture);
 }
 
 void create_mobs (game_t *game)
@@ -36,10 +61,20 @@ void create_mobs (game_t *game)
     game->mobs[0] = NULL;
 
     sfTexture *texture = sfTexture_createFromFile("assets/imgs/mobs.png", NULL);
+    sfIntRect betterfly = {5, 70, 33, 40};
 
-    add_mob(game, (sfVector2f) {800, 1300}, (sfIntRect)
-    {10, 20, 25, 25}, texture);
-
-    add_mob(game, (sfVector2f) {850, 1350}, (sfIntRect)
-    {10, 20, 25, 25}, texture);
+    add_mob(game, (sfVector2f) {1000, 1300}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1160, 1100}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1230, 930}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1160, 650}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1000, 650}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1708, 930}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1638, 840}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1708, 530}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1530, 550}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1708, 215}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1530, 135}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1105, 448}, betterfly, texture);
+    add_mob(game, (sfVector2f) {1083, 215}, betterfly, texture);
+    create_second_zone_mobs(game, betterfly, texture);
 }
