@@ -86,7 +86,6 @@ void manage_mobs (game_t *game)
             game->perso->combat->life -= 10 - game->perso->combat->defense;
             sfClock_restart(game->mobs[i]->clock);
         }
-        anime_ennemie(game->mobs[i]);
         win_perso(game, game->mobs[i]);
     }
 }

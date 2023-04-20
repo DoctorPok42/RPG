@@ -37,14 +37,14 @@ int save(game_t *game)
     char *filepath1 = "config/save1";
     char *filepath2 = "config/save2";
     char *filepath3 = "config/save3";
-    int fd;
-    if (access(filepath1, F_OK) == -1) {
+    int fd; struct stat st = {0};
+    if (stat(filepath1, &st) == -1) {
         fd = open(filepath1, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
         write_save(game, fd);
         close(fd);
         return 0;
     }
-    if (access(filepath2, F_OK) == -1) {
+    if (stat(filepath2, &st) == -1) {
         fd = open(filepath2, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
         write_save(game, fd);
         close(fd);
