@@ -6,6 +6,7 @@
 */
 
 #include "game.h"
+void do_free(game_t *game);
 
 int start_game(game_t *game);
 network_t *connect_to_server (void);
@@ -20,6 +21,7 @@ int main(int ac, char **av)
         return 84;
 
     start_game(game);
+    do_free(game);
     return (0);
 }
 
