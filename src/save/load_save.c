@@ -75,5 +75,6 @@ game_t *load_save(char *filepath, game_t *game)
     game->keys = get_keys(game->keys, text, i);
     game->perso = get_perso(game->perso, text, i);
     free_tab(text);
+    fclose(file);
     return game;
 }
