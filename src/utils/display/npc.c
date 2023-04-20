@@ -31,7 +31,7 @@ static void get_distance(game_t *game, int i, sfVector2f second_pos)
 
 void display_npc(game_t *game)
 {
-    if (game->menu != 5)
+    if (game->menu < 5 || game->menu >= 10)
         return;
 
     for (int i = 0; i < 7; i++) {
