@@ -56,7 +56,7 @@ static void display_buttons(game_t *game, sfVector2i mpos)
 void display_options(game_t *game)
 {
     if ((game->menu != 2 && game->menu / 10 != 2) &&
-        game->menu % 10 != 3 && (game->menu / 10) % 10 != 3)
+        (game->menu / 10) % 10 != 3)
         return;
     if (game->menu == 2 || game->menu / 10 == 2 || game->menu % 10 == 2)
         game->params->visu->navbar->button[0]->state = ACTIVE;

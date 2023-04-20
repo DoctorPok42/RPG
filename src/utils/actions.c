@@ -13,6 +13,8 @@ void relase_button(buttons_t **button, int i, int max);
 void go_back(game_t *game)
 {
     game->menu /= 10;
+    if (game->menu > 500)
+        game->menu /= 10;
     relase_button(game->params->visu->navbar->button, 0, 5);
 }
 
