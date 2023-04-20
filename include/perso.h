@@ -23,12 +23,14 @@
         sfTexture *texture;
         sfSprite *sprite;
         sfVector2f pos;
+        sfVector2f pos_save;
         sfIntRect rect;
         sfClock *clock;
         sfTime time;
         float seconds;
         int move;
         int direction;
+        char *name;
         combat_t *combat;
     } perso_t;
 

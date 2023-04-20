@@ -21,7 +21,7 @@ static void set_volume(game_t *game, sfVector2i mouse, sfVector2f pos)
 
 void display_music(game_t *game)
 {
-    if (game->menu != 21)
+    if (game->menu != 21 && game->menu % 10 != 1)
         return;
     music_t *music = game->params->visu->music;
     sfVector2i mouse = sfMouse_getPositionRenderWindow(game->window->window);

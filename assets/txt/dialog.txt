@@ -1,22 +1,72 @@
 Hello  there
+
 How  are  you  feeling  ?
-I  hope  you are fine  because  you  just  slept  for  a  very  long  time
+
+I  hope  you  are  fine  because  you  just  slept  for  a  very  long  time
+
 Oh  you  do  not  have  any  memories ?
+
 Let  me  tell  you  who  you  are
+
 Your  name  is  Link  you  are  a  hero  from  the  past
-If  you  woke  up  just  now  it must  be  an  important  matter
-Now  hurry  up  and  go  have  a  look  around
+
+If  you  woke  up  now  it must  be  for  an  important  matter
+
+Now  hurry  up  and  go  talk  to  that  lady  outside
 #
-Hi there You must be the hero if you are just getting out this home
-We villagers have prayed for you to wake up since the village is threatened
-by a mighty dragon...
-It just flew here a few days ago and started to destroy everything around looking
-for some gold or so
-I beg you please save us all from him before he gets to village
+Good  morning
+
+I  just  need  to  give  you  a  reminder  on  how  you  do actions
+
+-Arrow keys-  are  for  movements
+
+They  can  be  swapped  in  the  option  menu
+
+-E-  is  to  interact  with  people  or  elements
+
+-A-  is  to  attack
+
+I  think  that s  all  for  me  then
+
+Maybe  this  old  wizzard  over  there  has  something  to  tell  you
 #
-Quest started:
-Go get this dragon dude
+You  must  be  the  Hero  if  you  are  just  getting  out  of  this  home
+
+I  am  Merlin  the  village  elder
+
+We  villagers  have  prayed  for  you
+
+The  village  is  threatened  by  a  mighty  dragon
+
+It  just  flew  here  a  few  months  ago  and  started  to  destroy
+
+everything  around  looking  for  some  gold  or  so
+
+Please  save  us  all  from  it  before  he  gets  to  the  village
+
+Go  get  this  Green  Dragon
+
 #
-What a beautiful weather
-Have you seen the beast flying around ?
-There is strange monster near the village...
+What  a  beautiful  weather
+#
+Have  you  seen  the  beast  flying  around  ?
+#
+There  is  strange  monsters  near  the  village...
+#
+Oh  saints  who  are  you  ?
+#
+My  big  cat  is  always  hungry
+#
+- THE  END -
+
+You  finally  did  it
+
+You  defeated  the  Green  dragon
+
+Thank  to  you  the  village  will  be  able  to  start  over  their
+
+usual  lives
+
+You  saved  us  all  Link
+
+You  are  a  true  Hero

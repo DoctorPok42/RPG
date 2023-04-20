@@ -13,19 +13,20 @@ void display_keyboard(game_t *game);
 void display_window_buttons(game_t *game);
 void display_go_back(game_t *game);
 
-static void relase_button(game_t *game, int i)
+void relase_button(buttons_t **button, int i, int max)
 {
-    for (int j = 0; j < 5; j++) {
+    for (int j = 0; j < max; j++) {
         if (j != i)
-            game->params->visu->navbar->button[j]->state = RELEASE;
+            button[j]->state = RELEASE;
     }
 }
 
-static int active_button(game_t *game, int i)
+static void active_button(game_t *game, int i)
 {
-    game->menu = game->params->visu->navbar->button[i]->state = ACTIVE;
-    relase_button(game, i);
-    return game->menu = game->menu * 10 + i;
+    game->params->visu->navbar->button[i]->state = ACTIVE;
+    relase_button(game->params->visu->navbar->button, i, 5);
+    game->menu = game->menu / 10 * 10 + i;
+    sfSleep((sfTime){100000});
 }
 
 static void display_buttons(game_t *game, sfVector2i mpos)
@@ -37,8 +38,8 @@ static void display_buttons(game_t *game, sfVector2i mpos)
             mpos.y <= pos.y + 50) {
             sfRectangleShape_setFillColor(button[i]->rect,
                 (sfColor){25, 118, 210, 150});
-                game->menu = (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) ?
-                    active_button(game, i) : game->menu;
+                (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) ?
+                    active_button(game, i) : 0;
         } else
             sfRectangleShape_setFillColor(button[i]->rect,
                 (sfColor){25, 118, 210, 100});
@@ -54,11 +55,11 @@ static void display_buttons(game_t *game, sfVector2i mpos)
 
 void display_options(game_t *game)
 {
-    if (game->menu != 2 && game->menu / 10 != 2)
+    if ((game->menu != 2 && game->menu / 10 != 2) &&
+        (game->menu / 10) % 10 != 3)
         return;
-    if (game->menu == 2) {
+    if (game->menu == 2 || game->menu / 10 == 2 || game->menu % 10 == 2)
         game->params->visu->navbar->button[0]->state = ACTIVE;
-    }
     game->go_back->pos = (sfVector2f){20, 100};
     sfSprite_setPosition(game->go_back->sprite, game->go_back->pos);
     sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);

@@ -17,9 +17,11 @@
     #include "buttons.h"
     #include "params.h"
     #include "keys.h"
+    #include "game_menu.h"
     #include "save.h"
     #include "inventory.h"
     #include "overlay.h"
+    #include "npc.h"
     #include "dialog.h"
     #include "clocks.h"
     #include "network.h"
@@ -34,9 +36,11 @@
         params_t *params;
         keys_t *keys;
         int menu;
+        game_menu_t *game_menu;
         save_t *save;
         inventory_t *inventory;
         overlay_t *overlay;
+        npc_t **npc;
         dialog_box_t *dialogs;
         clocks_t *clock;
         network_t *network;
@@ -46,5 +50,6 @@
 
     #include "start.h"
     #include "params_fonctions.h"
+    #include "game_functions.h"
 
 #endif /* !GAME_H_ */

@@ -19,21 +19,7 @@ static void put_dialog(game_t *game)
     int fd = open("assets/txt/dialog.txt", O_RDONLY);
     char *buffer = malloc(sizeof(char) * st.st_size + 1);
     read(fd, buffer, st.st_size); buffer[st.st_size] = '\0';
-    char **tab = my_str_to_word_array(buffer, '\n');
-    int place = 0;
-    dialog_t *tmp = game->dialogs->dialog;
-    for (int i = 0; i < 21; i++) {
-        if (tab[i][0] == '#') {
-            tmp->text[place] = NULL;
-            tmp->next = malloc(sizeof(dialog_t));
-            tmp = tmp->next; place = 0;
-        }
-        if (place == 0)
-            tmp->text = malloc(sizeof(char *) * 10);
-        tmp->text[place] = tab[i];
-        place++;
-    }
-    tmp->next = NULL; close(fd);
+    game->dialogs->dialog_text = my_str_to_word_array(buffer, '#');
 }
 
 static void create_text(game_t *game)
@@ -41,18 +27,17 @@ static void create_text(game_t *game)
     game->dialogs->text = sfText_create();
     game->dialogs->font = sfFont_createFromFile("assets/fonts/dialog.ttf");
     game->dialogs->pos = (sfVector2f){
-        game->params->window_size.x / 10,
-        game->params->window_size.y / 1.2};
+        game->params->window_size.x / 3,
+        game->params->window_size.y / 1.43};
     game->dialogs->clock = sfClock_create();
     game->dialogs->time = sfClock_getElapsedTime(game->dialogs->clock);
     game->dialogs->seconds = game->dialogs->time.microseconds / 1000000.0;
-    game->dialogs->dialog = NULL;
+    game->dialogs->dialog_text = NULL;
 
-    game->dialogs->dialog = malloc(sizeof(dialog_t));
     put_dialog(game);
 
     sfText_setFont(game->dialogs->text, game->dialogs->font);
-    sfText_setCharacterSize(game->dialogs->text, 30);
+    sfText_setCharacterSize(game->dialogs->text, 15);
     sfText_setPosition(game->dialogs->text, game->dialogs->pos);
     sfText_setColor(game->dialogs->text, sfWhite);
 }
@@ -69,8 +54,8 @@ void create_dialog(game_t *game)
     sfSprite_setTextureRect(game->dialogs->sprite, rect);
     sfSprite_setPosition(game->dialogs->sprite, (sfVector2f){
         game->params->window_size.x / 2 -
-            sfTexture_getSize(game->dialogs->texture).x * 7 / 2,
-        game->params->window_size.y / 1.3
+            sfTexture_getSize(game->dialogs->texture).x * 4 / 2,
+        game->params->window_size.y / 1.5
     });
-    sfSprite_setScale(game->dialogs->sprite, (sfVector2f){7, 3});
+    sfSprite_setScale(game->dialogs->sprite, (sfVector2f){4, 5});
 }

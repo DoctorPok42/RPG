@@ -4,10 +4,18 @@
 ** File description:
 ** error
 */
+#include <stdbool.h>
+#include <unistd.h>
 
-int errors(int ac, char **av)
+int my_strncmp(char const *s1, char const *s2, int n);
+int my_strcmp(char const *s1, char const *s2);
+
+bool is_error(const char **env)
 {
-    (void)ac;
-    (void)av;
-    return (0);
+    for (int i = 0; env[i] != NULL; i++) {
+        if (my_strncmp("DISPLAY=", env[i], 8) == 0) {
+            return false;
+        }
+    }
+    return true;
 }

@@ -17,9 +17,11 @@ void display_options(game_t *game);
 void display_save(game_t *game);
 void display_inventory(game_t *game);
 void display_overlay(game_t *game);
+void display_menu(game_t *game);
 void display_iso_map(game_t *game);
 void display_clients (game_t *game);
 void display_mobs (game_t *game);
+void display_npc(game_t *game);
 
 void display_all(game_t *game)
 {
@@ -33,13 +35,14 @@ void display_all(game_t *game)
     display_perso(game);
     change_map(game);
     display_dialog(game);
-    display_options(game);
     display_iso_map(game);
     display_save(game);
     display_inventory(game);
-    display_overlay(game);
+    display_menu(game);
+    display_options(game);
     display_clients(game);
     display_mobs(game);
-
+    display_overlay(game);
+    display_npc(game);
     sfRenderWindow_display(game->window->window);
 }

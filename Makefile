@@ -30,7 +30,21 @@ SRC = src/main.c \
 			go_back \
 			inventory \
 			overlay \
+			menu \
+			menu/sidebar \
+			menu/character \
+			menu/quest \
 			mobs \
+			npc \
+		) \
+	) \
+	$(addprefix src/save/, \
+		$(addsuffix .c, \
+			load_save \
+			write_save \
+			save \
+			open_file \
+			tab_handling \
 		) \
 	) \
 	$(addprefix src/utils/display/, \
@@ -49,31 +63,42 @@ SRC = src/main.c \
 			options/actions \
 			save \
 			go_back \
-			inventory \
+			inventory_bar \
 			overlay \
+			menu \
+			menu/inventory \
+			menu/actions \
+			menu/character \
+			menu/quest \
 			map_iso \
 			clients \
 			mobs \
+			npc \
 		) \
 	) \
 	$(addprefix src/utils/events/, \
 		$(addsuffix .c, \
 			index \
-			keys \
 			inventory \
 			zoom \
+			menu \
 		) \
 	) \
 	$(addprefix src/utils/mobs/, \
 		$(addsuffix .c, \
 			manage_mobs \
 			set_vector_speed \
+			movement \
 		) \
 	) \
 	src/utils/actions.c \
 	src/utils/collisions.c \
 	$(addprefix src/utils/functions/, \
 		$(addsuffix .c, \
+			free \
+			free2 \
+			put_nbr \
+			put_nb_float \
 			my_strcmp \
 			get_map \
 			my_len \
@@ -113,11 +138,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(CFLAGS)
-	# @clear
+	@clear
 	@if [ -f $(NAME) ]; then \
 		echo "\033[1;32mCompilation done\033[0m"; \
 	fi
-	# @cat text.txt
+	@cat text.txt
 
 clean:
 	rm -rf $(OBJ)

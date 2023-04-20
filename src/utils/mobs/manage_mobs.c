@@ -9,50 +9,8 @@
 
 #include "game.h"
 
-int is_colliding(game_t *game, sfVector2f pos, sfVector2f offset);
-sfVector2f set_vector_speed (sfVector2f vec, float speed);
-
-void move_ennemy_while_colliding (game_t *game, int mob_index,
-sfVector2f offset, sfVector2f mob_pos)
-{
-    sfVector2f mob_dim = (sfVector2f) {game->mobs[mob_index]->TextureRect.width,
-    game->mobs[mob_index]->TextureRect.height};
-
-    if (is_colliding(game, (sfVector2f) {mob_pos.x + offset.x, mob_pos.y},
-    mob_dim) && !is_colliding(game, (sfVector2f) {mob_pos.x , mob_pos.y +
-    offset.y}, mob_dim)) {
-
-        if (set_vector_speed(offset, 4).y > 0)
-            game->mobs[mob_index]->pos.y += game->mobs[mob_index]->speed;
-        else
-            game->mobs[mob_index]->pos.y -= game->mobs[mob_index]->speed;
-    } if (!is_colliding(game, (sfVector2f) {mob_pos.x + offset.x, mob_pos.y},
-    mob_dim) && is_colliding(game, (sfVector2f) {mob_pos.x , mob_pos.y +
-    offset.y}, mob_dim)) {
-
-        if (set_vector_speed(offset, 4).x > 0)
-            game->mobs[mob_index]->pos.x += game->mobs[mob_index]->speed;
-        else
-            game->mobs[mob_index]->pos.x -= game->mobs[mob_index]->speed;
-    }
-}
-
 void move_ennemi (game_t *game, int mob_index, sfVector2f offset,
-sfVector2f mob_pos)
-{
-    offset = set_vector_speed(offset, 2);
-
-    sfVector2f mob_dim = (sfVector2f) {game->mobs[mob_index]->TextureRect.width,
-    game->mobs[mob_index]->TextureRect.height};
-
-    if (!is_colliding(game, (sfVector2f) {mob_pos.x + offset.x
-    , mob_pos.y + offset.y }, mob_dim)) {
-        game->mobs[mob_index]->pos.x += offset.x ;
-        game->mobs[mob_index]->pos.y += offset.y ;
-    } else {
-        move_ennemy_while_colliding(game, mob_index, offset, mob_pos);
-    }
-}
+sfVector2f mob_pos);
 
 sfVector2f update_and_draw_ennemy (game_t *game, int i)
 {
@@ -84,22 +42,50 @@ void change_ennemi_status (game_t *game, int i)
         game->mobs[i]->state = Neutral;
 }
 
+void win_perso(game_t *game, mobs_t *mob)
+{
+    if (sfKeyboard_isKeyPressed(game->keys->attack) &&
+        mob->distance_to_player < 50) {
+        mob->is_alive = sfFalse;
+        game->perso->combat->defense += 1;
+        game->perso->combat->life += 10;
+        game->perso->combat->attack += 1;
+        game->perso->combat->strength += 5;
+    }
+    if (game->perso->combat->life > 100)
+        game->perso->combat->life = 100;
+}
+
+void anime_ennemie(mobs_t *mob)
+{
+    if (sfClock_getElapsedTime
+        (mob->clock).microseconds / 1000000.0 > 0.7) {
+        mob->TextureRect.left += 40;
+        if (mob->TextureRect.left >= 70)
+            mob->TextureRect.left = 0;
+        sfClock_restart(mob->clock);
+    }
+}
+
 void manage_mobs (game_t *game)
 {
     for (int i = 0; game->mobs[i] != NULL; i++) {
         if (game->mobs[i]->is_alive == sfFalse)
             continue;
-
         sfVector2f mob_pos = update_and_draw_ennemy(game, i);
         change_ennemi_status(game, i);
-
         if (game->mobs[i]->state == Attacking
         && game->mobs[i]->distance_to_player > 50) {
             sfVector2f offset = {game->perso->pos.x + 22 - mob_pos.x,
             game->perso->pos.y + 25 - mob_pos.y};
-
             move_ennemi(game, i, offset, mob_pos);
         }
-
+        if (game->mobs[i]->state == Attacking
+        && game->mobs[i]->distance_to_player < 70 && sfClock_getElapsedTime
+        (game->mobs[i]->clock).microseconds / 1000000.0 > 1.0) {
+            game->perso->combat->life -= 10 - game->perso->combat->defense;
+            sfClock_restart(game->mobs[i]->clock);
+        }
+        win_perso(game, game->mobs[i]);
     }
 }

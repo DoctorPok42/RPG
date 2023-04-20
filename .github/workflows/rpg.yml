@@ -15,8 +15,14 @@ jobs:
       - name: Checkout GH repository
         uses: actions/checkout@v3
 
-      - name: Get the size of the repo
-        run: du -skh --exclude=.git
+      - name: Check size
+        run: |
+          SIZE=$(du -skh --exclude=.git | cut -f1)
+          if [ $SIZE -gt 30000 ]; then
+            echo "Size of the repository is too big"
+            exit 1
+          fi
+          du -skh --exclude=.git
 
   check_coding_style:
     runs-on: ubuntu-latest

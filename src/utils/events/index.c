@@ -13,6 +13,7 @@
 void exit_start_all(game_t *game);
 void zoom(game_t *game);
 void change_item(game_t *game);
+void event_menu(game_t *game);
 
 void go_to_raycasting (game_t *game)
 {
@@ -37,9 +38,12 @@ void events_window(game_t *game)
 
     while (sfRenderWindow_pollEvent(game->window->window,
         &game->window->event)) {
-        if (game->window->event.type == sfEvtClosed ||
-            sfKeyboard_isKeyPressed(sfKeyEscape)) {
+        if (game->window->event.type == sfEvtClosed) {
             exit_start_all(game);
+        }
+        if (game->window->event.type == sfEvtKeyPressed &&
+            sfKeyboard_isKeyPressed(sfKeyEscape)) {
+            event_menu(game);
         }
 
         zoom(game);
