@@ -10,7 +10,7 @@
 static void create_iso_map(game_t *game)
 {
     game->map->iso_texture =
-        sfTexture_createFromFile("assets/imgs/iso2.png", NULL);
+        sfTexture_createFromFile("assets/imgs/iso3.png", NULL);
     game->map->iso_sprite = sfSprite_create();
 
     sfSprite_setTexture(game->map->iso_sprite, game->map->iso_texture, sfTrue);
