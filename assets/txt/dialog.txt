@@ -1,3 +1,4 @@
+#
 Hello  there
 How  are  you  feeling  ?
 I  hope  you  are  fine  because  you  just  slept  for  a  very  long  time
@@ -31,6 +32,14 @@ Come  back  when  you  will  be  done
 QUEST  STARTED
 -  Go  get  this  dragon  dude  -
 #
+QUEST ENDED
+You  finally  did  it
+You  defeated  the  Green  dragon
+Thank  to  you  the  village  will  be  able  to  start  over  their
+usual  lives
+You  saved  us  all  Link
+You  are  a  true  Hero
+#
 What  a  beautiful  weather
 #
 Have  you  seen  the  beast  flying  around  ?
@@ -40,3 +49,6 @@ There  is  strange  monsters  near  the  village...
 Oh  saints  who  are  you  ?
 #
 My  big  cat  is  always  hungry
+#
+- THE  END -
+#
