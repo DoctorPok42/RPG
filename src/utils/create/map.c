@@ -38,7 +38,7 @@ void create_map(game_t *game)
     sfSprite_setScale(game->map->sprite, (sfVector2f){3, 3});
 
     game->map->colls_image =
-        sfImage_createFromFile("assets/imgs/collision2.png");
+        sfImage_createFromFile("assets/imgs/collision3.png");
 
     create_iso_map(game);
 }
