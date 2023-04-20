@@ -94,6 +94,8 @@ SRC = src/main.c \
 	src/utils/collisions.c \
 	$(addprefix src/utils/functions/, \
 		$(addsuffix .c, \
+			free \
+			free2 \
 			put_nbr \
 			put_nb_float \
 			my_strcmp \
