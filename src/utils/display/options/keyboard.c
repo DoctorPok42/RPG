@@ -9,18 +9,19 @@
 
 static void change_keyboard(game_t *game)
 {
-    if (game->keys->switch_keys == 1) {
-        game->keys->up = sfKeyUp;
-        game->keys->down = sfKeyDown;
-        game->keys->left = sfKeyLeft;
-        game->keys->right = sfKeyRight;
-    } else {
+    if (game->keys->switch_keys == 0) {
         game->keys->up = sfKeyZ;
         game->keys->down = sfKeyS;
         game->keys->left = sfKeyQ;
         game->keys->right = sfKeyD;
+    } else {
+        game->keys->up = sfKeyUp;
+        game->keys->down = sfKeyDown;
+        game->keys->left = sfKeyLeft;
+        game->keys->right = sfKeyRight;
     }
     game->keys->switch_keys = (game->keys->switch_keys == 1) ? 0 : 1;
+    sfSleep((sfTime){500000});
 }
 
 static void display_button(game_t *game, sfVector2i mpos)
@@ -31,8 +32,8 @@ static void display_button(game_t *game, sfVector2i mpos)
             mpos.y >= button[i]->pos.y && mpos.y <= button[i]->pos.y + 50) {
                 sfRectangleShape_setFillColor(button[i]->rect, sfRed);
                 sfText_setColor(button[i]->text, sfBlack);
-                (sfMouse_isButtonPressed(sfMouseLeft)) ?
-                    change_keyboard(game) : 0;
+                sfMouse_isButtonPressed(sfMouseLeft) ?
+                change_keyboard(game) : 0;
         } else {
             sfRectangleShape_setFillColor(button[i]->rect, sfBlack);
             sfText_setColor(button[i]->text, sfWhite);
