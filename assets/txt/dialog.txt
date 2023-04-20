@@ -27,18 +27,8 @@ It  just  flew  here  a  few  months  ago  and  started  to  destroy
 everything  around  looking  for  some  gold  or  so
 I  beg  you
 Please  save  us  all  from  it  before  he  gets  to  the  village
+Go  get  this  Green  Dragon
 Come  back  when  you  will  be  done
-#
-QUEST  STARTED
--  Go  get  this  dragon  dude  -
-#
-QUEST ENDED
-You  finally  did  it
-You  defeated  the  Green  dragon
-Thank  to  you  the  village  will  be  able  to  start  over  their
-usual  lives
-You  saved  us  all  Link
-You  are  a  true  Hero
 #
 What  a  beautiful  weather
 #
@@ -51,4 +41,9 @@ Oh  saints  who  are  you  ?
 My  big  cat  is  always  hungry
 #
 - THE  END -
-#
+You  finally  did  it
+You  defeated  the  Green  dragon
+Thank  to  you  the  village  will  be  able  to  start  over  their
+usual  lives
+You  saved  us  all  Link
+You  are  a  true  Hero
