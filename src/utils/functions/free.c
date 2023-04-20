@@ -75,13 +75,6 @@ void do_free3(game_t *game)
 
 void do_free4(game_t *game)
 {
-    dialog_t *tmp = NULL;
-    while (game->dialogs->dialog != NULL) {
-        free_tab(game->dialogs->dialog->text);
-        tmp = game->dialogs->dialog;
-        game->dialogs->dialog = game->dialogs->dialog->next;
-        free(tmp);
-    }
     free(game->dialogs);
     sfTexture_destroy(game->go_back->texture);
     sfSprite_destroy(game->go_back->sprite);
