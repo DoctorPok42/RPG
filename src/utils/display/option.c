@@ -25,11 +25,7 @@ static void active_button(game_t *game, int i)
 {
     game->params->visu->navbar->button[i]->state = ACTIVE;
     relase_button(game->params->visu->navbar->button, i, 5);
-    if (game->menu <= 563) {
-        game->menu = game->menu * 10 + i;
-    } else {
-        game->menu = game->menu / 10 * 10 + i;
-    }
+    game->menu = game->menu / 10 * 10 + i;
     sfSleep((sfTime){100000});
 }
 
@@ -62,7 +58,7 @@ void display_options(game_t *game)
     if ((game->menu != 2 && game->menu / 10 != 2) &&
         game->menu % 10 != 3 && (game->menu / 10) % 10 != 3)
         return;
-    if (game->menu == 2)
+    if (game->menu == 2 || game->menu / 10 == 2 || game->menu % 10 == 2)
         game->params->visu->navbar->button[0]->state = ACTIVE;
     game->go_back->pos = (sfVector2f){20, 100};
     sfSprite_setPosition(game->go_back->sprite, game->go_back->pos);
