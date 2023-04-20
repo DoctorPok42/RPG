@@ -21,7 +21,7 @@
         sfKeyCode pause;
         sfKeyCode interact;
         sfKeyCode escape;
-        bool swith_keys;
+        bool switch_keys;
     } keys_t;
 
 #endif /* !KEYS_H_ */
