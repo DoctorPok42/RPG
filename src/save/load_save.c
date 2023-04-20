@@ -68,13 +68,6 @@ game_t *load_save(char *filepath, game_t *game)
     char **text = NULL;
     text = get_text(file);
     int i = 0;
-    int index_dialog = my_getnbr(text[0]);
-    for (int i = 0; i < index_dialog; i++) {
-        game->dialogs->dialog = game->dialogs->dialog->next;
-    }
-    while (my_strcmp(text[i], "params") != 0)
-        i++;
-    i++;
     game->params = get_params(game->params, text, i);
     game->keys = get_keys(game->keys, text, i);
     game->perso = get_perso(game->perso, text, i);

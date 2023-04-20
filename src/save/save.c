@@ -19,13 +19,10 @@ int my_strncmp(char const *s1, char const *s2, int n);
 int free_tab(char **tab);
 void write_keys(keys_t *key, int fd);
 void write_params(params_t *params, int fd);
-void write_dialogs(dialog_t *dialog, int fd);
 void write_perso(perso_t *perso, int fd);
 
 void write_save(game_t *game, int fd)
 {
-    write_dialogs(game->dialogs->dialog, fd);
-    write(fd, "params\n", 7);
     my_put_nbr(game->params->fps, fd);
     write(fd, "\n", 1);
     write_params(game->params, fd);
