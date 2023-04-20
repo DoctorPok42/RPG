@@ -16,11 +16,11 @@ sfTcpSocket *check_connection (sfTcpSocket *server)
     sfSocketSelector_addTcpSocket(selector, server);
 
     if (sfSocketSelector_wait(selector, sfMilliseconds(1000)) == 0)
-        printf("Connected to server\n");
+        write(1, "Connected to server\n", 20);
     else {
         sfSocketSelector_removeTcpSocket(selector, server);
         sfSocketSelector_destroy(selector);
-        printf("Connection refused by server\n");
+        write(1, "Connection refused by server\n", 29);
         sfTcpSocket_destroy(server);
         return NULL;
     }
