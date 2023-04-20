@@ -7,9 +7,9 @@
 
 #include "game.h"
 int free_tab(char **tab);
-void free_params(game_t * game);
 void free_game_menu2(game_t *game);
 void free_save(game_t *game);
+void free_params(game_t * game);
 
 void free_game_menu(game_t *game)
 {
@@ -78,13 +78,6 @@ void do_free3(game_t *game)
 
 void do_free4(game_t *game)
 {
-    dialog_t *tmp = NULL;
-    while (game->dialogs->dialog != NULL) {
-        free_tab(game->dialogs->dialog->text);
-        tmp = game->dialogs->dialog;
-        game->dialogs->dialog = game->dialogs->dialog->next;
-        free(tmp);
-    }
     free(game->dialogs);
     sfTexture_destroy(game->go_back->texture);
     sfSprite_destroy(game->go_back->sprite);
@@ -112,7 +105,7 @@ void do_free(game_t *game)
     sfRectangleShape_destroy(game->overlay->life->content);
     free(game->overlay->life);
     free(game->overlay);
-    sfTexture_destroy(game->mobs[0]->sprite);
+    sfSprite_destroy(game->mobs[0]->sprite);
     for (int i = 0; game->mobs[i] != NULL; i++) {
         sfClock_destroy(game->mobs[i]->clock);
         sfSprite_destroy(game->mobs[i]->sprite);

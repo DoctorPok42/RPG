@@ -77,7 +77,6 @@ SRC = src/main.c \
 	$(addprefix src/utils/events/, \
 		$(addsuffix .c, \
 			index \
-			keys \
 			inventory \
 			zoom \
 			menu \

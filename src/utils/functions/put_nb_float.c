@@ -60,7 +60,6 @@ int my_float(int prec, double n, int fd)
     for (int i = 0;i < prec; i++) {
         reste = reste * 10;
     }
-    int toprintrest = reste;
     compteur = rounding(deci, reste, compteur, fd);
     return compteur;
 }
