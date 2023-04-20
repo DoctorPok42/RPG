@@ -21,13 +21,8 @@ int main(int ac, char **av, const char **env)
     if (game == NULL)
         return 84;
 
+    game->network = connect_to_server();
+
     start_game(game);
-    do_free(game);
     return (0);
 }
-
-// game->network = connect_to_server();
-// if (game->network == NULL) {
-    // free(game);
-    // return 84;
-// }
