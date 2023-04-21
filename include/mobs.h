@@ -15,6 +15,11 @@
         Attacking = 1,
     };
 
+    typedef struct combat_s {
+        int attack;
+        int life;
+    } mob_combat_t;
+
     typedef struct {
         sfVector2f pos;
         sfClock *clock;
@@ -25,6 +30,8 @@
         sfSprite *sprite;
         sfIntRect TextureRect;
         sfBool is_alive;
+        mob_combat_t *combat;
+        int mob_type;
     } mobs_t;
 
 #endif /* !MOBS_H_ */

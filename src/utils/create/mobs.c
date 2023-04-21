@@ -7,17 +7,23 @@
 
 #include "game.h"
 
+void add_type(game_t *game, int i, sfIntRect texture_rec)
+{
+    if (texture_rec.width == 50) {
+        game->mobs[i]->mob_type = 1;
+        game->mobs[i]->combat->life = 50;
+    } else
+        game->mobs[i]->mob_type = 0;
+}
+
 void add_mob (game_t *game, sfVector2f pos, sfIntRect texture_rec,
 sfTexture *texture)
 {
     int mob_index = 0;
-
     pos.x *= 3;
     pos.y *= 3;
-
     for (;game->mobs[mob_index] != NULL; mob_index++);
     game->mobs[mob_index + 1] = NULL;
-
     game->mobs[mob_index] = malloc(sizeof(mobs_t));
     game->mobs[mob_index]->clock = sfClock_create();
     game->mobs[mob_index]->clock_anime = sfClock_create();
@@ -27,7 +33,10 @@ sfTexture *texture)
     game->mobs[mob_index]->state = Neutral;
     game->mobs[mob_index]->TextureRect = texture_rec;
     game->mobs[mob_index]->sprite = sfSprite_create();
-
+    game->mobs[mob_index]->combat = malloc(sizeof(mob_combat_t));
+    game->mobs[mob_index]->combat->attack = rand() % 5 + 8;
+    game->mobs[mob_index]->combat->life = rand() % 10 + 20;
+    add_type(game, mob_index, texture_rec);
     sfSprite_setScale(game->mobs[mob_index]->sprite, (sfVector2f) {2.5, 2.5});
     sfSprite_setTexture(game->mobs[mob_index]->sprite, texture, 0);
 }

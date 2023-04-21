@@ -74,14 +74,22 @@ void display_perso(game_t *game)
 {
     if (game->menu < 5 || game->menu >= 10)
         return;
-
     move_player_horizontal(game);
     move_player_vertical(game);
-
     if (game->perso->move == 1) {
         anime_player(game);
         game->perso->move = 0;
     }
+    sfVector2f player_pos2 = (sfVector2f){game->perso->pos.x +
+        (game->map->rect.left * 3), game->perso->pos.y +
+        (game->map->rect.top * 3)};
+    sfVector2f room_pos = (sfVector2f){6590, 1408};
+    float diff = sqrt(pow(player_pos2.x - room_pos.x, 2) + pow(player_pos2.y -
+    room_pos.y, 2));
+
+    if (diff < 30) {
+        game->perso->pos.y -= 2000;
+
     sfSprite_setPosition(game->perso->sprite, game->perso->pos);
     sfRenderWindow_drawSprite(game->window->window, game->perso->sprite, NULL);
 }
