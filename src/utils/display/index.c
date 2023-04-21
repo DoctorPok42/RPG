@@ -26,12 +26,11 @@ void display_npc(game_t *game);
 void display_all(game_t *game)
 {
     sfRenderWindow_clear(game->window->window, (sfColor){85, 61, 51, 255});
-    sfWindow_setFramerateLimit((sfWindow *)game->window->window,
-    game->params->fps);
+    sfRenderWindow_setFramerateLimit(game->window->window, game->params->fps);
     display_window(game);
     display_start_menu(game);
     change_to_game(game);
-    sfWindow_setTitle((sfWindow *)game->window->window, game->window->title);
+    sfRenderWindow_setTitle(game->window->window, game->window->title);
     display_perso(game);
     change_map(game);
     display_dialog(game);

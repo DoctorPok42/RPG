@@ -14,7 +14,7 @@ void send_player_position (game_t *game);
 
 void display_clients (game_t *game)
 {
-    if (game->network == NULL || game->menu < 5)
+    if (game->network == NULL || game->menu < 5 || game->menu >= 10)
         return;
 
     send_player_position(game);
