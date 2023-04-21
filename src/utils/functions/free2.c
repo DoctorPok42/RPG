@@ -66,11 +66,11 @@ void free_save(game_t *game)
 {
     for (int i = 0; i < 3; i++) {
         sfRectangleShape_destroy(game->save->view->rect[i]);
-        sfFont_destroy(sfText_getFont(game->save->view->name[i]));
+        sfFont_destroy((sfFont *) sfText_getFont(game->save->view->name[i]));
         sfText_destroy(game->save->view->name[i]);
         sfTexture_destroy(game->save->view->texture[i]);
     }
-    sfFont_destroy(sfText_getFont(game->save->view->title));
+    sfFont_destroy((sfFont *) sfText_getFont(game->save->view->title));
     free(game->save->view->rect);
     free(game->save->view->name);
     free(game->save->view->texture);

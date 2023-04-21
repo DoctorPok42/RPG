@@ -56,7 +56,7 @@ void win_perso(game_t *game, mobs_t *mob)
         game->perso->combat->life = 100;
 }
 
-void anime_ennemie(game_t *game, mobs_t *mob)
+void anime_ennemie(mobs_t *mob)
 {
     if (sfClock_getElapsedTime
         (mob->clock_anime).microseconds / 1000000.0 > 0.7) {
@@ -86,7 +86,7 @@ void manage_mobs (game_t *game)
             game->perso->combat->life -= 10 - game->perso->combat->defense;
             sfClock_restart(game->mobs[i]->clock);
         }
-        anime_ennemie(game, game->mobs[i]);
+        anime_ennemie(game->mobs[i]);
         win_perso(game, game->mobs[i]);
     }
 }

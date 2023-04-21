@@ -6,6 +6,7 @@
 */
 
 #include "game.h"
+#include <SFML/Graphics/Types.h>
 int free_tab(char **tab);
 void free_game_menu2(game_t *game);
 void free_save(game_t *game);
@@ -38,14 +39,12 @@ void do_free2(game_t *game)
     sfClock_destroy(game->perso->clock);
     free(game->perso);
     if (game->network != NULL) {
-        sfTexture_destroy(sfSprite_getTexture(game->network->client_sprite));
         sfSprite_destroy(game->network->client_sprite);
         free(game->network->clients); free(game->network);
     }
     sfView_destroy(game->window->view);
     sfMusic_destroy(game->window->song->music);
     free(game->window->song);
-    sfTexture_destroy(sfRectangleShape_getTexture(game->window->rect[0]));
     sfRectangleShape_destroy(game->window->rect[0]);
     free(game->window->rect);
     free(game->window);
