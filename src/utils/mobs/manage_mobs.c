@@ -46,14 +46,23 @@ void win_perso(game_t *game, mobs_t *mob)
 {
     if (sfKeyboard_isKeyPressed(game->keys->attack) &&
         mob->distance_to_player < 50) {
-        mob->is_alive = sfFalse;
-        game->perso->combat->defense += 1;
-        game->perso->combat->life += 10;
-        game->perso->combat->attack += 1;
-        game->perso->combat->strength += 5;
+        if (mob->combat->life <= 0) {
+            mob->is_alive = sfFalse;
+            game->perso->combat->defense += 1;
+            game->perso->combat->life += 10;
+            game->perso->combat->attack += 1;
+            game->perso->combat->strength += 5;
+            (mob->mob_type == 1) ?
+                game->game_menu->quest->nb_achievement += 1 : 0;
+        } else {
+            mob->combat->life -= game->perso->combat->attack;
+            return;
+        }
     }
     if (game->perso->combat->life > 100)
         game->perso->combat->life = 100;
+    if (game->perso->combat->life <= 0)
+        game->perso->combat->life = 0;
 }
 
 void anime_ennemie(mobs_t *mob)
