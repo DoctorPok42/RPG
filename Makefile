@@ -125,12 +125,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(CFLAGS)
-	@clear
-	@if [ -f $(NAME) ]; then \
-		echo "\033[1;32mCompilation done\033[0m"; \
-	fi
-	@cat text.txt
-
 clean:
 	rm -rf $(OBJ)
 

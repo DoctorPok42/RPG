@@ -18,6 +18,7 @@
     typedef struct {
         sfVector2f pos;
         sfClock *clock;
+        sfClock *clock_anime;
         enum mob_state state;
         float distance_to_player;
         float speed;

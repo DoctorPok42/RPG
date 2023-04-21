@@ -20,6 +20,7 @@ sfTexture *texture)
 
     game->mobs[mob_index] = malloc(sizeof(mobs_t));
     game->mobs[mob_index]->clock = sfClock_create();
+    game->mobs[mob_index]->clock_anime = sfClock_create();
     game->mobs[mob_index]->pos = pos;
     game->mobs[mob_index]->speed = 2;
     game->mobs[mob_index]->is_alive = sfTrue;
