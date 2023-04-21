@@ -35,12 +35,7 @@ void close_start_all(game_t *game)
 
 void exit_start_all(game_t *game)
 {
-    sfMusic_stop(game->window->song->music);
-    sfMusic_destroy(game->window->song->music);
     sfRenderWindow_close(game->window->window);
-    free(game->window->song);
-    free(game->perso);
-    free(game->params);
 }
 
 void change_to_save(game_t *game)

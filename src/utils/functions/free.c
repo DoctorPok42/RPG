@@ -15,10 +15,6 @@ void free_game_menu(game_t *game)
 {
     sfRectangleShape_destroy(game->game_menu->container);
     sfFont_destroy(game->game_menu->font);
-    for (int i = 0; i < 3; i++) {
-        sfText_destroy(game->game_menu->title[i]);
-        free(game->game_menu->title[i]);
-    }
     free(game->game_menu->title);
     sfRectangleShape_destroy(game->game_menu->sidebar->container);
     for (int i = 0; i < 5; i++) {
@@ -105,12 +101,10 @@ void do_free(game_t *game)
     sfRectangleShape_destroy(game->overlay->life->content);
     free(game->overlay->life);
     free(game->overlay);
-    sfSprite_destroy(game->mobs[0]->sprite);
     for (int i = 0; game->mobs[i] != NULL; i++) {
         sfClock_destroy(game->mobs[i]->clock);
         sfSprite_destroy(game->mobs[i]->sprite);
         free(game->mobs[i]);
     }
     free(game->mobs);
-    free(game);
 }
