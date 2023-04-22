@@ -87,7 +87,7 @@ void display_perso(game_t *game)
     float diff = sqrt(pow(player_pos2.x - room_pos.x, 2) + pow(player_pos2.y -
     room_pos.y, 2));
 
-    if (diff < 30) {
+    if (diff < 30)
         game->perso->pos.y -= 2000;
 
     sfSprite_setPosition(game->perso->sprite, game->perso->pos);
