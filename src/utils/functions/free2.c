@@ -5,6 +5,7 @@
 ** free2
 */
 #include "game.h"
+#include <SFML/Graphics/Text.h>
 
 void free_navbar(game_t *game)
 {
@@ -32,10 +33,7 @@ void free_params2(game_t *game)
     sfRectangleShape_destroy(game->params->visu->music->container);
     sfRectangleShape_destroy(game->params->visu->music->bar);
     free(game->params->visu->music);
-    free(game->params->visu->keyboard);
     for (int i = 0; i < 2; i++) {
-        sfRectangleShape_destroy(game->params->visu->keyboard->button[i]->rect);
-        sfText_destroy(game->params->visu->keyboard->button[i]->text);
         sfFont_destroy(game->params->visu->keyboard->button[i]->font);
         free(game->params->visu->keyboard->button[i]);
     }
@@ -68,15 +66,14 @@ void free_save(game_t *game)
 {
     for (int i = 0; i < 3; i++) {
         sfRectangleShape_destroy(game->save->view->rect[i]);
-        sfFont_destroy(sfText_getFont(game->save->view->name[i]));
+        sfFont_destroy((sfFont *) sfText_getFont(game->save->view->name[i]));
         sfText_destroy(game->save->view->name[i]);
         sfTexture_destroy(game->save->view->texture[i]);
     }
-    sfFont_destroy(sfText_getFont(game->save->view->title));
+    sfFont_destroy((sfFont *) sfText_getFont(game->save->view->title));
     free(game->save->view->rect);
     free(game->save->view->name);
     free(game->save->view->texture);
-    free(game->save->view->title);
     free(game->save->view);
     free(game->save);
 }

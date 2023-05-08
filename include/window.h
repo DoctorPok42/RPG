@@ -11,7 +11,7 @@
     #include "rpg.h"
     #include "songs.h"
 
-    typedef struct {
+    typedef struct window_s {
         sfRenderWindow *window;
         sfView *view;
         sfEvent event;

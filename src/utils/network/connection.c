@@ -51,5 +51,3 @@ network_t *connect_to_server (void)
 
     return network;
 }
-
-// ("185.157.247.171"), 6060, sfSeconds(2)) == sfSocketError) {

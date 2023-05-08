@@ -14,13 +14,6 @@ int raycasting (game_t *game);
 
 static void init_game(game_t *game)
 {
-    game->params = malloc(sizeof(params_t));
-    game->params->volume = 100;
-    game->params->fps = 60;
-    game->params->fullscreen = 0;
-    game->params->resolution = (sfVector2u){1920, 1080};
-    game->params->window_size = (sfVector2u){1920, 1080};
-    game->params->mode = (sfVideoMode){1920, 1080, 32};
     game->keys = malloc(sizeof(keys_t));
     game->keys->up = sfKeyUp; game->keys->down = sfKeyDown;
     game->keys->left = sfKeyLeft; game->keys->right = sfKeyRight;
@@ -36,9 +29,23 @@ static void init_game(game_t *game)
     game->perso->clock = sfClock_create();
 }
 
+static void init_params (game_t *game)
+{
+    game->params = malloc(sizeof(params_t));
+    game->params[0] = (params_t){0};
+    game->params->tmp = 0;
+    game->params->volume = 100;
+    game->params->fps = 60;
+    game->params->fullscreen = 0;
+    game->params->resolution = (sfVector2u){1920, 1080};
+    game->params->window_size = (sfVector2u){1920, 1080};
+    game->params->mode = (sfVideoMode){1920, 1080, 32};
+}
+
 int start_game(game_t *game)
 {
     init_game(game);
+    init_params(game);
     create_game(game);
 
     while (sfRenderWindow_isOpen(game->window->window)) {
