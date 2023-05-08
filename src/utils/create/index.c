@@ -21,8 +21,9 @@ void create_menu(game_t *game);
 void create_clients(game_t *game);
 void create_mobs (game_t *game);
 void create_npc(game_t *game);
+void create_win_loose(game_t *game);
 
-void create_game(game_t *game)
+    void create_game(game_t *game)
 {
     create_clients(game);
     create_window(game);
@@ -38,4 +39,5 @@ void create_game(game_t *game)
     create_menu(game);
     create_mobs(game);
     create_npc(game);
+    create_win_loose(game);
 }

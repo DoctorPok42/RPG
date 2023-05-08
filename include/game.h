@@ -24,6 +24,7 @@
     #include "dialog.h"
     #include "clocks.h"
     #include "network.h"
+    #include "end.h"
 
     typedef struct {
         window_t *window;
@@ -43,6 +44,10 @@
         dialog_box_t *dialogs;
         clocks_t *clock;
         network_t *network;
+        end_t *win;
+        end_t *loose;
+        bool is_finished;
+        int nb_mob_killed;
     } game_t;
 
     #include "start.h"

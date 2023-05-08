@@ -13,7 +13,7 @@ void display_window(game_t *game)
         sfRenderWindow_drawRectangleShape(game->window->window,
             game->window->rect[0], NULL);
     else if (game->menu >= 5 && (game->menu < 10 || game->menu % 10 == 6 ||
-        game->menu / 10 % 10 == 6)) {
+        game->menu / 10 % 10 == 6) || game->menu == 42 || game->menu == -42) {
         sfRenderWindow_drawSprite(game->window->window,
             game->map->sprite, NULL);
     }

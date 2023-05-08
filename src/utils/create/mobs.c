@@ -11,9 +11,13 @@ void add_type(game_t *game, int i, sfIntRect texture_rec)
 {
     if (texture_rec.width == 50) {
         game->mobs[i]->mob_type = 1;
-        game->mobs[i]->combat->life = 50;
-    } else
+        game->mobs[i]->combat->life = 100;
+        game->mobs[i]->left_display = 52;
+        game->mobs[i]->combat->attack = 20;
+    } else {
         game->mobs[i]->mob_type = 0;
+        game->mobs[i]->left_display = 40;
+    }
 }
 
 void add_mob (game_t *game, sfVector2f pos, sfIntRect texture_rec,
