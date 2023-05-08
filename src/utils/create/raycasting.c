@@ -88,7 +88,7 @@ int create_player (game_t *game)
 
 int create_raycasting (game_t *game)
 {
-    game->is_raycasting = true;
+    game->is_raycasting = false;
     game->raycasting = malloc(sizeof(raycasting_t));
     if (game->raycasting == NULL)
         return -1;
