@@ -14,7 +14,7 @@ int create_maps (game_t *game)
 {
     game->raycasting->selected_map = 0;
 
-    game->raycasting->maps = malloc(sizeof(map_t *) * 3);
+    game->raycasting->maps = malloc(sizeof(map_t) * 3);
     if (game->raycasting->maps == NULL)
         return -1;
 
@@ -79,7 +79,7 @@ int create_player (game_t *game)
     game->raycasting->player->pitch = 0;
 
     game->raycasting->fov = 60;
-    game->raycasting->resolution = 5;
+    game->raycasting->resolution = 7;
     game->raycasting->sensitivity = 5;
     game->raycasting->speed = 5;
 
@@ -88,7 +88,7 @@ int create_player (game_t *game)
 
 int create_raycasting (game_t *game)
 {
-    game->is_raycasting = false;
+    game->is_raycasting = true;
     game->raycasting = malloc(sizeof(raycasting_t));
     if (game->raycasting == NULL)
         return -1;
