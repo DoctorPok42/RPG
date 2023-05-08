@@ -88,4 +88,9 @@ void move_raycasting_player (game_t *game)
     player_rotate(game);
     player_move_forwar_backward(game);
     player_move_left_right(game);
+
+    if (sfKeyboard_isKeyPressed(sfKeyE)) {
+        game->is_raycasting = false;
+        game->raycasting->player->position = (sfVector2f) {500, 500};
+    }
 }

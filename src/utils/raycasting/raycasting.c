@@ -78,24 +78,21 @@ void display_scene (game_t *game, int i)
 
 int raycasting (game_t *game)
 {
+    while (sfRenderWindow_pollEvent(game->window->window, &game->window->event))
+        if (game->window->event.type == sfEvtClosed)
+            exit_start_all(game);
+
     sfRenderWindow_clear(game->window->window, sfBlack);
 
-    float diff = sqrt(pow(game->raycasting->player->position.x - 100, 2) +
-    pow(game->raycasting->player->position.y - 100, 2));
-
-    if (sfKeyboard_isKeyPressed(sfKeyE)) {
-        game->is_raycasting = false;
-        game->raycasting->player->position = (sfVector2f) {500, 500};
-    }
     move_raycasting_player(game);
+
     for (int i = 0; i < game->raycasting->nb_rays; i++)
         get_wall(game, i);
-
     sort_walls_by_distance(game);
 
     for (int i = 0; game->raycasting->rays[i + 1] != NULL; i++)
         display_scene(game, i);
-
     sfRenderWindow_display(game->window->window);
+
     return 0;
 }
