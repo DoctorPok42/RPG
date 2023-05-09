@@ -6,6 +6,7 @@
 */
 
 #include "game.h"
+#include <SFML/Window/Keyboard.h>
 
 void do_free(game_t *game);
 bool is_error(const char **env);

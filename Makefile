@@ -11,6 +11,8 @@ SRC = src/main.c \
 	src/change_map.c \
 	$(addprefix src/utils/create/, \
 		$(addsuffix .c, \
+			raycasting \
+			raycasting_entities \
 			clients \
 			index \
 			start_menu \
@@ -100,6 +102,7 @@ SRC = src/main.c \
 			put_nbr \
 			put_nb_float \
 			my_strcmp \
+			get_map \
 			my_len \
 			my_str_to_word_array \
 			my_strndup \
@@ -112,6 +115,16 @@ SRC = src/main.c \
 		$(addsuffix .c, \
 			connection \
 			communication \
+		) \
+	) \
+	$(addprefix src/utils/raycasting/, \
+		$(addsuffix .c, \
+			calculate_entity \
+			define_wall \
+			move \
+			raycasting \
+			sort_walls \
+			get_wall \
 		) \
 	) \
 
