@@ -37,5 +37,5 @@ void create_win_loose(game_t *game)
     game->loose = malloc(sizeof(end_t));
 
     create_scene(game, game->win, "You  Win");
-    create_scene(game, game->loose, "You  Loose");
+    create_scene(game, game->loose, "You  Lose");
 }
