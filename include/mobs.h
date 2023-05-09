@@ -32,6 +32,7 @@
         sfBool is_alive;
         mob_combat_t *combat;
         int mob_type;
+        int left_display;
     } mobs_t;
 
 #endif /* !MOBS_H_ */

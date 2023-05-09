@@ -16,7 +16,7 @@ void create_window(game_t *game)
         game->window->title, sfClose | sfResize, NULL);
 
     game->window->view = sfView_createFromRect((sfFloatRect){0, 0, 1920, 1080});
-    sfRenderWindow_setFramerateLimit(game->window->window, game->params->fps);
+    sfRenderWindow_setFramerateLimit(game->window->window, 3000);
     sfRenderWindow_setVerticalSyncEnabled(game->window->window, sfTrue);
     sfRenderWindow_setView(game->window->window, game->window->view);
 

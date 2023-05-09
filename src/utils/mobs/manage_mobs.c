@@ -48,32 +48,42 @@ void win_perso(game_t *game, mobs_t *mob)
         mob->distance_to_player < 50) {
         if (mob->combat->life <= 0) {
             mob->is_alive = sfFalse;
-            game->perso->combat->defense += 1;
-            game->perso->combat->life += 10;
-            game->perso->combat->attack += 1;
-            game->perso->combat->strength += 5;
+            game->perso->combat->defense += 1; game->perso->combat->life += 10;
+            game->perso->combat->attack += 3;
+            game->perso->combat->strength += 1;
             (mob->mob_type == 1) ?
                 game->game_menu->quest->nb_achievement += 1 : 0;
-        } else {
-            mob->combat->life -= game->perso->combat->attack;
-            return;
+            (mob->mob_type == 1) ? game->is_finished = true : 0;
+            (mob->mob_type == 1) ?
+                game->menu = 42 : game->menu;
+            game->nb_mob_killed += 1;
+        } else { mob->combat->life -= game->perso->combat->attack; return;
         }
+    } if (game->perso->combat->life > 100) game->perso->combat->life = 100;
+    if (game->perso->combat->life <= 0) {
+        game->perso->combat->life = 0; game->is_finished = true;
+        game->menu = -42;
     }
-    if (game->perso->combat->life > 100)
-        game->perso->combat->life = 100;
-    if (game->perso->combat->life <= 0)
-        game->perso->combat->life = 0;
 }
 
-void anime_ennemie(mobs_t *mob)
+void anime_ennemie(game_t *game, mobs_t *mob)
 {
     if (sfClock_getElapsedTime
         (mob->clock_anime).microseconds / 1000000.0 > 0.7) {
-        mob->TextureRect.left += 40;
+        mob->TextureRect.left += mob->left_display;
         if (mob->TextureRect.left >= 70)
             mob->TextureRect.left = 0;
         sfClock_restart(mob->clock_anime);
     }
+
+    if (game->nb_mob_killed % 3 == 0 && game->params->tmp == 0) {
+        for (int i = 0; game->mobs[i] != NULL; i++) {
+            game->mobs[i]->combat->life += 1;
+            game->mobs[i]->combat->attack += 2;
+        }
+        game->params->tmp = 1;
+    } else if (game->nb_mob_killed % 3 != 0)
+        game->params->tmp = 0;
 }
 
 void manage_mobs (game_t *game)
@@ -92,10 +102,10 @@ void manage_mobs (game_t *game)
         if (game->mobs[i]->state == Attacking
         && game->mobs[i]->distance_to_player < 70 && sfClock_getElapsedTime
         (game->mobs[i]->clock).microseconds / 1000000.0 > 1.0) {
-            game->perso->combat->life -= 10 - game->perso->combat->defense;
+            game->perso->combat->life -= game->perso->combat->defense;
             sfClock_restart(game->mobs[i]->clock);
         }
-        anime_ennemie(game->mobs[i]);
+        anime_ennemie(game, game->mobs[i]);
         win_perso(game, game->mobs[i]);
     }
 }
