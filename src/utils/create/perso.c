@@ -23,7 +23,7 @@ void create_perso(game_t *game)
     game->perso->combat->life = 100;
     game->perso->combat->attack = 10;
     game->perso->combat->defense = 5;
-    game->perso->combat->speed = 30;
+    game->perso->combat->speed = 4;
     game->perso->combat->level = 1;
     game->perso->combat->strength = 5;
 }
