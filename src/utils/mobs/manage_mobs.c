@@ -57,7 +57,7 @@ void win_perso(game_t *game, mobs_t *mob)
             (mob->mob_type == 1) ?
                 game->menu = 42 : game->menu;
             game->nb_mob_killed += 1;
-        } else { mob->combat->life -= game->perso->combat->attack; return;
+        } else { mob->combat->life -= 10; return;
         }
     } if (game->perso->combat->life > 100) game->perso->combat->life = 100;
     if (game->perso->combat->life <= 0) {
