@@ -21,8 +21,8 @@ We used the same map, the same sprites and the same music.
 ### Linux
 
 ```bash
-$ git clone git@github.com:EpitechPromo2027/B-MUL-200-BDX-2-1-myrpg-remi.mazat.git
-$ cd B-MUL-200-BDX-2-1-myrpg-remi.mazat
+$ git clone git@github.com:DoctorPok42/RPG.git
+$ cd RPG
 $ make
 $ ./my_rpg
 ```
