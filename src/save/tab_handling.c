@@ -4,62 +4,67 @@
 ** File description:
 ** tab_handling
 */
-#include "game.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-int my_strlen(char const *str);
-int my_tablen(char **tab);
 
-char *my_strdup(char *src)
+#include <stdlib.h>
+
+#include "my_str.h"
+#include "save_functions.h"
+
+static char *my_strdup(char *src)
 {
-    if (src == NULL)
-        return NULL;
     char *str = NULL;
     int i = 0;
+
+    if (src == NULL)
+        return NULL;
     str = malloc(sizeof(char) * (my_strlen(src) + 1));
-    while (src[i] != '\0') {
+    if (str == NULL)
+        return NULL;
+    for (i = 0; src[i] != '\0'; i++)
         str[i] = src[i];
-        i = i + 1;
-    }
     str[i] = '\0';
     return str;
 }
 
-int free_tab(char **tab)
-{
-    if (tab == NULL)
-        return 84;
-    int i = 0;
-    for (; tab[i] != NULL; i++) {
-        free(tab[i]);
-    }
-    free(tab[i]);
-    free(tab);
-    return 0;
-}
-
-char **tab_null(char *new_var)
+static char **tab_null(char *new_var)
 {
     char **tab = malloc(sizeof(char *) * 2);
+
+    if (tab == NULL)
+        return NULL;
     tab[0] = my_strdup(new_var);
     tab[1] = NULL;
     return tab;
 }
 
-char **add_str(char **tab, char *new_var)
+int free_tab(char **tab)
 {
     int i = 0;
+
+    if (tab == NULL)
+        return 84;
+    for (i = 0; tab[i] != NULL; i++)
+        free(tab[i]);
+    free(tab);
+    return 0;
+}
+
+char **add_str(char **tab, char *new_var)
+{
+    char **new_tab = NULL;
+    int len = 0;
+    int i = 0;
+
     if (tab == NULL)
         return tab_null(new_var);
-    char **new_tab =
-    malloc(sizeof(char *) * my_tablen(tab) + sizeof(char *) * 2);
-    for (; tab[i] != NULL;i++) {
+    len = my_tablen(tab);
+    new_tab = malloc(sizeof(char *) * (len + 2));
+    if (new_tab == NULL)
+        return tab;
+    for (i = 0; i < len; i++)
         new_tab[i] = my_strdup(tab[i]);
-    }
-    new_tab[i] = my_strdup(new_var);
-    new_tab[i + 1] = NULL;
+    new_tab[len] = my_strdup(new_var);
+    new_tab[len + 1] = NULL;
     free_tab(tab);
     return new_tab;
 }

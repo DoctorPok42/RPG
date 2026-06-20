@@ -2,3 +2,20 @@
 .vscode
 coding-style*
 compile_flags.txt
+
+# Build artifacts
+my_rpg
+*.gcda
+*.gcno
+unit_tests
+*.dSYM/
+
+# Local-only working docs (never commit)
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+specs/
+spec/
+*.spec.md
+docs/internal/
+.banana/

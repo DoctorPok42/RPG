@@ -6,25 +6,9 @@
 */
 
 #include "game.h"
+#include "create.h"
 
-void create_map(game_t *game);
-void create_perso(game_t *game);
-void create_window(game_t *game);
-void create_start_menu(game_t *game);
-void create_dialog(game_t *game);
-void create_options(game_t *game);
-void create_save_menu(game_t *game);
-void create_go_back(game_t *game);
-void create_inventory(game_t *game);
-void create_overlay(game_t *game);
-void create_menu(game_t *game);
-void create_clients(game_t *game);
-void create_mobs (game_t *game);
-int create_raycasting (game_t *game);
-void create_npc(game_t *game);
-void create_win_loose(game_t *game);
-
-    void create_game(game_t *game)
+void create_game(game_t *game)
 {
     create_clients(game);
     create_window(game);

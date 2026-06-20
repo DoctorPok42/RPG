@@ -6,20 +6,21 @@
 */
 
 #include "game.h"
+#include "display.h"
+#include "mobs_functions.h"
+#include "menu.h"
 
-void manage_mobs (game_t *game);
-
-void display_mobs (game_t *game)
+void display_mobs(game_t *game)
 {
-    if (game->menu < 5 || game->menu > 6)
+    int i = 0;
+
+    if (!menu_show_hud(game))
         return;
-
     manage_mobs(game);
-
-    for (int i = 0; game->mobs[i] != NULL; i++) {
-        if (game->mobs[i]->is_alive == sfFalse)
+    for (i = 0; game->mobs[i] != NULL; i++) {
+        if (game->mobs[i]->is_alive == false)
             continue;
         sfRenderWindow_drawSprite(game->window->window,
-        game->mobs[i]->sprite, NULL);
+            game->mobs[i]->sprite, NULL);
     }
 }

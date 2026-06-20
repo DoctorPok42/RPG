@@ -6,23 +6,7 @@
 */
 
 #include "game.h"
-
-void display_window(game_t *game);
-void display_start_menu(game_t *game);
-void change_to_game(game_t *game);
-void display_perso(game_t *game);
-void change_map(game_t *game);
-void display_dialog(game_t *game);
-void display_options(game_t *game);
-void display_save(game_t *game);
-void display_inventory(game_t *game);
-void display_overlay(game_t *game);
-void display_menu(game_t *game);
-void display_iso_map(game_t *game);
-void display_clients (game_t *game);
-void display_mobs (game_t *game);
-void display_npc(game_t *game);
-void display_end(game_t *game);
+#include "display.h"
 
 void display_all(game_t *game)
 {

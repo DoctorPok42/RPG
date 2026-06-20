@@ -10,16 +10,16 @@
 
     #include "rpg.h"
 
-    typedef struct {
-        sfRectangleShape *container;
-        sfRectangleShape *content;
-        sfTexture *texture;
-        sfVector2f pos;
-    } item_t;
+typedef struct {
+    sfRectangleShape *container;
+    sfRectangleShape *content;
+    sfTexture *texture;
+    sfVector2f pos;
+} item_t;
 
-    typedef struct {
-        item_t **items;
-        int item_selected;
-    } inventory_t;
+typedef struct {
+    item_t **items;
+    int item_selected;
+} inventory_t;
 
 #endif /* !INVENTORY_H_ */

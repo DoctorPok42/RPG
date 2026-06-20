@@ -5,91 +5,104 @@
 ** perso
 */
 
+#include <math.h>
+
 #include "game.h"
+#include "collisions.h"
+#include "display.h"
+#include "menu.h"
+#include "input.h"
 
-int is_colliding(game_t *game, sfVector2f pos, sfVector2f offset);
-
-void move_player_vertical (game_t *game)
+static void set_perso_move(perso_t *perso, int rect_y, int dir)
 {
-    float speed = game->perso->combat->speed;
-    if (sfKeyboard_isKeyPressed(game->keys->left) ||
-    sfKeyboard_isKeyPressed(game->keys->right))
+    perso->rect.position.y = rect_y;
+    perso->move = 1;
+    perso->direction = dir;
+}
+
+static void move_player_vertical(game_t *game)
+{
+    perso_t *perso = game->perso;
+    float speed = perso->combat->speed;
+    sfVector2f pos = perso->pos;
+    sfVector2f dim = {45, 50};
+
+    if (is_key_held(game, game->keys->left)
+        || is_key_held(game, game->keys->right))
         speed = 2.8;
-
-    sfVector2f pos = game->perso->pos;
-
-    if (sfKeyboard_isKeyPressed(game->keys->up) &&
-    is_colliding(game, (sfVector2f){pos.x, pos.y - 4},
-    (sfVector2f) {45, 50}) == 0) {
-        game->perso->pos.y -= speed;
-        game->perso->rect.top = 18;
-        game->perso->move = 1; game->perso->direction = 1;
-    } else if (sfKeyboard_isKeyPressed(game->keys->down) &&
-    is_colliding(game, (sfVector2f){pos.x, pos.y + 4},
-    (sfVector2f) {45, 50}) == 0) {
-        game->perso->pos.y += speed;
-        game->perso->rect.top = 0;
-        game->perso->move = 1; game->perso->direction = 2;
+    if (is_key_held(game, game->keys->up)
+        && is_colliding(game, &(sfVector2f){pos.x, pos.y - 4}, &dim) == 0) {
+        perso->pos.y -= speed;
+        set_perso_move(perso, 18, 1);
+    } else if (is_key_held(game, game->keys->down)
+        && is_colliding(game, &(sfVector2f){pos.x, pos.y + 4}, &dim) == 0) {
+        perso->pos.y += speed;
+        set_perso_move(perso, 0, 2);
     }
 }
 
-void move_player_horizontal (game_t *game)
+static void move_player_horizontal(game_t *game)
 {
-    float speed = game->perso->combat->speed;
-    if (sfKeyboard_isKeyPressed(game->keys->up) ||
-    sfKeyboard_isKeyPressed(game->keys->down))
+    perso_t *perso = game->perso;
+    float speed = perso->combat->speed;
+    sfVector2f pos = perso->pos;
+    sfVector2f dim = {45, 50};
+
+    if (is_key_held(game, game->keys->up)
+        || is_key_held(game, game->keys->down))
         speed = 2.8;
-
-    sfVector2f pos = game->perso->pos;
-
-    if (sfKeyboard_isKeyPressed(game->keys->left) &&
-    is_colliding(game, (sfVector2f){pos.x - 4, pos.y},
-    (sfVector2f) {45, 50}) == 0) {
-        game->perso->pos.x -= speed;
-        game->perso->rect.top = 36;
-        game->perso->move = 1; game->perso->direction = 3;
-    } else if (sfKeyboard_isKeyPressed(game->keys->right) &&
-    is_colliding(game, (sfVector2f){pos.x + 4, pos.y},
-    (sfVector2f) {45, 50}) == 0) {
-        game->perso->pos.x += speed;
-        game->perso->rect.top = 54;
-        game->perso->move = 1; game->perso->direction = 4;
+    if (is_key_held(game, game->keys->left)
+        && is_colliding(game, &(sfVector2f){pos.x - 4, pos.y}, &dim) == 0) {
+        perso->pos.x -= speed;
+        set_perso_move(perso, 36, 3);
+    } else if (is_key_held(game, game->keys->right)
+        && is_colliding(game, &(sfVector2f){pos.x + 4, pos.y}, &dim) == 0) {
+        perso->pos.x += speed;
+        set_perso_move(perso, 54, 4);
     }
 }
 
-void anime_player(game_t *game)
+static void anime_player(game_t *game)
 {
-    game->perso->time = sfClock_getElapsedTime(game->perso->clock);
-    game->perso->seconds = game->perso->time.microseconds / 1000000.0;
-    if (game->perso->seconds > 0.08) {
-        game->perso->rect.left += 18;
-        if (game->perso->rect.left >= 36)
-            game->perso->rect.left = 0;
-        sfClock_restart(game->perso->clock);
+    perso_t *perso = game->perso;
+
+    perso->time = sfClock_getElapsedTime(perso->clock);
+    perso->seconds = perso->time.microseconds / 1000000.0;
+    if (perso->seconds > 0.08) {
+        perso->rect.position.x += 18;
+        if (perso->rect.position.x >= 36)
+            perso->rect.position.x = 0;
+        sfClock_restart(perso->clock);
     }
-    sfSprite_setTextureRect(game->perso->sprite, game->perso->rect);
+    sfSprite_setTextureRect(perso->sprite, perso->rect);
+}
+
+static void check_room_teleport(game_t *game)
+{
+    perso_t *perso = game->perso;
+    sfVector2f player_pos = {perso->pos.x + game->map->rect.position.x * 3,
+        perso->pos.y + game->map->rect.position.y * 3};
+    sfVector2f room_pos = {6590, 1408};
+    float diff = sqrt(pow(player_pos.x - room_pos.x, 2)
+        + pow(player_pos.y - room_pos.y, 2));
+
+    if (diff < 30)
+        perso->pos.y -= 2000;
 }
 
 void display_perso(game_t *game)
 {
-    if (game->menu < 5 || game->menu >= 10)
+    perso_t *perso = game->perso;
+
+    if (!menu_in_overworld(game))
         return;
     move_player_horizontal(game);
     move_player_vertical(game);
-    if (game->perso->move == 1) {
+    if (perso->move == 1) {
         anime_player(game);
-        game->perso->move = 0;
+        perso->move = 0;
     }
-    sfVector2f player_pos2 = (sfVector2f){game->perso->pos.x +
-        (game->map->rect.left * 3), game->perso->pos.y +
-        (game->map->rect.top * 3)};
-    sfVector2f room_pos = (sfVector2f){6590, 1408};
-    float diff = sqrt(pow(player_pos2.x - room_pos.x, 2) + pow(player_pos2.y -
-    room_pos.y, 2));
-
-    if (diff < 30)
-        game->perso->pos.y -= 2000;
-
-    sfSprite_setPosition(game->perso->sprite, game->perso->pos);
-    sfRenderWindow_drawSprite(game->window->window, game->perso->sprite, NULL);
+    check_room_teleport(game);
+    sfSprite_setPosition(perso->sprite, perso->pos);
+    sfRenderWindow_drawSprite(game->window->window, perso->sprite, NULL);
 }

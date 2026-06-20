@@ -11,14 +11,14 @@
     #include "rpg.h"
     #include "songs.h"
 
-    typedef struct window_s {
-        sfRenderWindow *window;
-        sfView *view;
-        sfEvent event;
-        sfRectangleShape **rect;
-        song_t *song;
-        int close;
-        const char *title;
-    } window_t;
+typedef struct window_s {
+    sfRenderWindow *window;
+    sfView *view;
+    sfEvent event;
+    sfRectangleShape **rect;
+    song_t *song;
+    int close;
+    const char *title;
+} window_t;
 
 #endif /* !WINDOW_H_ */

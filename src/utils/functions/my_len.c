@@ -5,22 +5,22 @@
 ** 06
 */
 
-#include <unistd.h>
+#include "my_str.h"
 
 int my_strlen(char const *str)
 {
     int i = 0;
-    while (str[i] != '\0') {
-        i = i + 1;
-    }
+
+    while (str[i] != '\0')
+        i++;
     return i;
 }
 
 int my_tablen(char **tab)
 {
     int i = 0;
-    while (tab[i] != NULL) {
-        i = i + 1;
-    }
+
+    while (tab[i] != NULL)
+        i++;
     return i;
 }

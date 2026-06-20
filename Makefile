@@ -9,6 +9,9 @@ SRC = src/main.c \
 	src/utils/error.c \
 	src/start_game.c \
 	src/change_map.c \
+	src/flags.c \
+	src/menu.c \
+	src/input.c \
 	$(addprefix src/utils/create/, \
 		$(addsuffix .c, \
 			raycasting \
@@ -125,27 +128,56 @@ SRC = src/main.c \
 			raycasting \
 			sort_walls \
 			get_wall \
+			map_access \
 		) \
 	) \
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -I include/ -Wall -Wextra -lcsfml-graphics -lcsfml-window \
-		-lcsfml-system -lcsfml-audio -lcsfml-network \
-		-lcsfml-system -lcsfml-audio -lm
+CFLAGS = -I include/ -I/opt/homebrew/opt/csfml/include \
+		-I/opt/homebrew/include -I/usr/local/include \
+		-Wall -Wextra
+
+LDFLAGS = -L/opt/homebrew/opt/csfml/lib -L/opt/homebrew/lib \
+		-L/usr/local/lib
+
+LDLIBS = -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio \
+		-lcsfml-network -lm
 
 NAME = my_rpg
+
+TEST_SRC = $(wildcard tests/*.c)
+TEST_NAME = unit_tests
+SANITIZE = -g3 -fsanitize=address,undefined
+TEST_BUILD = gcc -o $(TEST_NAME) $(filter-out src/main.c, $(SRC)) \
+		$(TEST_SRC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -lcriterion
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -o $(NAME) $(OBJ) $(CFLAGS)
+	gcc -o $(NAME) $(OBJ) $(LDFLAGS) $(LDLIBS)
 clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(TEST_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug: CFLAGS += $(SANITIZE)
+debug: LDLIBS += -fsanitize=address,undefined
+debug: re
+
+tests_run:
+	$(TEST_BUILD)
+	./$(TEST_NAME)
+
+tests_asan:
+	$(TEST_BUILD) $(SANITIZE)
+	./$(TEST_NAME)
+
+valgrind:
+	$(TEST_BUILD)
+	valgrind --leak-check=full --error-exitcode=1 ./$(TEST_NAME)
+
+.PHONY: all clean fclean re debug tests_run tests_asan valgrind

@@ -5,20 +5,24 @@
 ** 07
 */
 
+#include "my_str.h"
+
 int my_getnbr(char const *str)
 {
-    long int number = 0;
-    int is_neg = 1;
-    for (int i = 0; str[i] != '\0'; i++) {
+    int i = 0;
+    int sign = 1;
+    long number = 0;
+
+    while (str[i] == ' ' || str[i] == '\t')
+        i++;
+    while (str[i] == '-' || str[i] == '+') {
         if (str[i] == '-')
-            is_neg = is_neg * -1;
-        if (str[i] >= '0' && str[i] <= '9') {
-            number = number * 10 + (str[i] - 48);
-        }
+            sign = -sign;
+        i++;
     }
-
-    if (number == 0)
-        return 0;
-
-    return (is_neg * number);
+    while (str[i] >= '0' && str[i] <= '9') {
+        number = number * 10 + (str[i] - '0');
+        i++;
+    }
+    return (int)(sign * number);
 }

@@ -10,16 +10,16 @@
 
     #include "game.h"
 
-    typedef struct {
-        char **dialog_text;
-        sfTexture *texture;
-        sfSprite *sprite;
-        sfText *text;
-        sfFont *font;
-        sfVector2f pos;
-        sfClock *clock;
-        sfTime time;
-        float seconds;
-    } dialog_box_t;
+typedef struct {
+    char **dialog_text;
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfText *text;
+    sfFont *font;
+    sfVector2f pos;
+    sfClock *clock;
+    sfTime time;
+    float seconds;
+} dialog_box_t;
 
 #endif /* !DIALOG_H_ */

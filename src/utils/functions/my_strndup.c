@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include "my_str.h"
 
 char *my_strndup(char *str, int n)
 {

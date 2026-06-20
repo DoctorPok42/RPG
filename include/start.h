@@ -8,23 +8,18 @@
 #ifndef START_H_
     #define START_H_
 
-    #include "game.h"
+typedef struct game_s game_t;
 
 void exit_start_all(game_t *game);
 void close_start_all(game_t *game);
 void change_to_save(game_t *game);
 void change_to_settings(game_t *game);
+void go_back(game_t *game);
 
 typedef struct start_flags_s {
     void (*functions)(void *);
-} start_flags;
+} start_flags_t;
 
-static const start_flags START_FLAGS[] = {
-    {functions : (void *)&close_start_all},
-    {functions : (void *)&change_to_save},
-    {functions : (void *)&change_to_settings},
-    {functions : (void *)&exit_start_all},
-    {functions : NULL}
-};
+extern const start_flags_t START_FLAGS[];
 
 #endif /* !START_H_ */

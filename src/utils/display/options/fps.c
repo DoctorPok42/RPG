@@ -6,9 +6,9 @@
 */
 
 #include "game.h"
-
-int my_getnbr(char const *str);
-void relase_button(buttons_t **button, int i, int max);
+#include "display.h"
+#include "my_str.h"
+#include "menu.h"
 
 static int active_button(game_t *game, int i)
 {
@@ -33,35 +33,44 @@ static int check_button(game_t *game)
     }
 }
 
-static void display_button(game_t *game, sfVector2i mpos)
+static void draw_fps_button(game_t *game, int i, const sfVector2i *mpos)
 {
     buttons_t **button = game->params->visu->fps->button;
-    for (int i = 0; i < 4; i++) {
-        sfVector2f pos = button[i]->pos;
-        if (mpos.x >= pos.x && mpos.x <= pos.x + 150 && mpos.y >= pos.y &&
-            mpos.y <= pos.y + 50) {
-            sfRectangleShape_setFillColor(button[i]->rect,
-                (sfColor){25, 118, 210, 150});
-            game->params->fps = (sfMouse_isButtonPressed(sfMouseLeft) ) ?
-                active_button(game, i) : game->params->fps;
-        } else
-            sfRectangleShape_setFillColor(button[i]->rect,
-                (sfColor){25, 118, 210, 100});
-        if (button[i]->state == ACTIVE)
-            sfRectangleShape_setFillColor(button[i]->rect,
-                (sfColor){25, 118, 210, 200});
+    sfVector2f pos = button[i]->pos;
+
+    if (mpos->x >= pos.x && mpos->x <= pos.x + 150 && mpos->y >= pos.y
+        && mpos->y <= pos.y + 50) {
+        sfRectangleShape_setFillColor(button[i]->rect,
+            (sfColor){25, 118, 210, 150});
+        if (sfMouse_isButtonPressed(sfMouseLeft))
+            game->params->fps = active_button(game, i);
+    } else
+        sfRectangleShape_setFillColor(button[i]->rect,
+            (sfColor){25, 118, 210, 100});
+    if (button[i]->state == ACTIVE)
+        sfRectangleShape_setFillColor(button[i]->rect,
+            (sfColor){25, 118, 210, 200});
+}
+
+static void display_button(game_t *game, const sfVector2i *mpos)
+{
+    buttons_t **button = game->params->visu->fps->button;
+    int i = 0;
+
+    for (i = 0; i < 4; i++) {
+        draw_fps_button(game, i, mpos);
         sfRenderWindow_drawRectangleShape(game->window->window,
             button[i]->rect, NULL);
-        sfRenderWindow_drawText(game->window->window,
-            button[i]->text, NULL);
+        sfRenderWindow_drawText(game->window->window, button[i]->text, NULL);
     }
 }
 
 void display_fps(game_t *game)
 {
-    if (game->menu != 2 && game->menu != 25 && game->menu % 10 != 0)
+    sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
+
+    if (!menu_tab_fps(game))
         return;
     game->params->visu->fps->button[check_button(game)]->state = ACTIVE;
-    sfVector2i mpos = sfMouse_getPositionRenderWindow(game->window->window);
-    display_button(game, mpos);
+    display_button(game, &mpos);
 }

@@ -10,10 +10,10 @@
 
     #include "game.h"
 
-    typedef struct {
-        sfClock *clock;
-        sfTime time;
-        float seconds;
-    } clocks_t;
+typedef struct {
+    sfClock *clock;
+    sfTime time;
+    float seconds;
+} clocks_t;
 
 #endif /* !CLOCKS_H_ */

@@ -8,10 +8,10 @@
 #ifndef RPG_H_
     #define RPG_H_
 
-    #include <SFML/Graphics.h>
-    #include <SFML/Audio.h>
-    #include <SFML/Window.h>
-    #include <SFML/Network.h>
+    #include <CSFML/Graphics.h>
+    #include <CSFML/Audio.h>
+    #include <CSFML/Window.h>
+    #include <CSFML/Network.h>
 
     #include <stdlib.h>
     #include <stdbool.h>

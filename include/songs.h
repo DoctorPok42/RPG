@@ -10,10 +10,10 @@
 
     #include "rpg.h"
 
-    typedef struct {
-        sfMusic *music;
-        sfSound *sound;
-        sfSoundBuffer *buffer;
-    } song_t;
+typedef struct {
+    sfMusic *music;
+    sfSound *sound;
+    sfSoundBuffer *buffer;
+} song_t;
 
 #endif /* !SONGS_H_ */

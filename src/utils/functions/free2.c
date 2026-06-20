@@ -4,73 +4,89 @@
 ** File description:
 ** free2
 */
+
 #include "game.h"
-#include <SFML/Graphics/Text.h>
+#include "free.h"
 
-void free_navbar(game_t *game)
+static void free_navbar(game_t *game)
 {
-    for (int i = 0; i < 4; i++) {
-        sfRectangleShape_destroy(game->params->visu->navbar->button[i]->rect);
-        sfText_destroy(game->params->visu->navbar->button[i]->text);
-        sfFont_destroy(game->params->visu->navbar->button[i]->font);
-        free(game->params->visu->navbar->button[i]);
+    navbar_t *navbar = game->params->visu->navbar;
+    int i = 0;
+
+    for (i = 0; i < 4; i++) {
+        sfRectangleShape_destroy(navbar->button[i]->rect);
+        sfText_destroy(navbar->button[i]->text);
+        sfFont_destroy(navbar->button[i]->font);
+        free(navbar->button[i]);
     }
-    sfRectangleShape_destroy(game->params->visu->navbar->container);
-    sfRectangleShape_destroy(game->params->visu->navbar->content);
-    free(game->params->visu->navbar);
+    sfRectangleShape_destroy(navbar->container);
+    sfRectangleShape_destroy(navbar->content);
+    free(navbar);
 }
 
-void free_params2(game_t *game)
+static void free_params2(game_t *game)
 {
-    for (int i = 0; i < 4; i++) {
-        sfRectangleShape_destroy(game->params->visu->fps->button[i]->rect);
-        sfText_destroy(game->params->visu->fps->button[i]->text);
-        sfFont_destroy(game->params->visu->fps->button[i]->font);
-        free(game->params->visu->fps->button[i]);
+    visu_t *visu = game->params->visu;
+    int i = 0;
+
+    for (i = 0; i < 4; i++) {
+        sfRectangleShape_destroy(visu->fps->button[i]->rect);
+        sfText_destroy(visu->fps->button[i]->text);
+        sfFont_destroy(visu->fps->button[i]->font);
+        free(visu->fps->button[i]);
     }
-    free(game->params->visu->fps->button);
-    free(game->params->visu->fps);
-    sfRectangleShape_destroy(game->params->visu->music->container);
-    sfRectangleShape_destroy(game->params->visu->music->bar);
-    free(game->params->visu->music);
-    for (int i = 0; i < 2; i++) {
-        sfFont_destroy(game->params->visu->keyboard->button[i]->font);
-        free(game->params->visu->keyboard->button[i]);
+    free(visu->fps->button);
+    free(visu->fps);
+    sfRectangleShape_destroy(visu->music->container);
+    sfRectangleShape_destroy(visu->music->bar);
+    free(visu->music);
+    for (i = 0; i < 2; i++) {
+        sfFont_destroy(visu->keyboard->button[i]->font);
+        free(visu->keyboard->button[i]);
     }
 }
 
-void free_params(game_t * game)
+static void free_window_buttons(game_t *game)
+{
+    windows_t *w = game->params->visu->windows;
+    int i = 0;
+
+    for (i = 0; i < 2; i++) {
+        sfRectangleShape_destroy(w->size[i]->rect);
+        sfText_destroy(w->size[i]->text);
+        sfFont_destroy(w->size[i]->font);
+        free(w->size[i]);
+    }
+    for (i = 0; i < 3; i++) {
+        sfRectangleShape_destroy(w->resolution[i]->rect);
+        sfText_destroy(w->resolution[i]->text);
+        sfFont_destroy(w->resolution[i]->font);
+        free(w->resolution[i]);
+    }
+    free(w->size);
+    free(w->resolution);
+    free(w);
+}
+
+void free_params(game_t *game)
 {
     free_navbar(game);
     free_params2(game);
-    for (int i = 0; i < 2; i++) {
-        sfRectangleShape_destroy(game->params->visu->windows->size[i]->rect);
-        sfText_destroy(game->params->visu->windows->size[i]->text);
-        sfFont_destroy(game->params->visu->windows->size[i]->font);
-        free(game->params->visu->windows->size[i]);
-    }
-    free(game->params->visu->windows->size);
-    for (int i = 0; i < 3; i++) {
-        sfRectangleShape_destroy(
-            game->params->visu->windows->resolution[i]->rect);
-        sfText_destroy(game->params->visu->windows->resolution[i]->text);
-        sfFont_destroy(game->params->visu->windows->resolution[i]->font);
-        free(game->params->visu->windows->resolution[i]);
-    }
-    free(game->params->visu->windows->resolution);
-    free(game->params->visu->windows);
+    free_window_buttons(game);
     free(game->params);
 }
 
 void free_save(game_t *game)
 {
-    for (int i = 0; i < 3; i++) {
+    int i = 0;
+
+    for (i = 0; i < 3; i++) {
         sfRectangleShape_destroy(game->save->view->rect[i]);
-        sfFont_destroy((sfFont *) sfText_getFont(game->save->view->name[i]));
+        sfFont_destroy((sfFont *)sfText_getFont(game->save->view->name[i]));
         sfText_destroy(game->save->view->name[i]);
         sfTexture_destroy(game->save->view->texture[i]);
     }
-    sfFont_destroy((sfFont *) sfText_getFont(game->save->view->title));
+    sfFont_destroy((sfFont *)sfText_getFont(game->save->view->title));
     free(game->save->view->rect);
     free(game->save->view->name);
     free(game->save->view->texture);
@@ -80,18 +96,21 @@ void free_save(game_t *game)
 
 void free_game_menu2(game_t *game)
 {
-    for (int i = 0; i < 7; i++) {
-        sfText_destroy(game->game_menu->character->value[i]);
-        sfText_destroy(game->game_menu->character->name[i]);
+    game_menu_t *menu = game->game_menu;
+    int i = 0;
+
+    for (i = 0; i < 7; i++) {
+        sfText_destroy(menu->character->value[i]);
+        sfText_destroy(menu->character->name[i]);
     }
-    free(game->game_menu->character->name);
-    free(game->game_menu->character->value);
-    free(game->game_menu->character);
-    sfRectangleShape_destroy(game->game_menu->quest->bar);
-    sfFont_destroy(game->game_menu->quest->font);
-    sfText_destroy(game->game_menu->quest->achievement);
-    sfRectangleShape_destroy(game->game_menu->quest->content);
-    sfRectangleShape_destroy(game->game_menu->quest->container);
-    free(game->game_menu->quest);
-    free(game->game_menu);
+    free(menu->character->name);
+    free(menu->character->value);
+    free(menu->character);
+    sfRectangleShape_destroy(menu->quest->bar);
+    sfFont_destroy(menu->quest->font);
+    sfText_destroy(menu->quest->achievement);
+    sfRectangleShape_destroy(menu->quest->content);
+    sfRectangleShape_destroy(menu->quest->container);
+    free(menu->quest);
+    free(menu);
 }

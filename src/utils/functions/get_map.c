@@ -9,73 +9,106 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <sys/stat.h>
-#include <string.h>
 
 #include "game.h"
+#include "my_str.h"
+#include "raycasting_functions.h"
 
-int get_file_size (char *path)
+static int get_file_size(char *path)
 {
     struct stat sb;
 
     if (stat(path, &sb) == -1)
         return -1;
-
-    return sb.st_size;
+    return (int)sb.st_size;
 }
 
-char *read_file (char *path)
+static char *read_file(char *path)
 {
-    int save = open(path, O_RDONLY);
-    if (save == -1)
+    int fd = open(path, O_RDONLY);
+    int size = get_file_size(path);
+    char *buffer = NULL;
+
+    if (fd == -1 || size <= 0)
         return NULL;
-
-    int save_size = get_file_size(path);
-    if (save_size == -1)
+    buffer = malloc(sizeof(char) * (size + 1));
+    if (buffer == NULL || read(fd, buffer, size) == -1) {
+        free(buffer);
+        close(fd);
         return NULL;
-
-    char *buffer = malloc(sizeof(char) * save_size);
-    memset(buffer, '\0', save_size);
-
-    if (read(save, buffer, (size_t) save_size - 1) == -1)
-        return NULL;
-
-    if (close(save) == -1)
-        return NULL;
-
+    }
+    buffer[size] = '\0';
+    close(fd);
     return buffer;
 }
 
-raycast_map_t *parse_map (char *buffer)
+static int count_to_char(char *buffer, int i, char c)
 {
-    int i = 0;
-    raycast_map_t *map = malloc(sizeof(raycast_map_t));
-
-    map->width = atoi(buffer);
-    while (buffer[i] != '/')
+    while (buffer[i] != '\0' && buffer[i] != c)
         i++;
-    i++;
+    return i;
+}
 
-    map->height = atoi(&buffer[i]);
-    map->map = malloc(sizeof(int) * ((map->height * map->width) + 1));
-    while (buffer[i] != '\n')
-        i++;
-    for (int x = 0; buffer[i] != '\0' && x < map->height *
-    map->width; x++) {
-        map->map[x] = atoi(&buffer[i]);
-        while (buffer[i] != ',' && buffer[i] != '\0')
-            i++;
+static raycast_map_t *fail_map(raycast_map_t *map)
+{
+    free(map);
+    return NULL;
+}
+
+static int parse_dimensions(raycast_map_t *map, char *buffer)
+{
+    int slash = count_to_char(buffer, 0, '/');
+    int nl = 0;
+
+    if (buffer[slash] == '\0')
+        return -1;
+    map->width = my_getnbr(buffer);
+    map->height = my_getnbr(&buffer[slash + 1]);
+    if (map->width <= 0 || map->height <= 0)
+        return -1;
+    nl = count_to_char(buffer, slash, '\n');
+    if (buffer[nl] == '\0')
+        return -1;
+    return nl + 1;
+}
+
+static void fill_map(raycast_map_t *map, char *buffer, int i)
+{
+    int total = map->width * map->height;
+    int x = 0;
+
+    for (x = 0; buffer[i] != '\0' && x < total; x++) {
+        map->map[x] = my_getnbr(&buffer[i]);
+        i = count_to_char(buffer, i, ',');
         i++;
     }
+}
+
+static raycast_map_t *parse_map(char *buffer)
+{
+    raycast_map_t *map = malloc(sizeof(raycast_map_t));
+    int start = 0;
+
+    if (map == NULL)
+        return NULL;
+    start = parse_dimensions(map, buffer);
+    if (start == -1)
+        return fail_map(map);
+    map->map = calloc((size_t)(map->width * map->height), sizeof(int));
+    if (map->map == NULL)
+        return fail_map(map);
+    fill_map(map, buffer, start);
     return map;
 }
 
-raycast_map_t *get_map (char *path)
+raycast_map_t *get_map(char *path)
 {
     char *buffer = read_file(path);
+    raycast_map_t *map = NULL;
+
     if (buffer == NULL)
         return NULL;
-
-    raycast_map_t *map = parse_map(buffer);
-
+    map = parse_map(buffer);
+    free(buffer);
     return map;
 }

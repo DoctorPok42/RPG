@@ -16,6 +16,8 @@ We based our game on the game Link's Awakening.
 
 We used the same map, the same sprites and the same music.
 
+See [documentation](docs/) for more information about the game.
+
 ## Installation
 
 ### Linux

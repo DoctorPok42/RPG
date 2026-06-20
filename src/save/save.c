@@ -5,21 +5,13 @@
 ** write_save
 */
 
-#include "game.h"
-#include<unistd.h>
-#include "fcntl.h"
+#include <unistd.h>
+#include <fcntl.h>
 #include <sys/stat.h>
-#include <stdlib.h>
-#include <stdio.h>
-int my_strlen(char const *str);
-int my_put_nbr(int valeur, int fd);
-int my_float(int prec, double n, int fd);
-char **get_text(FILE *file);
-int my_strncmp(char const *s1, char const *s2, int n);
-int free_tab(char **tab);
-void write_keys(keys_t *key, int fd);
-void write_params(params_t *params, int fd);
-void write_perso(perso_t *perso, int fd);
+
+#include "game.h"
+#include "my_str.h"
+#include "save_functions.h"
 
 void write_save(game_t *game, int fd)
 {
@@ -34,24 +26,20 @@ void write_save(game_t *game, int fd)
 
 int save(game_t *game)
 {
-    char *filepath1 = "config/save1";
-    char *filepath2 = "config/save2";
-    char *filepath3 = "config/save3";
-    int fd; struct stat st = {0};
-    if (stat(filepath1, &st) == -1) {
-        fd = open(filepath1, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
+    char *paths[3] = {"config/save1", "config/save2", "config/save3"};
+    struct stat st = {0};
+    int fd = 0;
+    int i = 0;
+
+    for (i = 0; i < 3; i++) {
+        if (i < 2 && stat(paths[i], &st) != -1)
+            continue;
+        fd = open(paths[i], O_CREAT | O_TRUNC | O_WRONLY, S_IRWXU);
+        if (fd == -1)
+            return 84;
         write_save(game, fd);
         close(fd);
         return 0;
     }
-    if (stat(filepath2, &st) == -1) {
-        fd = open(filepath2, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
-        write_save(game, fd);
-        close(fd);
-        return 0;
-    }
-    fd = open(filepath3, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU);
-    write_save(game, fd);
-    close(fd);
     return 0;
 }

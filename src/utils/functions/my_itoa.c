@@ -6,26 +6,41 @@
 */
 
 #include <stdlib.h>
+#include "my_str.h"
+
+static int itoa_len(long nb)
+{
+    int len = 1;
+
+    if (nb < 0)
+        len = 2;
+    while (nb <= -10 || nb >= 10) {
+        len++;
+        nb /= 10;
+    }
+    return len;
+}
 
 char *my_itoa(int nb)
 {
-    int i = 0;
-    char *str = malloc(sizeof(char) * 10);
-    int nb2 = nb;
-    if (nb == 0) {
+    long value = nb;
+    int len = itoa_len(value);
+    char *str = malloc(sizeof(char) * (len + 1));
+    int i = len - 1;
+
+    if (str == NULL)
+        return NULL;
+    str[len] = '\0';
+    if (value < 0) {
+        str[0] = '-';
+        value = -value;
+    }
+    if (value == 0)
         str[0] = '0';
-        str[1] = '\0';
-        return (str);
-    }
-    while (nb2 > 0) {
-        nb2 = nb2 / 10;
-        i++;
-    }
-    str[i] = '\0';
-    i--;
-    while (i >= 0) {
-        str[i] = (nb % 10) + 48;
-        nb = nb / 10;
+    while (value != 0) {
+        str[i] = '0' + value % 10;
+        value /= 10;
         i--;
-    } return (str);
+    }
+    return str;
 }

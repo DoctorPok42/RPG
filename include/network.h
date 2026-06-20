@@ -10,16 +10,18 @@
 
     #include "rpg.h"
 
-    typedef struct {
-        sfVector2f pos;
-        sfIntRect rect;
-        char *name;
-    } client_t;
+    #define MAX_CLIENTS 100
 
-    typedef struct {
-        client_t *clients;
-        sfTcpSocket *server;
-        sfSprite *client_sprite;
-    } network_t;
+typedef struct {
+    sfVector2f pos;
+    sfIntRect rect;
+    char *name;
+} client_t;
+
+typedef struct {
+    client_t *clients;
+    sfTcpSocket *server;
+    sfSprite *client_sprite;
+} network_t;
 
 #endif /*_NETWORK_H_*/

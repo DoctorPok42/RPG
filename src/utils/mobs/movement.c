@@ -9,77 +9,59 @@
 #include <stdbool.h>
 
 #include "game.h"
+#include "collisions.h"
+#include "mobs_functions.h"
 
-int is_colliding(game_t *game, sfVector2f pos, sfVector2f offset);
-sfVector2f set_vector_speed (sfVector2f vec, float speed);
-
-void move_ennemy_while_colliding (game_t *game, int mob_index,
-sfVector2f offset, sfVector2f mob_pos)
+static bool are_vectors_colliding(const sfVector2f *a, const sfVector2f *b)
 {
-    sfVector2f mob_dim = (sfVector2f) {game->mobs[mob_index]->TextureRect.width,
-    game->mobs[mob_index]->TextureRect.height};
-
-    if (is_colliding(game, (sfVector2f) {mob_pos.x + offset.x, mob_pos.y},
-    mob_dim) && !is_colliding(game, (sfVector2f) {mob_pos.x , mob_pos.y +
-    offset.y}, mob_dim)) {
-
-        if (set_vector_speed(offset, 4).y > 0)
-            game->mobs[mob_index]->pos.y += game->mobs[mob_index]->speed;
-        else
-            game->mobs[mob_index]->pos.y -= game->mobs[mob_index]->speed;
-    } if (!is_colliding(game, (sfVector2f) {mob_pos.x + offset.x, mob_pos.y},
-    mob_dim) && is_colliding(game, (sfVector2f) {mob_pos.x , mob_pos.y +
-    offset.y}, mob_dim)) {
-
-        if (set_vector_speed(offset, 4).x > 0)
-            game->mobs[mob_index]->pos.x += game->mobs[mob_index]->speed;
-        else
-            game->mobs[mob_index]->pos.x -= game->mobs[mob_index]->speed;
-    }
+    return sqrt(pow(a->x - b->x, 2) + pow(a->y - b->y, 2)) < 25;
 }
 
-bool are_vectors_colliding (sfVector2f vec1, sfVector2f vec2)
+static bool is_mob_colliding_with_other_mob(game_t *game, int idx,
+    const sfVector2f *offset)
 {
-    if (sqrt(pow(vec1.x - vec2.x, 2) + pow(vec1.y - vec2.y, 2)) < 25)
-        return true;
+    sfVector2f target = {game->mobs[idx]->pos.x + offset->x,
+        game->mobs[idx]->pos.y + offset->y};
+    int i = 0;
 
-    return false;
-}
-
-bool is_mob_colliding_with_other_mob (game_t *game, int mob_index,
-sfVector2f offset)
-{
-    for (int i = 0; game->mobs[i] != NULL; i++) {
-        if (i == mob_index)
+    for (i = 0; game->mobs[i] != NULL; i++) {
+        if (i == idx)
             continue;
-
-        if (are_vectors_colliding(game->mobs[i]->pos,
-        (sfVector2f) {game->mobs[mob_index]->pos.x + offset.x,
-        game->mobs[mob_index]->pos.y + offset.y})) {
-            offset = set_vector_speed(offset, 0);
+        if (are_vectors_colliding(&game->mobs[i]->pos, &target))
             return true;
-        }
     }
-
     return false;
 }
 
-void move_ennemi (game_t *game, int mob_index, sfVector2f offset,
-sfVector2f mob_pos)
+static void move_ennemy_while_colliding(game_t *game, int idx,
+    const sfVector2f *offset, const sfVector2f *mob_pos)
 {
-    offset = set_vector_speed(offset, 2);
+    mobs_t *mob = game->mobs[idx];
+    sfVector2f dim = {mob->TextureRect.size.x, mob->TextureRect.size.y};
+    sfVector2f hx = {mob_pos->x + offset->x, mob_pos->y};
+    sfVector2f hy = {mob_pos->x, mob_pos->y + offset->y};
 
-    if (is_mob_colliding_with_other_mob(game, mob_index, offset))
+    if (is_colliding(game, &hx, &dim) && !is_colliding(game, &hy, &dim))
+        mob->pos.y += set_vector_speed(offset, 4).y > 0 ? mob->speed
+            : -mob->speed;
+    if (!is_colliding(game, &hx, &dim) && is_colliding(game, &hy, &dim))
+        mob->pos.x += set_vector_speed(offset, 4).x > 0 ? mob->speed
+            : -mob->speed;
+}
+
+void move_ennemi(game_t *game, int mob_index, const sfVector2f *offset,
+    const sfVector2f *mob_pos)
+{
+    mobs_t *mob = game->mobs[mob_index];
+    sfVector2f off = set_vector_speed(offset, 2);
+    sfVector2f dim = {mob->TextureRect.size.x, mob->TextureRect.size.y};
+    sfVector2f next = {mob_pos->x + off.x, mob_pos->y + off.y};
+
+    if (is_mob_colliding_with_other_mob(game, mob_index, &off))
         return;
-
-    sfVector2f mob_dim = (sfVector2f) {game->mobs[mob_index]->TextureRect.width,
-    game->mobs[mob_index]->TextureRect.height};
-
-    if (!is_colliding(game, (sfVector2f) {mob_pos.x + offset.x
-    , mob_pos.y + offset.y }, mob_dim)) {
-        game->mobs[mob_index]->pos.x += offset.x ;
-        game->mobs[mob_index]->pos.y += offset.y ;
-    } else {
-        move_ennemy_while_colliding(game, mob_index, offset, mob_pos);
-    }
+    if (!is_colliding(game, &next, &dim)) {
+        mob->pos.x += off.x;
+        mob->pos.y += off.y;
+    } else
+        move_ennemy_while_colliding(game, mob_index, &off, mob_pos);
 }

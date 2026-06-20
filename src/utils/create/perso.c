@@ -11,11 +11,11 @@ void create_perso(game_t *game)
 {
     game->perso->texture = sfTexture_createFromFile(
         "assets/imgs/perso4.png", NULL);
-    game->perso->sprite = sfSprite_create();
-    sfSprite_setTexture(game->perso->sprite, game->perso->texture, sfTrue);
+    game->perso->sprite = sfSprite_create(game->perso->texture);
+    sfSprite_setTexture(game->perso->sprite, game->perso->texture, true);
     sfSprite_setPosition(game->perso->sprite, (sfVector2f){0, 0});
     game->perso->pos = (sfVector2f) {760, 480};
-    game->perso->rect = (sfIntRect){0, 0, 18, 18};
+    game->perso->rect = (sfIntRect){.position = {0, 0}, .size = {18, 18}};
     sfSprite_setTextureRect(game->perso->sprite, game->perso->rect);
     sfSprite_setScale(game->perso->sprite, (sfVector2f){4, 4});
     game->perso->combat = malloc(sizeof(combat_t));

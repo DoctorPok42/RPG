@@ -10,15 +10,15 @@
 
     #include "rpg.h"
 
-    typedef struct {
-        sfRectangleShape **rect;
-        sfTexture **texture;
-        sfText *title;
-        sfText **name;
-    } save_view_t;
+typedef struct {
+    sfRectangleShape **rect;
+    sfTexture **texture;
+    sfText *title;
+    sfText **name;
+} save_view_t;
 
-    typedef struct {
-        save_view_t *view;
-    } save_t;
+typedef struct {
+    save_view_t *view;
+} save_t;
 
 #endif /* !SAVE_H_ */

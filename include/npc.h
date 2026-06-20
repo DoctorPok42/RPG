@@ -10,23 +10,23 @@
 
     #include "rpg.h"
 
-    enum npc_state {
-        None = 0,
-        Talking = 1,
-    };
+enum npc_state {
+    NPC_NONE = 0,
+    NPC_TALKING = 1,
+};
 
-    typedef struct {
-        sfTexture *texture;
-        sfSprite *sprite;
-        sfVector2f pos;
-        sfIntRect rect;
-        sfClock *clock;
-        sfTime time;
-        float seconds;
-        char *dialog;
-        int dialog_index;
-        float distance_to_player;
-        enum npc_state state;
-    } npc_t;
+typedef struct {
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfVector2f pos;
+    sfIntRect rect;
+    sfClock *clock;
+    sfTime time;
+    float seconds;
+    char *dialog;
+    int dialog_index;
+    float distance_to_player;
+    enum npc_state state;
+} npc_t;
 
 #endif /* !NPC_H_ */

@@ -8,19 +8,16 @@
 #include <math.h>
 
 #include "game.h"
+#include "mobs_functions.h"
 
-sfVector2f set_vector_speed (sfVector2f vec, float speed)
+sfVector2f set_vector_speed(const sfVector2f *vec, float speed)
 {
-    while (fabsf(vec.x) < speed || fabsf(vec.y) < speed) {
-        vec.x *= 10;
-        vec.y *= 10;
-    }
+    float length = sqrtf(vec->x * vec->x + vec->y * vec->y);
+    sfVector2f result = {0, 0};
 
-    float length = sqrt(vec.x * vec.x + vec.y * vec.y);
-
-    sfVector2f longerVec = vec;
-    longerVec.x *= speed / length;
-    longerVec.y *= speed / length;
-
-    return longerVec;
+    if (length == 0)
+        return result;
+    result.x = vec->x * speed / length;
+    result.y = vec->y * speed / length;
+    return result;
 }

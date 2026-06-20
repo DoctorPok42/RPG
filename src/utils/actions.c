@@ -6,31 +6,29 @@
 */
 
 #include "game.h"
-
-
-void relase_button(buttons_t **button, int i, int max);
+#include "display.h"
+#include "menu.h"
 
 void go_back(game_t *game)
 {
-    game->menu /= 10;
+    menu_pop(game);
     if (game->menu > 500)
-        game->menu /= 10;
+        menu_pop(game);
     relase_button(game->params->visu->navbar->button, 0, 5);
 }
 
 void change_to_settings(game_t *game)
 {
     game->params->tmp = 0;
-    if (game->menu <= 563) {
-        game->menu = 20;
-    } else {
-        game->menu = game->menu / 10 * 10 + 1;
-    }
+    if (game->menu <= 563)
+        game->menu = MENU_SETTINGS;
+    else
+        menu_set_tab(game, 1);
 }
 
 void close_start_all(game_t *game)
 {
-    game->menu = game->menu * 10 + 4;
+    menu_push(game, SCREEN_PLAY);
 }
 
 void exit_start_all(game_t *game)
@@ -40,5 +38,5 @@ void exit_start_all(game_t *game)
 
 void change_to_save(game_t *game)
 {
-    game->menu = game->menu * 10 + 3;
+    menu_push(game, SCREEN_SAVE);
 }
